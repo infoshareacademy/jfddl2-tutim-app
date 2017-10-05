@@ -23,6 +23,8 @@ class App extends React.Component {
           <Route path="/tasker" component={Tasker}/>
           <Route path="/students" component={Students}/>
           <Route path="/groups" component={Groups}/>
+          <Route path="/search" component={Search}/>
+
           <Route
             path="/counter"
             render={
