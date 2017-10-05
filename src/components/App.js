@@ -12,6 +12,7 @@ import Tasker from './Tasker'
 import Counter from './Counter'
 import Students from './Students'
 import Groups from './Groups'
+import Search from './Search'
 
 class App extends React.Component {
   render() {
