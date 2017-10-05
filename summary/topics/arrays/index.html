@@ -1,0 +1,29 @@
+<script>
+  //    var x = [1, 2, 3]
+  //    var y = []
+  //
+  //    for (var i = 0; i < x.length; i += 1) {
+  //      y.push(x[i] * 2)
+  //    }
+  //
+  //    console.log(y)
+
+  const numbers = [1, 2, 3]
+  const doubleIt = number => number * 2
+  const doubledNumbers = numbers.map(doubleIt)
+
+  const onlyLowerThanSix = doubledNumbers.filter(
+    item => item < 6
+  )
+
+  const total = doubledNumbers.reduce(
+    (total, next) => {
+      console.log(total, next)
+      return total + next
+    }, 0
+  )
+
+  console.log(doubledNumbers, onlyLowerThanSix, total)
+
+
+</script>

@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Returns sum of two integers.
+   * Throws 'Number expected' if any of params is of different type
+   * than number.
+   *
+   * @param a
+   * @param b
+   */
+  function sum(a, b) {
+    // TODO implement
+  }
+  QUnit.test('Sum two integers throws on wrong type of arguments', function (assert) {
+    var data = [
+      ['a', 0],
+      [0, 'b'],
+      [NaN, 0],
+      [0, NaN]
+    ];
+    data.forEach(
+      function (set) {
+        assert.throws(function () {
+          sum(set[0], set[1])
+        }, TypeError('Number expected'));
+      }
+    );
+  });
+  QUnit.test('Sum two integers calculates sum', function (assert) {
+    var data = [
+      [0, 1, 1],
+      [-1, 2, 1],
+      [10, -100, -90]
+    ];
+    data.forEach(
+      function (set) {
+        assert.equal(sum(set[0], set[1]), set[2])
+      }
+    );
+  })
+
+</script>

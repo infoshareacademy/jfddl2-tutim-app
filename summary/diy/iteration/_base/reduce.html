@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Return a single value after iterating over an array using process function.
+   *
+   * @param items - array
+   * @param process - function that returns single value and accepts previous iteration
+   *                  result and currently iterated element.
+   */
+  function reduce(items, process) {
+    // TODO implement
+  }
+  QUnit.test('Reduce items', function (assert) {
+    assert.deepEqual(reduce([1, 2], function (prev, curr) {
+      return prev + curr;
+    }), 3);
+    assert.deepEqual(reduce([1, 2, 3, 4], function (prev, curr) {
+      return prev + curr;
+    }), 10);
+    assert.deepEqual(reduce([1, 2, 3, 4], function (prev, curr) {
+      return prev * curr;
+    }), 24);
+    assert.deepEqual(reduce([6, 2, 1, 1], function (prev, curr) {
+      return prev - curr;
+    }), 2);
+    assert.deepEqual(reduce(['a', 'b', 'c', 'd'], function (prev, curr) {
+      return prev + curr;
+    }), 'abcd');
+    assert.deepEqual(reduce([], function (prev, curr) {
+      return prev + curr;
+    }, 10), 10);
+    assert.deepEqual(reduce([2], function (prev, curr) {
+      return prev + curr;
+    }, 10), 12);
+    assert.deepEqual(reduce([2, 3, 4], function (prev, curr) {
+      return prev + curr;
+    }, 10), 19);
+    assert.deepEqual(reduce(['a', 'b', 'c', 'd'], function (prev, curr) {
+      return prev + curr;
+    }, 'test'), 'testabcd');
+  });
+</script>

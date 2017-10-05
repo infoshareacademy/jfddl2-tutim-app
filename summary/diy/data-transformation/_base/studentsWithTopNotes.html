@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script src="../data.js"></script>
+<script>
+  /**
+   * Returns an array with students having their top notes.
+   *
+   * @param students
+   */
+  function getStudentsWithTopNotes(students) {
+    // TODO implement
+  }
+
+  QUnit.test('Get students with top notes', function (assert) {
+    assert.deepEqual(
+      getStudentsWithTopNotes(data.students),
+      [
+        {
+          id: 1,
+          name: 'Jacek',
+          topNote: 5
+        },
+        {
+          id: 2,
+          name: 'Ewa',
+          topNote: 5
+        },
+        {
+          id: 3,
+          name: 'Zygmunt',
+          topNote: 4
+        }
+      ]
+    );
+  });
+</script>

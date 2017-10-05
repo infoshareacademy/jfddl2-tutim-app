@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script src="../data.js"></script>
+<script>
+  /**
+   * Returns an object with distribution of notes
+   *
+   * @param students
+   */
+  function getNotesDistribution(students) {
+    // TODO implement
+  }
+  QUnit.test('Get notes distribution', function (assert) {
+    assert.deepEqual(
+      getNotesDistribution(data.students),
+      {
+        '5': 4,
+        '4': 3,
+        '3': 6,
+        '2': 5
+      }
+    );
+  });
+</script>

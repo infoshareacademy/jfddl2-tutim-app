@@ -1,0 +1,36 @@
+var x = undefined
+undefined
+var z = x.a
+VM810:1 Uncaught TypeError: Cannot read property 'a' of undefined
+    at <anonymous>:1:10
+(anonymous) @ VM810:1
+var z = (x && x.a) || 10
+undefined
+z
+10
+var z = (b && b.a) || 10
+VM950:1 Uncaught ReferenceError: b is not defined
+    at <anonymous>:1:10
+(anonymous) @ VM950:1
+var b;
+undefined
+var z = (b && b.a) || 10
+undefined
+var c = {}
+undefined
+var c = undefined
+undefined
+g = 10
+10
+window.g
+10
+var z = (typeof b !== 'undefined' && b.a) || 10
+undefined
+var k = h
+VM1312:1 Uncaught ReferenceError: h is not defined
+    at <anonymous>:1:9
+(anonymous) @ VM1312:1
+var k = g
+undefined
+k
+10

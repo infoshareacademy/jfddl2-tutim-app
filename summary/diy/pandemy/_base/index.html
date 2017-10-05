@@ -1,0 +1,99 @@
+<style>
+    .monster {
+        transition: 0.5s;
+    }
+
+    .dead-monster {
+        text-align: center;
+        vertical-align: center;
+        border: 1px solid #000;
+    }
+
+    td {
+        border: 1px solid #fff;
+        width: 50px;
+        height: 50px;
+    }
+</style>
+
+<div id="app"></div>
+
+<script src="../../../vendor/jquery.js"></script>
+<script>
+  function range(size) {
+    var result = [];
+    for (var i = 0; i < size; i += 1) {
+      result.push(i);
+    }
+    return result;
+  }
+
+  function $makeBoard(selector, width, height) {
+    return $(selector).empty().append(
+      $('<table>').append(
+        range(height).map(function (y) {
+          return $('<tr>').append(
+            range(width).map(function (x) {
+              return $('<td>').addClass('cell');
+            })
+          );
+        })
+      )
+    );
+  }
+
+  function monster($pos, die) {
+    var colors = [
+      'white',
+      'green',
+      'olive',
+      'yellow',
+      'red',
+      'brown',
+      'black'
+    ];
+    var healthPoints = colors.length - 1;
+
+    function update() {
+      $pos.css({
+        backgroundColor: colors[healthPoints]
+      });
+    }
+
+    update();
+
+    $pos.on('click', function () {
+      healthPoints -= 1;
+
+      if (healthPoints === 0) {
+        $pos.off('click');
+        die();
+      }
+      update();
+    });
+  }
+
+  function $pickEmptyField($emptyFields) {
+    return $emptyFields.eq(
+      Math.round(
+        Math.random() * ($emptyFields.length - 1)
+      )
+    );
+  }
+
+  function startGame() {
+    var $board = $makeBoard('#app', 10, 10);
+
+    setInterval(function () {
+      var $emptyFields = $board.find('.cell:not(.dead-monster, .monster)');
+      var $fieldFormMonster = $pickEmptyField($emptyFields);
+
+      monster($fieldFormMonster.addClass('monster'), function () {
+        $fieldFormMonster.removeClass('monster').addClass('dead-monster').text('X');
+      })
+
+    }, 1000);
+  }
+
+  startGame();
+</script>

@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Return new array with items changed by transform function.
+   *
+   * @param items - array
+   * @param transform - function that returns new item and accepts item as an argument
+   */
+  function map(items, transform) {
+    // TODO implement
+  }
+  QUnit.test('Map items', function (assert) {
+    assert.deepEqual(map([1, 2, 3], function (item) {
+      return item * 10;
+    }), [10, 20, 30]);
+    assert.deepEqual(map([1, 2, 3, 4], function (item) {
+      return item + 10;
+    }), [11, 12, 13, 14]);
+  });
+</script>

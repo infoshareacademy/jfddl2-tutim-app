@@ -1,0 +1,84 @@
+<style>
+    /*#game { min-height: 30px; background: #c00; }*/
+    td {
+        height: 50px;
+        width: 50px;
+        border: 1px solid #000;
+    }
+
+    .myCell {
+        background: #0c0;
+    }
+
+    .enemyCell {
+        background: #c00;
+    }
+
+    .usedCell {
+        border: 1px solid blue;
+    }
+</style>
+<div id="score"></div>
+<div id="game"></div>
+<script>
+  'use strict';
+  function times(n, callback) {
+    for (var i = 0; i < n; i += 1) {
+      callback(i);
+    }
+  }
+  function $(selector) {
+    if (selector.charAt(0) === '#') {
+      return document.querySelector(selector)
+    } else if (selector.charAt(0) === '<') {
+      return document.createElement(selector.slice(1, -1))
+    } else {
+      return document.querySelectorAll(selector)
+    }
+  }
+
+  var score = $('#score');
+  var game = $('#game');
+  var table = $('<table>');
+  var size = 10;
+
+  score.innerHTML = 0;
+  times(size, function () {
+    var tr = $('<tr>');
+    times(size, function () {
+      var td = $('<td>');
+      td.addEventListener('click', function (event) {
+        var element = event.target;
+        var myCells;
+        if (element.classList.length === 0) {
+          element.classList.add(
+            'usedCell',
+            event.detail.isEnemy ?
+              'enemyCell' : 'myCell'
+          );
+        }
+        myCells = $('.myCell');
+        score.innerHTML = myCells.length
+      });
+      tr.appendChild(td)
+    });
+    table.appendChild(tr)
+  });
+
+  setInterval(function () {
+    var cells = $('td:not(.usedCell)');
+    var numberOfCells = cells.length;
+    if (numberOfCells === 0) {
+      return;
+    }
+    var randomCellIndex = Math.floor(numberOfCells * Math.random());
+    var randomCell = cells[randomCellIndex];
+
+    var event = new CustomEvent('click', { detail: { isEnemy: true } });
+
+    randomCell.dispatchEvent(event)
+  }, 1000);
+
+  game.appendChild(table);
+
+</script>

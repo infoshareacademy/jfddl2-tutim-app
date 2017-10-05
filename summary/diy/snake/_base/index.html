@@ -1,0 +1,124 @@
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  table {
+    height: 100vh;
+    width: 100vw;
+  }
+  .cell {
+    width: 10%;
+    height: 10%;
+    border: 1px solid #000;
+  }
+  .snake {
+    background: #008000;
+  }
+  .apple {
+    background: #c00;
+  }
+</style>
+
+<div id="app"></div>
+
+<script src="../../../vendor/jquery.js"></script>
+<script>
+  function range(size) {
+    var result = [];
+    for (var i = 0; i < size; i += 1) {
+      result.push(i);
+    }
+    return result;
+  }
+
+  function $makeBoard(selector, width, height) {
+    return $(selector).empty().append(
+      $('<table>').append(
+        range(height).map(function (y) {
+          return $('<tr>').append(
+            range(width).map(function (x) {
+              return $('<td>').addClass('cell');
+            })
+          );
+        })
+      )
+    );
+  }
+
+  function $pickField($fields) {
+    return $fields.eq(
+      Math.round(
+        Math.random() * ($fields.length - 1)
+      )
+    );
+  }
+
+  function $getEmptyFields($fields) {
+    return $fields.not('.snake, .apple');
+  }
+
+  function $vertical(pos, f) {
+    return $(pos).parent()[f]().find('.cell').eq($(pos).index());
+  }
+
+  function $up(pos) {
+    return $vertical(pos, 'prev');
+  }
+
+  function $down(pos) {
+    return $vertical(pos, 'next');
+  }
+
+  function $left(pos) {
+    return $(pos).prev();
+  }
+
+  function $right(pos) {
+    return $(pos).next();
+  }
+
+  function head(items) {
+    return items[0];
+  }
+
+  function rest(items) {
+    return items.slice(1);
+  }
+
+  function moveForward($direction, snake) {
+    $(snake).removeClass('snake');
+    var $target = $direction(head(snake));
+    var weEatApple = $target.hasClass('apple');
+    snake = $target.get().concat(
+       weEatApple ?
+        snake : snake.slice(0, -1)
+    );
+    $target.removeClass('apple');
+    $(snake).addClass('snake');
+    return snake;
+  }
+
+  function startGame() {
+    var $board = $makeBoard('#app', 10, 10);
+    var snake = [$board.find('.cell').first()];
+    var $apple = $board.find('.cell').eq(25).addClass('apple');
+    var $direction = $right;
+    var keyMap = {
+      '37': $left,
+      '38': $up,
+      '39': $right,
+      '40': $down
+    };
+
+    $(window).on('keydown', function (event) {
+      $direction = keyMap[event.keyCode] || $direction;
+    });
+
+    setInterval(function () {
+      snake = moveForward($direction, snake);
+    }, 1000);
+  }
+
+  startGame();
+</script>

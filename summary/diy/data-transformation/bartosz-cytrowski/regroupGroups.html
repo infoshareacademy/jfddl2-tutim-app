@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script src="../data.js"></script>
+<script>
+  /**
+   * Returns an array with groups having nested student lists.
+   *
+   * @param groups
+   */
+  function regroupGroups(groups) {
+    return groups.reduce(function (summary, next) {
+      var attrName = next.studentIds.length === 1 ? 'onlyOne' : 'moreThanOne';
+      if (summary[attrName] === undefined) {
+        summary[attrName] = []
+      }
+      summary[attrName].push(next);
+      return summary;
+    }, {})
+  }
+  QUnit.test('Get groups with students', function (assert) {
+    assert.deepEqual(
+      regroupGroups(data.groups),
+      {
+        onlyOne: [
+          {
+            id: 3,
+            name: 'JFDD-3',
+            studentIds: [3]
+          }
+        ],
+        moreThanOne: [
+          {
+            id: 1,
+            name: 'JFDD-1',
+            studentIds: [1, 2]
+          },
+          {
+            id: 2,
+            name: 'JFDD-2',
+            studentIds: [1, 3]
+          }
+        ]
+      }
+    );
+  });
+</script>

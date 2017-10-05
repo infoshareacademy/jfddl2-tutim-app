@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Return new array with key names from given object.
+   *
+   * @param object - object
+   */
+  function keys(object) {
+    // TODO implement
+  }
+  QUnit.test('Get keys from object', function (assert) {
+    assert.deepEqual(keys({}), []);
+    assert.deepEqual(keys([]), []);
+    assert.deepEqual(keys({ a: 10 }), ['a']);
+    assert.deepEqual(keys([10]), [0]);
+    assert.deepEqual(keys({ a: 10, b: 20 }), ['a', 'b']);
+    assert.deepEqual(keys([10, 20]), [0, 1]);
+  });
+</script>

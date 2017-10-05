@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Returns given argument if its type is 'string'.
+   * Throws 'String expected' for different types.
+   *
+   * @param x
+   */
+  function string(x) {
+    // TODO implement
+  }
+  QUnit.test('Throws for non strings', function (assert) {
+    var data = [
+      1,
+      NaN,
+      [],
+      {},
+      undefined,
+      null,
+      true,
+      false
+    ];
+    data.forEach(
+      function (set) {
+        assert.throws(function () {
+          string(set)
+        }, TypeError('String expected'));
+      }
+    );
+  });
+  QUnit.test('Returns argument if its type is string', function (assert) {
+    var data = [
+      'a',
+      ''
+    ];
+    data.forEach(
+      function (set) {
+        assert.equal(string(set), set)
+      }
+    );
+  })
+
+</script>

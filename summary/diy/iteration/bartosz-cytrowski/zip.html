@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Accepts multiple arrays of the same length on input.
+   * Return new array with arrays composed from n-th items of input arrays.
+   *
+   * Throws 'Arrays of equal length expected.' if you pass wrong call arguments.
+   */
+  function zip() {
+    // TODO implement
+  }
+  QUnit.test('Map items', function (assert) {
+    assert.deepEqual(
+      zip(
+        [1  ,   2,   3],
+        ['a', 'b', 'c']
+      ),
+      [
+        [1, 'a'],
+        [2, 'b'],
+        [3, 'c']
+      ]
+    );
+    assert.throws(function () {
+      zip([1, 2, 3], ['a', 'b']);
+    }, 'Arrays of equal length expected.');
+  });
+</script>

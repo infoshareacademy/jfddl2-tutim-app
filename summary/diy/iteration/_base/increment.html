@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Return new array with items incremented by value
+   *
+   * @param items - array of numbers
+   * @param value - number
+   */
+  function increment(items, value) {
+    // TODO implement
+  }
+  QUnit.test('Map items', function (assert) {
+    assert.deepEqual(increment([1, 2, 3], 3), [4, 5, 6]);
+    assert.deepEqual(increment([1, 2, 3, 4], -3), [-2, -1, 0, 1]);
+  });
+</script>

@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Returns given argument if its type is 'number'.
+   * Throws 'Number expected' for different types.
+   *
+   * @param x
+   */
+  function number(x) {
+    // TODO implement
+  }
+  QUnit.test('Throws for non numbers', function (assert) {
+    var data = [
+      'a',
+      NaN,
+      [],
+      {},
+      undefined,
+      null,
+      true,
+      false
+    ];
+    data.forEach(
+      function (set) {
+        assert.throws(function () {
+          number(set)
+        }, TypeError('Number expected'));
+      }
+    );
+  });
+  QUnit.test('Returns argument if its type is number', function (assert) {
+    var data = [
+      1,
+      -1,
+      0
+    ];
+    data.forEach(
+      function (set) {
+        assert.equal(number(set), set)
+      }
+    );
+  })
+
+</script>

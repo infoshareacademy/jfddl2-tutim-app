@@ -1,0 +1,73 @@
+<style>
+    .cell {
+        border: 1px solid black;
+        width: 30px;
+        height: 30px;
+    }
+
+    .player-cell {
+        background: #0c0;
+    }
+
+    .enemy-cell {
+        background: #c00;
+    }
+</style>
+
+<div id="app"></div>
+
+<script src="./vendor/jquery-3.2.1.js"></script>
+<script src="./helpers.js"></script>
+<script>
+    $.fn.exists = function () {
+        return this.length !== 0
+    }
+
+    var $app = $('#app'); // Find element with id = 'app'
+    var $table = helpers.createTable(10, 10);
+
+    $('td', $table).addClass('cell');
+
+    $table.on('click', 'td:not(".player-cell, .enemy-cell")', function (event, isCPU) {
+        $(this).toggleClass(isCPU ? 'enemy-cell' : 'player-cell');
+
+        var $playerCells = $('.player-cell', $table);
+        var $enemyCells = $('.enemy-cell', $table);
+        var $emptyCells = $('td:not(".player-cell, .enemy-cell")', $table);
+
+//        console.log($playerCells, $enemyCells, $emptyCells);
+
+        if ($emptyCells.length === 0) {
+            if ($playerCells.length > $enemyCells.length) {
+                console.log('WIN!');
+            } else if ($playerCells.length < $enemyCells.length) {
+                console.log('LOOSE!');
+            } else {
+                console.log('DRAW!');
+            }
+        }
+    });
+
+    $app.append($table);
+
+    setInterval(function () {
+        var $cells = $('td:not(".enemy-cell, .player-cell")', $table);
+        $cells.eq(
+            Math.floor(
+                Math.random() * $cells.length
+            )
+        ).trigger('click', [true])
+    }, 100);
+
+    setInterval(function () {
+        $('td.enemy-cell').each(function () {
+            $(this).removeClass('enemy-cell').parent().next().find('td').eq($(this).index()).addClass('enemy-cell')
+        })
+    }, 400);
+
+
+    $(window).on('click scroll load', function (event) {
+//        console.log(event)
+    })
+
+</script>

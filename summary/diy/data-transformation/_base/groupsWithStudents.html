@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script src="../data.js"></script>
+<script>
+  /**
+   * Returns an array with groups having nested student lists.
+   *
+   * @param groups
+   * @param students
+   */
+  function getGroupsWithStudents(groups, students) {
+    // TODO implement
+  }
+  QUnit.test('Get groups with students', function (assert) {
+    assert.deepEqual(
+      getGroupsWithStudents(data.groups, data.students),
+      [
+        {
+          id: 1,
+          name: 'JFDD-1',
+          students: [
+            {
+              id: 1,
+              name: 'Jacek',
+              notes: [5, 3, 4, 2, 5, 5]
+            },
+            {
+              id: 2,
+              name: 'Ewa',
+              notes: [2, 3, 3, 3, 2, 5]
+            }
+          ]
+        },
+        {
+          id: 2,
+          name: 'JFDD-2',
+          students: [
+            {
+              id: 1,
+              name: 'Jacek',
+              notes: [5, 3, 4, 2, 5, 5]
+            },
+            {
+              id: 3,
+              name: 'Zygmunt',
+              notes: [2, 2, 4, 4, 3, 3]
+            }
+          ]
+        },
+        {
+          id: 3,
+          name: 'JFDD-3',
+          students: [
+            {
+              id: 3,
+              name: 'Zygmunt',
+              notes: [2, 2, 4, 4, 3, 3]
+            }
+          ]
+        }
+      ]
+    );
+  });
+</script>

@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Return new array with number from closed range <from, to>
+   *
+   * @param from
+   * @param to
+   */
+  function customRange(from, to) {
+    // TODO implement
+  }
+  QUnit.test('Generate range', function (assert) {
+    assert.deepEqual(customRange(0, 1), [0, 1]);
+    assert.deepEqual(customRange(1, 4), [1, 2, 3, 4]);
+    assert.deepEqual(customRange(5, 2), [5, 4, 3, 2]);
+  });
+</script>

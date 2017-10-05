@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Returns sum of all numbers.
+   *
+   * @param numbers - array of numbers
+   */
+  function number(x) {
+    if (typeof x !== 'number' || isNaN(x)) {
+      throw TypeError('Number expected')
+    }
+
+    return x
+  }
+
+  function sumArray(numbers) {
+    var result = 0
+
+    for (var i = 0; i < numbers.length; i += 1) {
+      result += number(numbers[i])
+    }
+
+    return result;
+  }
+  QUnit.test('Sum an array of integers', function (assert) {
+    assert.throws(function () {
+      sumArray(['a', 2]);
+    }, 'Number expected');
+    assert.throws(function () {
+      sumArray([1, 2, []]);
+    }, 'Number expected');
+    assert.throws(function () {
+      sumArray([3, 'b', 3]);
+    }, 'Number expected');
+    assert.equal(sumArray([1, 2]), 3);
+    assert.equal(sumArray([2, 4, 8]), 14);
+    assert.equal(sumArray([-2, -4, 8, 2]), 4);
+  });
+</script>

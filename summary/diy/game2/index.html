@@ -1,0 +1,58 @@
+<style>
+    .red {
+        background: #c00;
+    }
+</style>
+
+<div style="padding: 20px;">
+    <form id="form">
+        <button type="submit" id="go-button">Go</button>
+    </form>
+</div>
+
+<script>
+
+//    var button2 = $('#go-button').click(function () {
+//      $(this).toggleClass('red');
+//    });
+
+    var div = document.querySelector('div');
+    var button = document.querySelector('#go-button');
+    var form = document.querySelector('#form');
+
+    form.addEventListener('submit', function (event) {
+      console.log('Form submit');
+      event.preventDefault();
+    });
+
+    button.addEventListener('click', function (event) {
+      console.log('Button clicked!', event.target);
+      if (event.target.classList.contains('red')) {
+        event.target.classList.remove('red');
+      } else {
+        event.target.classList.add('red');
+      }
+    });
+
+    div.addEventListener('click', function (event) {
+      console.log('Div clicked!', arguments[0].target);
+    });
+
+    form.addEventListener('click', function () {
+      var zupa = arguments[0];
+      console.log('Form clicked!', zupa.target);
+    });
+
+    form.addEventListener('dblclick', function (event) {
+      console.log('Form dblclicked', event.target);
+      console.log(event);
+    });
+
+    function totalArgs() {
+      return [].reduce.call(arguments, function (total, next) {
+        return total + next;
+      }, 0)
+    }
+
+    console.log(button);
+</script>

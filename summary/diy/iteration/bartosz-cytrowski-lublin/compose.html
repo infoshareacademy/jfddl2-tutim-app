@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Returns a function being result of composition of functions passed as arguments.
+   *
+   * Throws 'Function expected' if not a function given.
+   */
+  function compose() {
+    // TODO implement
+  }
+  QUnit.test('Map items', function (assert) {
+    function modulo15(items) {
+      return items.map(function (item) {
+        return item % 15 === 0 ? 'fizzbuzz' : item;
+      });
+    }
+
+    function modulo3(items) {
+      return items.map(function (item) {
+        return item % 3 === 0 ? 'fizz' : item;
+      });
+    }
+
+    function modulo5(items) {
+      return items.map(function (item) {
+        return item % 5 === 0 ? 'buzz' : item;
+      });
+    }
+
+    var fizzbuzz = compose(
+      modulo15,
+      modulo3,
+      modulo5
+    );
+
+    assert.deepEqual(
+      fizzbuzz(
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+      ),
+      [1, 2, 'fizz', 4, 'buzz', 'fizz', 7, 8, 'fizz', 'buzz', 11, 'fizz', 13, 14, 'fizzbuzz']
+    );
+    assert.throws(function () {
+      compose([5], function (a, b) { return a + b; })
+    }, 'Function expected.');
+  });
+</script>

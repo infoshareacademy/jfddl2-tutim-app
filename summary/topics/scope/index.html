@@ -1,0 +1,206 @@
+<link rel="stylesheet" href="../../vendor/qunit.css">
+<div id="qunit"></div>
+<script src="../../vendor/jquery.js"></script>
+<script src="../../vendor/qunit.js"></script>
+<script>
+  QUnit.test('Variable scope', function (assert) {
+    var _ = 'FILL THE GAP',
+      eq = assert.equal.bind(assert),
+      throws = assert.throws.bind(assert);
+
+    /**
+     * A globally-scoped variable example
+     */
+    var a1 = 1;
+
+    function one() {
+      eq(1, a1);
+    }
+
+    eq(1, a1);
+    one();
+    eq(1, a1);
+
+    /**
+     * A local scope example
+     */
+    var a2 = 1;
+
+    function two(a2) {
+      eq(5, a2);
+    }
+    eq(1, a2);
+    two(5);
+    eq(1, a2);
+
+    /**
+     * Another local scope example
+     */
+    function three() {
+      var a3 = 3;
+      eq(3, a3);
+    }
+
+    three();
+    eq('undefined', typeof(a3)); // typeof does not throw reference exception
+
+    /**
+     * Intermediate: No such thing as block scope in JavaScript (ES5; ES6 introduces let)
+     */
+    var a4 = 1;
+
+    function four() {
+      if (true) {
+        var a4 = 4;
+        eq(4, a4);
+      }
+      eq(4, a4);
+    }
+
+    eq(1, a4);
+    four();
+    eq(1, a4);
+
+    /**
+     * Intermediate: Object properties
+     */
+    var a5 = 1;
+
+    function Five() {
+      this.a5 = 5;
+      eq(1, a5);
+    }
+
+    eq(1, a5);
+    eq("number", typeof new Five().a5);
+    eq(1, a5);
+    eq("undefined", typeof Five());
+    // throws(
+    //   function () {
+    //     console.log(Five().a5);
+    //   }
+    // );
+    eq(1, a5);
+    eq(5, window.a5);
+
+    /**
+     * Advanced: Closure
+     */
+    var a6 = 1;
+
+    var six = function foo() {
+      var a6 = 6;
+      var dummy = function dummy() {
+        a6 += 4;
+        return a6;
+      };
+      eq(6, a6);
+      return dummy;
+    }();
+    eq(1, a6);
+    // six === dummy
+    eq(10, six());
+    eq(14, six());
+    eq(18, six());
+
+    /**
+     * Advanced: Prototype-based scope resolution
+     */
+    var a7 = 1;
+
+    function Seven() {
+      this.a7 = 7;
+      eq(1, a7);
+    }
+
+    Seven.prototype.a7 = -1;
+    Seven.prototype.b7 = 8;
+
+    eq(1, a7);
+    var seven = new Seven();
+    eq(1, a7);
+    eq(7, seven.a7);
+    eq(8, seven.b7);
+
+    /**
+     * Global+Local: An extra complex Case introducing 'hoisting'.
+     */
+    var x1 = 5;
+
+    (function (undefined) {
+      eq(void 0, x1); // because we override undefined by 10
+      var x1 = 10;
+      eq(10, x1);
+    })(10);
+
+    var x2 = 5;
+
+    (function () {
+      var x2;
+      eq(undefined, x2);
+      x2 = 10;
+      eq(10, x2);
+    })();
+
+    /**
+     * Catch clause-scoped variable
+     */
+    var e = 5;
+    eq(5, e);
+    try {
+      throw 6;
+    } catch (e) {
+      eq(6, e);
+    }
+    eq(5, e);
+
+    var e2 = 5;
+    eq(5, e2);
+    eq(undefined, f2);
+    try {
+      throw 6;
+    } catch (e2) {
+      var f2 = 10;
+      eq(6, e2);
+      eq(10, f2);
+    }
+    eq(5, e2);
+    eq(10, f2);
+
+    /**
+     * Eval cheating on lexical scoping
+     */
+    var a8 = 10;
+    eq(10, a8);
+
+    function eight(code) {
+      eval(code);
+      eq(4, a8);
+    }
+
+    eight('var a8 = 4;');
+    eq(10, a8);
+    eight = function (code) {
+      eval(code);
+      eq(55, a8);
+    };
+    eight('a8 = 55;');
+    eq(55, a8);
+
+
+    /**
+     * Those lines are here only to hide answers for the training purpose.
+     * If you want to see answers just comment them out.
+     */
+    $('.fail table').hide();
+    $('.fail .test-message').each(function () {
+      var text = $(this).siblings('table').find('.test-source').text();
+      $(this).append(' at: ' + text.match(/\d+:\d+/));
+    });
+
+//    $('.pass').css({
+//      opacity: 0,
+//      position: 'absolute'
+//    });
+  });
+</script>

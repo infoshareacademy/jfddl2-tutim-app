@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script src="../data.js"></script>
+<script>
+  /**
+   * Returns an object representing student with most favs.
+   *
+   * @param students
+   * @param favoriteTracks
+   */
+  function getStudentWithMostFavs(students, favoriteTracks) {
+    // TODO implement
+  }
+  QUnit.test('Get student with most favs', function (assert) {
+    assert.deepEqual(
+      getStudentWithMostFavs(data.students, data.favoriteTracks),
+      {
+        id: 2,
+        name: 'Ewa',
+        notes: [2, 3, 3, 3, 2, 5],
+        favoriteTracks: ['A', 'B', 'C']
+      }
+    );
+  });
+</script>

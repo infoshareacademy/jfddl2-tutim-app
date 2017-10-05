@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Return new array with size numbers starting from, incrementing by step
+   *
+   * @param size
+   * @param from
+   * @param step
+   */
+  function steppedRange(size, from, step) {
+    var result = [];
+
+    for (var i = 0; i < size; i += 1) {
+      result.push(from + i * step)
+    }
+
+    return result
+  }
+  QUnit.test('Generate range', function (assert) {
+    assert.deepEqual(steppedRange(2, 0, 1), [0, 1]);
+    assert.deepEqual(steppedRange(3, 4, 2), [4, 6, 8]);
+    assert.deepEqual(steppedRange(4, 2, -1), [2, 1, 0, -1]);
+  });
+</script>

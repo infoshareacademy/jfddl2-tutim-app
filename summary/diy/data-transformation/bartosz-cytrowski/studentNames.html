@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script src="../data.js"></script>
+<script>
+  /**
+   * Returns an array with student names.
+   *
+   * @param students
+   */
+  function getStudentNames(students) {
+    return students.map(function (student) {
+      return student.name;
+    })
+  }
+  QUnit.test('Get student names', function (assert) {
+    assert.deepEqual(
+      getStudentNames(data.students),
+      ['Jacek', 'Ewa', 'Zygmunt']
+    );
+  });
+</script>

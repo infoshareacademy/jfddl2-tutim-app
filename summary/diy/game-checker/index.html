@@ -1,0 +1,43 @@
+<style>
+    #game {
+        width: 500px;
+        height: 500px;
+        background: #eee;
+    }
+    table {
+        width: 100%;
+        height: 100%;
+    }
+    td {
+        border: 1px solid #000;
+    }
+    .clicked {
+        background: #00c;
+    }
+</style>
+<div id="game"></div>
+<script>
+    var game = document.getElementById('game');
+    var table = document.createElement('table');
+    var tr, td;
+
+    function handleClick(event) {
+      var element = event.target;
+      element.classList.add('clicked');
+    }
+
+    game.appendChild(table);
+
+    for (var i = 0; i < 10; i += 1) {
+      tr = document.createElement('tr');
+      for (var j = 0; j < 10; j += 1) {
+        td = document.createElement('td');
+        td.addEventListener('click', handleClick);
+        tr.appendChild(td)
+      }
+      table.appendChild(tr)
+    }
+
+
+    console.log(game, table)
+</script>

@@ -1,0 +1,12 @@
+var numbers = [1, 2, 3] 
+undefined
+Math.max(45, 55)
+55
+Math.max(45, 55, 33)
+55
+Math.max.apply(null, numbers);
+3
+Math.max.apply(Math, numbers);
+3
+Math.max.apply(undefined, numbers);
+3

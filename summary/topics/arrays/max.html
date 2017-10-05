@@ -1,0 +1,63 @@
+<script>
+  //Math.max
+
+  function max(numbers) {
+    return numbers.reduce(function (currentMax, next) {
+      return next > currentMax ? next : currentMax;
+    }, -Infinity);
+  }
+
+  function min(numbers) {
+    return numbers.reduce(function (currentMin, next) {
+      return next < currentMin ? next : currentMin;
+    }, Infinity);
+  }
+
+  function total(numbers) {
+    return numbers.reduce(function (total, next) {
+      return total + next;
+    }, 0);
+  }
+
+  function odd(numbers) {
+    return numbers.filter(function (number) {
+      return number % 2 === 1
+    })
+  }
+
+  function even(numbers) {
+    return numbers.filter(function (number) {
+      return number % 2 === 0
+    })
+  }
+
+  var students = [
+    {
+      id: 1,
+      name: 'John',
+      isSmoking: true
+    },
+    {
+      id: 2,
+      name: 'Steve',
+      isSmoking: false
+    },
+    {
+      id: 3,
+      name: 'Simon',
+      isSmoking: true
+    }
+  ];
+
+  function smokers(people) {
+    return people.filter(function (person) {
+      return person.isSmoking;
+    });
+  }
+
+  function smokerNames(people) {
+    return smokers(people).map(function (person) {
+      return person.name;
+    })
+  }
+</script>

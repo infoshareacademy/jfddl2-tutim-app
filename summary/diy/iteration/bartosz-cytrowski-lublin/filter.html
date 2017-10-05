@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Return new array with items for which predicate function returns true.
+   *
+   * @param items - array
+   * @param predicate - function that returns boolean value and accepts item as an argument
+   */
+  function filter(items, predicate) {
+    // TODO implement
+  }
+  QUnit.test('Filter items', function (assert) {
+    assert.deepEqual(
+      filter(
+        [1, 2, 3, 4], 
+        function (item) {
+          return item % 2 === 0;
+        }
+      ), 
+      [2, 4]
+    );
+    assert.deepEqual(filter(['cat', 'elephant', 'dog', 'fish'], function (item) {
+      return item.length < 5;
+    }), ['cat', 'dog', 'fish']);
+  });
+</script>

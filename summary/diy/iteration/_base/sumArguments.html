@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Returns sum of all arguments.
+   * Throws 'Number expected' if any of arguments is not a number.
+   */
+  function sumArguments() {
+    // TODO implement
+  }
+  QUnit.test('Sum any number of integers', function (assert) {
+    assert.throws(function () {
+      sumArguments('a', 2);
+    }, 'Number expected');
+    assert.throws(function () {
+      sumArguments('a', 'b');
+    }, 'Number expected');
+    assert.throws(function () {
+      sumArguments(3, 'b');
+    }, 'Number expected');
+    assert.equal(sumArguments(1, 2), 3);
+    assert.equal(sumArguments(2, 4, 8), 14);
+    assert.equal(sumArguments(-2, -4, 8), 2);
+  });
+</script>

@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Returns concatenation of all strings passed to it.
+   * Throws 'String expected' if any of arguments is not one.
+   */
+  function concat() {
+    // TODO implement
+  }
+  QUnit.test('Concat strings', function (assert) {
+    assert.throws(function () {
+      concat('a', 2);
+    }, TypeError('String expected'));
+    assert.throws(function () {
+      concat(2, '2');
+    }, TypeError('String expected'));
+    assert.equal(concat('a', 'b'), 'ab');
+    assert.equal(concat('ab', 'c'), 'abc');
+    assert.equal(concat('', 'c'), 'c');
+  });
+</script>

@@ -1,0 +1,12 @@
+<form>
+  <input type="text" placeholder="e-mail">
+  <button type="submit">Send</button>
+</form>
+
+<script src="../../../vendor/jquery.js"></script>
+<script>
+  $('form').on('submit', function (event) {
+    event.preventDefault();
+    console.log($('input').val());
+  });
+</script>

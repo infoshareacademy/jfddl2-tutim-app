@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="../../../vendor/qunit.css">
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="../../../vendor/qunit.js"></script>
+<script>
+  /**
+   * Returns an key for which dictionary has given value.
+
+   * @param value - anything
+   * @param dictionary - an object
+   */
+  function getKey(value, dictionary) {
+    // TODO implement
+  }
+  QUnit.test('Translate items', function (assert) {
+    assert.deepEqual(getKey('kot', {
+      'cat': 'kot',
+      'dog': 'pies',
+      'elephant': 'słoń'
+    }), 'cat');
+    assert.deepEqual(getKey('słoń', {
+      'cat': 'kot',
+      'dog': 'pies',
+      'elephant': 'słoń'
+    }), 'elephant');
+  });
+</script>

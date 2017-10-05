@@ -1,0 +1,19 @@
+function A() {
+  var x = 10;
+}
+undefined
+A()
+undefined
+function A() {
+  var x = 10;
+  return x;
+}
+undefined
+var y = A()
+undefined
+y
+10
+A()
+10
+A() - 1
+9
