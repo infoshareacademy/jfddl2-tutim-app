@@ -1,27 +1,27 @@
 import React from 'react'
-import { Table, ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap'
+import {Table, ButtonToolbar, ButtonGroup, Button} from 'react-bootstrap'
 
 import SearchForm from './SearchForm'
 
 const filters = {
- breakfast: search => search.category.includes ('śniadanie'),
-  dinner: search => search.category.includes ('obiad'),
-  supper: search => search.category.includes('kolacja')
+  meal_breakfast: search => search.category.includes('śniadanie'),
+  meal_dinner: search => search.category.includes('obiad'),
+  meal_supper: search => search.category.includes('kolacja')
 }
 
 const filterSearches = [
   [
     {
       label: 'Śniadanie',
-      name: 'breakfast'
+      name: 'meal_breakfast'
     },
     {
       label: 'Obiad',
-      name: 'dinner'
+      name: 'meal_dinner'
     },
     {
       label: 'Kolacja',
-      name: 'supper'
+      name: 'meal_supper'
     }
   ],
 
@@ -43,7 +43,7 @@ class SearchTable extends React.Component {
 
   handleToggleFilterClick = event => {
     const filterName = event.target.dataset.filterName
-    const { activeFilterNames } = this.state
+    const {activeFilterNames} = this.state
     const filterNameExists = activeFilterNames.includes(filterName)
 
     this.setState({
@@ -66,22 +66,22 @@ class SearchTable extends React.Component {
   }
 
   render() {
-    const { searches } = this.props
+    const {searches} = this.props
     return (
       <div>
         <SearchForm
           searchPhrase={this.state.currentSearchPhrase}
-          handleChange={this.handleSearchPhraseChange }
+          handleChange={this.handleSearchPhraseChange}
         />
 
-        <ButtonToolbar style={{ marginTop: 20 }}>
+        <ButtonToolbar style={{marginTop: 20}}>
           {
             filterSearches.map(
               (search, index) => (
                 <ButtonGroup key={index}>
                   {
                     search.map(
-                      ({ label, name }) => (
+                      ({label, name}) => (
                         <Button
                           key={name}
                           data-filter-name={name}
@@ -128,7 +128,7 @@ class SearchTable extends React.Component {
             ).filter(
               search => search.name.includes(this.state.currentSearchPhrase)
             ).map(
-              ({ uid, name, kcal, category }, index, allSearches) => (
+              ({uid, name, kcal, category}, index, allSearches) => (
                 <tr key={uid}>
                   <td>
                     {name}
