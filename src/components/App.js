@@ -12,6 +12,7 @@ import Tasker from './Tasker'
 import Counter from './Counter'
 import Students from './Students'
 import Groups from './Groups'
+import Search from './Search'
 
 class App extends React.Component {
   render() {
@@ -22,6 +23,8 @@ class App extends React.Component {
           <Route path="/tasker" component={Tasker}/>
           <Route path="/students" component={Students}/>
           <Route path="/groups" component={Groups}/>
+          <Route path="/search" component={Search}/>
+
           <Route
             path="/counter"
             render={
