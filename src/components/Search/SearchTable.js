@@ -27,6 +27,7 @@ const filterSearches = [
 
 ]
 
+
 class SearchTable extends React.Component {
 
   state = {

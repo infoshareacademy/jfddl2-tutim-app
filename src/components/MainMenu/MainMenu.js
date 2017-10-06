@@ -35,7 +35,7 @@ const MainMenu = () => (
         <NavItem>Students</NavItem>
       </LinkContainer>
 
-      <LinkContainer to="/groups">
+      <LinkContainer to="/search">
         <NavItem>Wyszukaj</NavItem>
       </LinkContainer>
     </Nav>
