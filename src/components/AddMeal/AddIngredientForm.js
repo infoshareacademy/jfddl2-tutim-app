@@ -1,4 +1,5 @@
 import React from 'react'
+import {Grid, Row, Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 
 class AddIngredientForm extends React.Component {
 
@@ -24,24 +25,18 @@ class AddIngredientForm extends React.Component {
 
     render() {
         return (
-            <form
-
-                 onSubmit={this.handleSubmit}
-            >
-                <input
-                    type="text"
-                    value={this.state.ingredientsInputValue}
-                    onChange={this.handleIngredientInputChange}
-                    style={{
-                        width: 450,
-                        height: 500
-                    }}
-                />
-
-                <button
-                >
-                    Dodaj przepis
-                </button>
+            <form>
+                <Grid>
+                    <Row>
+                        <FormGroup controlId="formControlsTextarea">
+                            <ControlLabel>Textarea</ControlLabel>
+                            <FormControl componentClass="textarea" placeholder="textarea" />
+                        </FormGroup>
+                    </Row>
+                    <Row>
+                        <Button onClick={this.handleSubmit} bsStyle="primary">Dodaj przepis</Button>
+                    </Row>
+                </Grid>
             </form>
 
         )
