@@ -38,6 +38,10 @@ const MainMenu = () => (
       <LinkContainer to="/groups">
         <NavItem>Groups</NavItem>
       </LinkContainer>
+
+      <LinkContainer to="/addMeal">
+        <NavItem>Dodaj przepis</NavItem>
+      </LinkContainer>
     </Nav>
   </Navbar>
 )
