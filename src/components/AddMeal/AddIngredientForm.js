@@ -25,16 +25,22 @@ class AddIngredientForm extends React.Component {
     render() {
         return (
             <form
-                onSubmit={this.handleSubmit}
+
+                 onSubmit={this.handleSubmit}
             >
                 <input
                     type="text"
                     value={this.state.ingredientsInputValue}
                     onChange={this.handleIngredientInputChange}
+                    style={{
+                        width: 450,
+                        height: 500
+                    }}
                 />
 
-                <button>
-                    Dodaj składnik
+                <button
+                >
+                    Dodaj przepis
                 </button>
             </form>
 

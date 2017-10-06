@@ -41,23 +41,7 @@ class AddMeal extends React.Component {
         })
     }
 
-    handleToggleCompleteIngredientClick = event => {
-        const ingredientId = parseInt(event.target.dataset.ingredientId, 10)
 
-        this.setState({
-            ingredients: this.state.ingredients.map(
-                ingredient => ingredient.id !== ingredientId ?
-                    ingredient :
-                    // Object.assign({}, task, { done: !task.done })
-                    {
-                        ...ingredient,
-                        done: !ingredient.done
-                    }
-            )
-        }, () => {
-            localStorage.setItem('addMeal', JSON.stringify(this.state))
-        })
-    }
 
     componentWillMount() {
         console.log('addMeal will mount')
