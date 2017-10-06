@@ -30,11 +30,11 @@ class AddMeal extends React.Component {
     }
 
     handleRemoveIngredientClick = event => {
-        const IngredientId = parseInt(event.target.dataset.IngredientId, 10)
+        const ingredientId = parseInt(event.target.dataset.ingredientId, 10)
 
         this.setState({
             ingredients: this.state.ingredients.filter(
-                ingredient => IngredientId  !== ingredient.id
+                ingredient => ingredientId  !== ingredient.id
             )
         }, () => {
             localStorage.setItem('addMeal', JSON.stringify(this.state))

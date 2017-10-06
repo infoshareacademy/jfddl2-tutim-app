@@ -17,14 +17,14 @@ const IngredientListItem = ({
         {ingredient.title}
 
         <Button
-            data-task-id={ingredient.id}
+            data-ingredient-id={ingredient.id}
             onClick={handleRemoveIngredientClick}
         >
             Usuń
         </Button>
 
         <Button
-            data-task-id={ingredient.id}
+            data-ingredient-id={ingredient.id}
             onClick={handleToggleCompleteIngredientClick}
         >
             {
