@@ -4,46 +4,28 @@ import { Table, ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap'
 import SearchForm from './SearchForm'
 
 const filters = {
-  city_gdynia: search => search.city === 'Gdynia',
-  city_gdansk: search => search.city === 'Gdańsk',
-  city_sopot: search => search.city === 'Sopot',
-  level_beginner: search => search.level === 'beginner',
-  level_intermediate: search => search.level === 'intermediate',
-  level_advanced: search => search.level === 'advanced'
+ breakfast: search => search.category.includes ('śniadanie'),
+  dinner: search => search.category.includes ('obiad'),
+  supper: search => search.category.includes('kolacja')
 }
 
 const filterSearches = [
   [
     {
-      label: 'Gdynia',
-      name: 'city_gdynia'
+      label: 'Śniadanie',
+      name: 'breakfast'
     },
     {
-      label: 'Sopot',
-      name: 'city_sopot'
+      label: 'Obiad',
+      name: 'dinner'
     },
     {
-      label: 'Gdańsk',
-      name: 'city_gdansk'
+      label: 'Kolacja',
+      name: 'supper'
     }
   ],
 
-  [
-    {
-      label: 'Beginner',
-      name: 'level_beginner'
-    },
-    {
-      label: 'Intermediate',
-      name: 'level_intermediate'
-    },
-    {
-      label: 'Advanced',
-      name: 'level_advanced'
-    }
-  ]
 ]
-
 
 class SearchTable extends React.Component {
 
@@ -84,14 +66,13 @@ class SearchTable extends React.Component {
 
   render() {
     const { searches } = this.props
-
     return (
       <div>
         <SearchForm
           searchPhrase={this.state.currentSearchPhrase}
           handleChange={this.handleSearchPhraseChange }
         />
-        debugger
+
         <ButtonToolbar style={{ marginTop: 20 }}>
           {
             filterSearches.map(
@@ -120,7 +101,7 @@ class SearchTable extends React.Component {
             <Button
               onClick={this.handleResetClick}
             >
-              RESET
+              Pokaż wszystkie
             </Button>
           </ButtonGroup>
         </ButtonToolbar>
@@ -130,9 +111,9 @@ class SearchTable extends React.Component {
         }}>
           <thead>
           <tr>
-            <th>Name</th>
-            <th>City</th>
-            <th>Level</th>
+            <th>Nazwa posiłku</th>
+            <th>Wartość kaloryczna</th>
+            <th>Rodzaj posiłku</th>
           </tr>
           </thead>
           <tbody>
@@ -146,16 +127,16 @@ class SearchTable extends React.Component {
             ).filter(
               search => search.name.includes(this.state.currentSearchPhrase)
             ).map(
-              ({ id, name, city, level }, index, allSearches) => (
-                <tr key={id}>
+              ({ uid, name, kcal, category }, index, allSearches) => (
+                <tr key={uid}>
                   <td>
                     {name}
                   </td>
                   <td>
-                    {city}
+                    {kcal}
                   </td>
                   <td>
-                    {level}
+                    {category}
                   </td>
                 </tr>
               )

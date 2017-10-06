@@ -36,7 +36,7 @@ const MainMenu = () => (
       </LinkContainer>
 
       <LinkContainer to="/groups">
-        <NavItem>Groups</NavItem>
+        <NavItem>Wyszukaj</NavItem>
       </LinkContainer>
     </Nav>
   </Navbar>
