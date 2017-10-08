@@ -38,6 +38,10 @@ const MainMenu = () => (
       <LinkContainer to="/search">
         <NavItem>Wyszukaj</NavItem>
       </LinkContainer>
+
+      <LinkContainer to="favourite">
+        <NavItem>Ulubione</NavItem>
+      </LinkContainer>
     </Nav>
   </Navbar>
 )
