@@ -5,6 +5,8 @@ import IngredientList from './IngredientList'
 
 import { getNextId } from './_utils'
 
+
+
 class AddMeal extends React.Component {
 
 
@@ -75,13 +77,13 @@ class AddMeal extends React.Component {
 
         return (
             <div>
-                <h1>
+                <h2>
                     Dodaj przepis
-                </h1>
+                </h2>
 
                 <AddIngredientForm addIngredient={this.addIngredient}/>
 
-                <IngredientList
+                 <IngredientList
                     ingredients={ingredients}
                     handlers={handlers}
                 />

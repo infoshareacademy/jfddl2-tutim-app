@@ -13,7 +13,7 @@ import Counter from './Counter'
 import Students from './Students'
 import Groups from './Groups'
 import Search from './Search'
-import AddMeal from './AddMeal'
+import AddMeal from './AddMeal/index'
 import Tasker from './Tasker'
 
 

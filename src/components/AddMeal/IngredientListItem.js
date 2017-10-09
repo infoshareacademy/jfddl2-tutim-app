@@ -19,6 +19,7 @@ const IngredientListItem = ({
             Usuń
         </Button>
 
+
     </li>
 )
 
