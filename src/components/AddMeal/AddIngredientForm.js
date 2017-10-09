@@ -53,7 +53,7 @@ class AddIngredientForm extends React.Component {
         let isNewMealValid = true;
 
         for (let variable in newMeal) {
-            if(!newMeal[variable]) {
+            if (!newMeal[variable]) {
                 isNewMealValid = false;
                 break;
             }
@@ -63,73 +63,81 @@ class AddIngredientForm extends React.Component {
             isNewMealValid: isNewMealValid,
         })
 
-        if(isNewMealValid){
+        if (isNewMealValid) {
             // dodajemy obiekt od storage
             // mozemy wyswietlic alert kotry zniknie po kilku s (setTimeout)
             // wyczyscuic caly state odnoszacy sie do tych pol
 
             this.props.addRecipe(newMeal)
         }
-    }
+
+    };
+
 
     render() {
+
         const invalidInput = <Alert bsStyle="danger">
             Złe wartości!
-        </Alert>
+        </Alert>;
+
+        const validInput =    <Alert bsStyle="success">
+            Przepis został dodany
+        </Alert>;
+
 
         return (
             <div>
-                {this.state.isNewMealValid ? null : invalidInput}
-            <form>
-                <Grid>
-                    <Row>
-                        <FormGroup controlId="newId">
-                            <ControlLabel>Nazwa dania</ControlLabel>
-                            <FormControl componentClass="textarea" placeholder=""
-                                         value={this.state.ingredientsFormControlTitle}
-                                         onChange={this.handleIngredientFormControlChange3}/>
-                        </FormGroup>
-                    </Row>
-                </Grid>
+                {this.state.isNewMealValid ? validInput : invalidInput}
+                <form>
+                    <Grid>
+                        <Row>
+                            <FormGroup controlId="newId">
+                                <ControlLabel>Nazwa dania</ControlLabel>
+                                <FormControl componentClass="textarea" placeholder=""
+                                             value={this.state.ingredientsFormControlTitle}
+                                             onChange={this.handleIngredientFormControlChange3}/>
+                            </FormGroup>
+                        </Row>
+                    </Grid>
 
-                <Grid>
-                    <Row>
-                        <FormGroup controlId="newId">
-                            <ControlLabel>Liczba kalorii</ControlLabel>
-                            <FormControl componentClass="textarea" placeholder=""
-                                         value={this.state.ingredientsFormControlKcal}
-                                         onChange={this.handleIngredientFormControlChange4}/>
-                        </FormGroup>
-                    </Row>
-                </Grid>
-
-
-                <Grid>
-                    <Row>
-                        <FormGroup controlId="formControlsTextarea">
-                            <ControlLabel>Dodaj przepis</ControlLabel>
-                            <FormControl componentClass="textarea" placeholder=""
-                                         value={this.state.ingredientsFormControlValue}
-                                         onChange={this.handleIngredientFormControlChange}/>
-                        </FormGroup>
-                    </Row>
-                </Grid>
+                    <Grid>
+                        <Row>
+                            <FormGroup controlId="newId">
+                                <ControlLabel>Liczba kalorii</ControlLabel>
+                                <FormControl componentClass="textarea" placeholder=""
+                                             value={this.state.ingredientsFormControlKcal}
+                                             onChange={this.handleIngredientFormControlChange4}/>
+                            </FormGroup>
+                        </Row>
+                    </Grid>
 
 
-                <Grid>
-                    <Row>
-                        <FormGroup controlId="newId">
-                            <ControlLabel>Dodaj URL zdjęcia</ControlLabel>
-                            <FormControl componentClass="textarea" placeholder=""
-                                         value={this.state.ingredientsFormControlUrl}
-                                         onChange={this.handleIngredientFormControlChange2}/>
-                        </FormGroup>
-                    </Row>
-                </Grid>
+                    <Grid>
+                        <Row>
+                            <FormGroup controlId="formControlsTextarea">
+                                <ControlLabel>Dodaj przepis</ControlLabel>
+                                <FormControl componentClass="textarea" placeholder=""
+                                             value={this.state.ingredientsFormControlValue}
+                                             onChange={this.handleIngredientFormControlChange}/>
+                            </FormGroup>
+                        </Row>
+                    </Grid>
 
 
-                <Button onClick={this.handleSubmitMain}> Dodaj posiłek </Button>
-            </form>
+                    <Grid>
+                        <Row>
+                            <FormGroup controlId="newId">
+                                <ControlLabel>Dodaj URL zdjęcia</ControlLabel>
+                                <FormControl componentClass="textarea" placeholder=""
+                                             value={this.state.ingredientsFormControlUrl}
+                                             onChange={this.handleIngredientFormControlChange2}/>
+                            </FormGroup>
+                        </Row>
+                    </Grid>
+
+
+                    <Button onClick={this.handleSubmitMain}> Dodaj posiłek </Button>
+                </form>
             </div>
         )
     }

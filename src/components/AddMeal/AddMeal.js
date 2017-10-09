@@ -3,12 +3,10 @@ import React from 'react'
 import AddIngredientForm from './AddIngredientForm'
 import IngredientList from './IngredientList'
 
-import { getNextId } from './_utils'
-
+import {getNextId} from './_utils'
 
 
 class AddMeal extends React.Component {
-
 
 
     state = {
@@ -16,36 +14,17 @@ class AddMeal extends React.Component {
     }
 
     addRecipe = newMeal => {
-        const { ingredients } = this.state
+        const {ingredients} = this.state
         const maxIdSoFar = getNextId(ingredients)
 
         this.setState({
             ingredients: ingredients.concat(
-            //     {
-            //     id: maxIdSoFar + 1,
-            //     title: newMeal.name,
-            //     done: false,
-            //     isFavorite: false
-            // }
                 newMeal
             )
         }, () => {
             localStorage.setItem('addMeal', JSON.stringify(this.state))
         })
     }
-
-    handleRemoveIngredientClick = event => {
-        const ingredientId = parseInt(event.target.dataset.ingredientId, 10)
-
-        this.setState({
-            ingredients: this.state.ingredients.filter(
-                ingredient => ingredientId  !== ingredient.id
-            )
-        }, () => {
-            localStorage.setItem('addMeal', JSON.stringify(this.state))
-        })
-    }
-
 
 
     componentWillMount() {
@@ -65,16 +44,12 @@ class AddMeal extends React.Component {
         console.log('addMeal will update')
     }
 
-    componentDidUpdate() {
-        console.log('addMeal did update')
-    }
-
+    componentDi
     render() {
         console.log('addMeal render')
 
-        const { ingredients } = this.state
+        const {ingredients} = this.state
         const handlers = {
-            handleRemoveIngredientClick: this.handleRemoveIngredientClick,
             handleToggleCompleteIngredientClick: this.handleToggleCompleteIngredientClick
         };
 
@@ -86,7 +61,7 @@ class AddMeal extends React.Component {
 
                 <AddIngredientForm addRecipe={this.addRecipe}/>
 
-                 <IngredientList
+                <IngredientList
                     ingredients={ingredients}
                     handlers={handlers}
                 />
@@ -102,7 +77,10 @@ class AddMeal extends React.Component {
                 </ul>
             </div>
         )
+    }dUpdate() {
+        console.log('addMeal did update')
     }
+
 }
 
 export default AddMeal
