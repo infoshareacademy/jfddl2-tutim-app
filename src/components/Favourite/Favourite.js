@@ -2,7 +2,7 @@ import React from 'react'
 
 import FavouriteTable from './FavouriteTable'
 
-class Search extends React.Component {
+class Favourite extends React.Component {
 
   state = {
     searches: null,
@@ -21,7 +21,7 @@ class Search extends React.Component {
     ).then(
       response => response.json()
     ).then(
-      searches => {
+      favourites => {
         this.setState({ favourites, fetching: false})
       }
     ).catch(
@@ -34,6 +34,30 @@ class Search extends React.Component {
     return (
       <div>
         <h1>Twoje ulubione posiłki</h1>
+
+        {
+          favourites !== null ?
+            null :
+            <p>Brak posilkow do wyswietlenia</p>
+
+        }
+
+        {
+          fetching === false ?
+            null :
+
+            <p>Pobieranie posilkow...</p>
+
+        }
+
+
+        {
+
+          error === null ?
+            null :
+            <p>{error.message}</p>
+
+        }
 
         <FavouriteTable favourites={favourites}/>
       </div>

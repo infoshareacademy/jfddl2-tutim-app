@@ -10,7 +10,7 @@ const filters = {
 
 const filerSearches = [[
   {
-    label: 'Śniadanie'
+    label: 'Śniadanie',
     name: 'meal_breakfast'
   },
   {
@@ -47,7 +47,7 @@ class SearchTable extends React.Component {
     this.setState({
       activeFilterNames:
       activeFilterNames.filter(
-        activeFilterNames => {
+        activeFilterName => {
           const filterNamePrefix = filterName.split('_')[0]
           const activeFilterNamePrefix = activeFilterName.split('_')[0]
 
@@ -67,7 +67,7 @@ class SearchTable extends React.Component {
     const {searches} = this.props
       return (
         <div>
-          <SerchForm
+          <SearchForm
           searchPhrase={this.state.currentSearchPhrase}
           handleChange={this.handleSearchPhraseChange}
           />

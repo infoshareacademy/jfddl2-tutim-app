@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Favourite
+import FavouriteForm from './SearchForm'
 
 class FavouriteList extends React.Component {
   render() {
@@ -29,4 +29,4 @@ class FavouriteList extends React.Component {
   }
 }
 
-export default SearchList
+export default FavouriteList
