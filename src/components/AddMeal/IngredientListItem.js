@@ -8,9 +8,12 @@ const IngredientListItem = ({
 
                           }
                       }) => (
-    <li key={ingredient.id}>
+    <li key={ingredient.uid}>
 
-        {ingredient.title}
+        {ingredient.uid},
+        {ingredient.name},
+        {ingredient.kcal},
+        {ingredient.recipe}
 
         <Button
             data-ingredient-id={ingredient.id}

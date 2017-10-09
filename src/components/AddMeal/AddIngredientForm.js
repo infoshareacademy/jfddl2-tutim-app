@@ -1,10 +1,11 @@
 import React from 'react'
-import {Grid, Row, Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
+import {Grid, Row, Button, FormGroup, ControlLabel, FormControl, Alert} from 'react-bootstrap'
 
 
 class AddIngredientForm extends React.Component {
 
     state = {
+        isNewMealValid: true,
         ingredientsFormControlValue: '',
         ingredientsFormControlUrl: '',
         ingredientsFormControlTitle: '',
@@ -39,56 +40,46 @@ class AddIngredientForm extends React.Component {
         })
     }
 
-    handleSubmit = event => {
+    handleSubmitMain = event => {
         event.preventDefault()
 
-        this.props.addIngredient(this.state.ingredientsFormControlValue)
+        let newMeal = {
+            uid: Date.now(), // @TODO can be improved
+            name: this.state.ingredientsFormControlTitle,
+            kcal: this.state.ingredientsFormControlKcal,
+            recipe: this.state.ingredientsFormControlValue
+        }
 
+        let isNewMealValid = true;
 
-        this.setState({
-            ingredientsFormControlValue: '',
-
-        })
-    }
-
-    handleSubmit2 = event => {
-        event.preventDefault()
-
-        this.props.addIngredient(this.state.ingredientsFormControlUrl)
-
-
-        this.setState({
-            ingredientsFormControlUrl: '',
-
-        })
-    }
-
-    handleSubmit3 = event => {
-        event.preventDefault()
-
-        this.props.addIngredient(this.state.ingredientsFormControlTitle)
-
+        for (let variable in newMeal) {
+            if(!newMeal[variable]) {
+                isNewMealValid = false;
+                break;
+            }
+        }
 
         this.setState({
-            ingredientsFormControlTitle: '',
-
+            isNewMealValid: isNewMealValid,
         })
-    }
 
-    handleSubmit4 = event => {
-        event.preventDefault()
+        if(isNewMealValid){
+            // dodajemy obiekt od storage
+            // mozemy wyswietlic alert kotry zniknie po kilku s (setTimeout)
+            // wyczyscuic caly state odnoszacy sie do tych pol
 
-        this.props.addIngredient(this.state.ingredientsFormControlKcal)
-
-
-        this.setState({
-            ingredientsFormControlKcal: ''
-
-        })
+            this.props.addRecipe(newMeal)
+        }
     }
 
     render() {
+        const invalidInput = <Alert bsStyle="danger">
+            Złe wartości!
+        </Alert>
+
         return (
+            <div>
+                {this.state.isNewMealValid ? null : invalidInput}
             <form>
                 <Grid>
                     <Row>
@@ -98,10 +89,6 @@ class AddIngredientForm extends React.Component {
                                          value={this.state.ingredientsFormControlTitle}
                                          onChange={this.handleIngredientFormControlChange3}/>
                         </FormGroup>
-                    </Row>
-                    <Row>
-                        <Button onClick={this.handleSubmit3} bsStyle="primary">
-                            Dodaj nazwę</Button>
                     </Row>
                 </Grid>
 
@@ -113,10 +100,6 @@ class AddIngredientForm extends React.Component {
                                          value={this.state.ingredientsFormControlKcal}
                                          onChange={this.handleIngredientFormControlChange4}/>
                         </FormGroup>
-                    </Row>
-                    <Row>
-                        <Button onClick={this.handleSubmit4} bsStyle="primary">
-                            Dodaj</Button>
                     </Row>
                 </Grid>
 
@@ -130,10 +113,6 @@ class AddIngredientForm extends React.Component {
                                          onChange={this.handleIngredientFormControlChange}/>
                         </FormGroup>
                     </Row>
-                    <Row>
-                        <Button onClick={this.handleSubmit} bsStyle="primary">
-                            Dodaj przepis</Button>
-                    </Row>
                 </Grid>
 
 
@@ -146,14 +125,12 @@ class AddIngredientForm extends React.Component {
                                          onChange={this.handleIngredientFormControlChange2}/>
                         </FormGroup>
                     </Row>
-                    <Row>
-                        <Button onClick={this.handleSubmit2} bsStyle="primary">
-                            Dodaj zdjęcie</Button>
-                    </Row>
                 </Grid>
 
-            </form>
 
+                <Button onClick={this.handleSubmitMain}> Dodaj posiłek </Button>
+            </form>
+            </div>
         )
     }
 }

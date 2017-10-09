@@ -15,17 +15,20 @@ class AddMeal extends React.Component {
         ingredients: []
     }
 
-    addIngredient = title => {
+    addRecipe = newMeal => {
         const { ingredients } = this.state
         const maxIdSoFar = getNextId(ingredients)
 
         this.setState({
-            ingredients: ingredients.concat({
-                id: maxIdSoFar + 1,
-                title: title,
-                done: false,
-                isFavorite: false
-            })
+            ingredients: ingredients.concat(
+            //     {
+            //     id: maxIdSoFar + 1,
+            //     title: newMeal.name,
+            //     done: false,
+            //     isFavorite: false
+            // }
+                newMeal
+            )
         }, () => {
             localStorage.setItem('addMeal', JSON.stringify(this.state))
         })
@@ -81,7 +84,7 @@ class AddMeal extends React.Component {
                     Dodaj przepis
                 </h2>
 
-                <AddIngredientForm addIngredient={this.addIngredient}/>
+                <AddIngredientForm addRecipe={this.addRecipe}/>
 
                  <IngredientList
                     ingredients={ingredients}
