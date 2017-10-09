@@ -20,7 +20,7 @@ class FavouriteForm extends React.Component {
             <InputGroup.Button>
               <Button>
                 <Glyphicon glyph="search"/>
-                Search
+                Poszukaj se
               </Button>
         </InputGroup.Button>
           </InputGroup>

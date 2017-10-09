@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {Table, ButtonToolbar, ButtonGroup, Button} from 'react-bootstrap'
+import FavouriteForm from "./FavouriteForm";
 
 const filters = {
   meal_breakfast: search => search.category.includes('Twoje śniadania'),
@@ -8,25 +9,25 @@ const filters = {
   meal_supper: search => search.category.includes('Twoje kolacje')
 }
 
-const filerSearches = [[
+const filterSearches = [[
   {
-    label: 'Śniadanie',
+    label: 'Twoje sniadania',
     name: 'meal_breakfast'
   },
   {
-    label: 'Obiad',
+    label: 'Twoje obiady',
     name: 'meal_dinner'
   },
 
   {
-    label: 'Kolacja',
+    label: 'Twoje kolacje',
     name: 'meal_supper'
 
   }
 
 ],]
 
-class SearchTable extends React.Component {
+class FavouriteTable extends React.Component {
 
   state = {
     activeFilterNames: [],
@@ -46,14 +47,14 @@ class SearchTable extends React.Component {
 
     this.setState({
       activeFilterNames:
-      activeFilterNames.filter(
-        activeFilterName => {
-          const filterNamePrefix = filterName.split('_')[0]
-          const activeFilterNamePrefix = activeFilterName.split('_')[0]
+        activeFilterNames.filter(
+          activeFilterName => {
+            const filterNamePrefix = filterName.split('_')[0]
+            const activeFilterNamePrefix = activeFilterName.split('_')[0]
 
-          return filterNamePrefix !== activeFilterNamePrefix
-        }
-      ).concat(filterNameExists ? [] : [filterName])
+            return filterNamePrefix !== activeFilterNamePrefix
+          }
+        ).concat(filterNameExists ? [] : [filterName])
     })
   }
 
@@ -63,65 +64,59 @@ class SearchTable extends React.Component {
     })
   }
 
-    render() {
+  render() {
     const {searches} = this.props
-      return (
-        <div>
-          <SearchForm
+    return (
+      <div>
+        <FavouriteForm
           searchPhrase={this.state.currentSearchPhrase}
           handleChange={this.handleSearchPhraseChange}
-          />
+        />
 
-          <ButtonToolbar style={{marginTop: 20}}>
-            {
+        <ButtonToolbar style={{marginTop: 20}}>
+          {
             filterSearches.map(
               (search, index) => (
                 <ButtonGroup key={index}>
                   {
-                  search.map(
-                    ({label, name}) => (
-                      <Button
-                      key={name}
-                      data-filter-name={name}
-                      onClick={this.handleToggleFilterClick}
-                      active={this.state.activeFilterNames.includes(name)}
-                      >
-                        {label}
-                      </Button>
+                    search.map(
+                      ({label, name}) => (
+                        <Button
+                          key={name}
+                          data-filter-name={name}
+                          onClick={this.handleToggleFilterClick}
+                          active={this.state.activeFilterNames.includes(name)}
+                        >
+                          {label}
+                        </Button>
+                      )
                     )
-                  )
                   }
                 </ButtonGroup>
 
               )
             )
-            }
+          }
 
-            <ButtonGroup>
-              <Button
-              onClick={this.handleResetClick()}
-              >
-                Pokaż wszystkie
-              </Button>
-            </ButtonGroup>
-          </ButtonToolbar>
+          
+        </ButtonToolbar>
 
-          <Table striped bordered condensed hover style={{
-            marginTop: 20
+        <Table striped bordered condensed hover style={{
+          marginTop: 20
 
-          }}>
-            <thead>
-            <tr>
-              <th>Nazwa posiłku</th>
-              <th>Wartość kaloryczna</th>
-              <th>Rodzaj posiłku</th>
-            </tr>
-            </thead>
+        }}>
+          <thead>
+          <tr>
+            <th>Nazwa posiłku</th>
+            <th>Wartość kaloryczna</th>
+            <th>Rodzaj posiłku</th>
+          </tr>
+          </thead>
           <tbody>
           {
             searches && searches.filter(
               search => this.state.activeFilterNames.map(
-                ativeFilterName => filters[ativeFilterName]
+                activeFilterName => filters[activeFilterName]
               ).every(
                 f => f(search)
               )
@@ -144,12 +139,12 @@ class SearchTable extends React.Component {
             )
           }
           </tbody>
-          </Table>
+        </Table>
 
-        </div>
-      )
-    }
+      </div>
+    )
+  }
 
 }
 
-export default SearchTable
+export default FavouriteTable

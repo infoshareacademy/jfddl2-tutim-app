@@ -30,15 +30,16 @@ class Favourite extends React.Component {
   }
 
   render() {
-    const { favourites, error, fetching } = this.state
+    console.log('searches')
+    const { searches, error, fetching } = this.state
     return (
       <div>
         <h1>Twoje ulubione posiłki</h1>
 
         {
-          favourites !== null ?
+          searches !== null ?
             null :
-            <p>Brak posilkow do wyswietlenia</p>
+            <p></p>
 
         }
 
@@ -59,7 +60,7 @@ class Favourite extends React.Component {
 
         }
 
-        <FavouriteTable favourites={favourites}/>
+        <FavouriteTable favourite={searches}/>
       </div>
     )
   }
