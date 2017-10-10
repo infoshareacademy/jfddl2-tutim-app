@@ -1,7 +1,5 @@
 import React from 'react'
-import {Table, ButtonToolbar, ButtonGroup, Button,
-  Grid, Row, FormGroup, ControlLabel, Alert
-} from 'react-bootstrap'
+import {Table, ButtonToolbar, ButtonGroup, Button} from 'react-bootstrap'
 
 import SearchForm from './SearchForm'
 
@@ -49,8 +47,7 @@ class SearchTable extends React.Component {
 
   state = {
     activeFilterNames: [],
-    currentSearchPhrase: '',
-    favourites: JSON.parse(localStorage.getItem('favourites')) || []
+    currentSearchPhrase: ''
   }
 
   handleSearchPhraseChange = event => {
@@ -81,14 +78,6 @@ class SearchTable extends React.Component {
     this.setState({
       activeFilterNames: []
     })
-  }
-
-  addToFavourites = (id) => {
-    this.setState({
-      favourites: this.state.favourites.concat(id)
-    }, ()=>{
-      localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
-    });
   }
 
   render() {
@@ -169,7 +158,17 @@ class SearchTable extends React.Component {
                   </td>
                   <td>
                     {favourite}
-                    <Button onClick={()=>{this.addToFavourites(index)}}>Dodaj do ulubionych</Button>
+                    <form>
+                      <InputGroup>
+                        <InputGroup.Button>
+                          <Button>
+                            <LinkContainer to="/favouritelist">
+                              <NavItem>Dodaj</NavItem>
+                            </LinkContainer>
+                          </Button>
+                        </InputGroup.Button>
+                      </InputGroup>
+                    </form>
                   </td>
 
                 </tr>
@@ -186,6 +185,75 @@ class SearchTable extends React.Component {
 
 
 
+class SearchForm extends React.Component {
+  state = {
+    favouriteAdded: false,
+    isNewFavouriteAdded: true,
+
+  }
+
+  handleSubmitMain = event => {
+    event.preventDefault()
+
+    let newFavourite = {
+      uid: Date.now(), // @TODO can be improved
+    }
+
+    let isNewFavouriteValid = true
+
+    for(let variable in newFavourite) {
+      if(!newFavourite[variable]) {
+        isNewFavouriteValid = false;
+        break
+      }
+    }
+
+    this.setState({
+      isNewFavouriteAdded: isNewFavouriteValid,
+    })
+
+    if (isNewFavouriteValid) {
+      // obiekt do storage
+      // alert (settimeout)
+      //
+
+      this.props.addFavourite(newFavourite)
+
+      this.setState({
+        favouriteAdded: true,
+      }, () => {
+        setTimeout(() => {
+          this.setState({
+            faveouriteAdded: false
+          })
+        }, 2000)
+      })
+    }
+
+  }
+
+
+  render() {
+    const favouriteAdded = <Alert bsStyle="succcess">
+      Dodano do ulubionych
+    </Alert>;
+
+    return (
+      <div>
+        <Grid>
+          <Row>
+            <FormGroup controlId="newId">
+            </FormGroup>
+          </Row>
+        </Grid>
+
+        <Button onClick={this.handleSubmitMain}>Dodaj do ulubionych</Button>
+
+      </div>
+
+    )
+  }
+}
 
 
 export default SearchTable
