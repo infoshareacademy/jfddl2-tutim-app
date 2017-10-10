@@ -65,8 +65,7 @@ class AddIngredientForm extends React.Component {
         })
 
         if (isNewMealValid) {
-            // dodajemy obiekt od storage
-            // mozemy wyswietlic alert kotry zniknie po kilku s (setTimeout)
+
             // wyczyscuic caly state odnoszacy sie do tych pol
 
             this.props.addRecipe(newMeal)
