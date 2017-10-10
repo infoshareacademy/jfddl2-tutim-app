@@ -10,7 +10,8 @@ import {
 import MainMenu from './MainMenu'
 import Tasker from './Tasker'
 import Counter from './Counter'
-import Students from './Students'
+import Meals from './MealsView'
+import Meal from './MealView'
 import Groups from './Groups'
 import Search from './Search'
 
@@ -21,7 +22,8 @@ class App extends React.Component {
         <Grid>
           <MainMenu/>
           <Route path="/tasker" component={Tasker}/>
-          <Route path="/students" component={Students}/>
+          <Route path="/meals" component={Meals}/>
+          <Route path="/meals/:mealId" component={Meal}/>
           <Route path="/groups" component={Groups}/>
           <Route path="/search" component={Search}/>
 

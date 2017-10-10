@@ -31,8 +31,8 @@ const MainMenu = () => (
         <NavItem>Tasker</NavItem>
       </LinkContainer>
 
-      <LinkContainer to="/students">
-        <NavItem>Students</NavItem>
+      <LinkContainer to="/meals">
+        <NavItem>Jedzenie</NavItem>
       </LinkContainer>
 
       <LinkContainer to="/search">
