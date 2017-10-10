@@ -5,6 +5,7 @@ import {Grid, Row, Button, FormGroup, ControlLabel, FormControl, Alert} from 're
 class AddIngredientForm extends React.Component {
 
     state = {
+        mealAdded: false,
         isNewMealValid: true,
         ingredientsFormControlValue: '',
         ingredientsFormControlUrl: '',
@@ -69,6 +70,17 @@ class AddIngredientForm extends React.Component {
             // wyczyscuic caly state odnoszacy sie do tych pol
 
             this.props.addRecipe(newMeal)
+
+            this.setState({
+                mealAdded: true,
+            }, () => {
+                setTimeout(() => {
+                    this.setState({
+                        mealAdded: false,
+                    })
+                }, 2000)
+            })
+
         }
 
     };
@@ -80,14 +92,15 @@ class AddIngredientForm extends React.Component {
             Złe wartości!
         </Alert>;
 
-        const validInput =    <Alert bsStyle="success">
+        const mealAdded =    <Alert bsStyle="success">
             Przepis został dodany
         </Alert>;
 
 
         return (
             <div>
-                {this.state.isNewMealValid ? validInput : invalidInput}
+                {this.state.isNewMealValid ? null : invalidInput}
+                {this.state.mealAdded ? mealAdded : null}
                 <form>
                     <Grid>
                         <Row>
