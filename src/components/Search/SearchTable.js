@@ -3,6 +3,21 @@ import {Table, ButtonToolbar, ButtonGroup, Button} from 'react-bootstrap'
 
 import SearchForm from './SearchForm'
 
+
+import {
+  InputGroup,
+  FormControl,
+  Glyphicon,
+
+  NavItem
+} from 'react-bootstrap'
+
+
+import {
+  LinkContainer
+} from 'react-router-bootstrap'
+
+
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
   meal_dinner: search => search.category.includes('obiad'),
@@ -115,6 +130,7 @@ class SearchTable extends React.Component {
             <th>Nazwa posiłku</th>
             <th>Wartość kaloryczna</th>
             <th>Rodzaj posiłku</th>
+            <th>Dodaj do ulubionych</th>
           </tr>
           </thead>
           <tbody>
@@ -128,7 +144,7 @@ class SearchTable extends React.Component {
             ).filter(
               search => search.name.includes(this.state.currentSearchPhrase)
             ).map(
-              ({uid, name, kcal, category}, index, allSearches) => (
+              ({uid, name, kcal, category, favourite}, index, allSearches) => (
                 <tr key={uid}>
                   <td>
                     {name}
@@ -140,6 +156,21 @@ class SearchTable extends React.Component {
                     {category}
 
                   </td>
+                  <td>
+                    {favourite}
+                    <form>
+                      <InputGroup>
+                        <InputGroup.Button>
+                          <Button>
+                            <LinkContainer to="/favouritelist">
+                              <NavItem>Dodaj</NavItem>
+                            </LinkContainer>
+                          </Button>
+                        </InputGroup.Button>
+                      </InputGroup>
+                    </form>
+                  </td>
+
                 </tr>
               )
             )
@@ -153,3 +184,7 @@ class SearchTable extends React.Component {
 }
 
 export default SearchTable
+
+
+
+
