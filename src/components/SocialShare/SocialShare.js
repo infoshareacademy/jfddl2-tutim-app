@@ -6,13 +6,13 @@ class SocialShare extends React.Component {
 
     render() {
 
-        let url = "https://github.com";
+        let url = "https://www.facebook.com/";
 
         return (
 
             <FacebookButton url={url}>
                 <FacebookCount url={url}/>
-                {" Share " + url}
+                Share
             </FacebookButton>
         );
     }

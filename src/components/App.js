@@ -15,6 +15,7 @@ import Groups from './Groups'
 import Search from './Search'
 import AddMeal from './AddMeal/index'
 import Tasker from './Tasker'
+import SocialShare from './SocialShare'
 
 
 class App extends React.Component {
@@ -28,7 +29,8 @@ class App extends React.Component {
           <Route path="/groups" component={Groups}/>
           <Route path="/search" component={Search}/>
           <Route path="/addMeal" component={AddMeal}/>
-            <Route path="/tasker" component={Tasker}/>
+          <Route path="/tasker" component={Tasker}/>
+          <Route path="/socialShare" component={SocialShare}/>
 
           <Route
             path="/counter"
