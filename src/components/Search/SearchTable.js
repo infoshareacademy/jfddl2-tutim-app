@@ -138,6 +138,7 @@ class SearchTable extends React.Component {
                   </td>
                   <td>
                     {category}
+
                   </td>
                 </tr>
               )
