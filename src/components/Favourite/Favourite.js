@@ -1,67 +1,33 @@
 import React from 'react'
 
-import FavouriteTable from './FavouriteTable'
-
 class Favourite extends React.Component {
 
   state = {
-    searches: null,
-    fetching: false,
-    error: null
-
+    favourites: JSON.parse(localStorage.getItem('favourites')) || [],
+    filteredRecipes: []
   }
 
   componentDidMount() {
-    this.setState({
-      fetching: true
-    })
-
-    fetch (
-      localStorage
+    fetch(
+      `${process.env.PUBLIC_URL} /data/database.json` // template string usage
     ).then(
       response => response.json()
-    ).then(
-      favourites => {
-        this.setState({ favourites, fetching: false})
+    ).then((recipes) => {
+        let filteredRecipes = recipes.filter((recipe) => {
+          return this.state.favourites.includes(parseInt(recipe.uid))
+        })
+        this.setState({
+          filteredRecipes: filteredRecipes
+        })
       }
-    ).catch(
-      error => this.setState({ error, fetching: false})
     )
   }
 
   render() {
-    console.log('searches')
-    const { searches, error, fetching } = this.state
     return (
-      <div>
-        <h1>Twoje ulubione posiłki</h1>
-
-        {
-          searches !== null ?
-            null :
-            <p></p>
-
-        }
-
-        {
-          fetching === false ?
-            null :
-
-            <p>Pobieranie posilkow...</p>
-
-        }
-
-
-        {
-
-          error === null ?
-            null :
-            <p>{error.message}</p>
-
-        }
-
-        <FavouriteTable favourite={searches}/>
-      </div>
+      this.state.filteredRecipes.map((recipe, index) => {
+        return <li key={index}>{recipe.name}</li>
+      })
     )
   }
 

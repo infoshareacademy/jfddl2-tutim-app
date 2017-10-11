@@ -1,23 +1,22 @@
 import React from 'react'
 import {Table, ButtonToolbar, ButtonGroup, Button,
-  Grid, Row, FormGroup, ControlLabel, Alert
-} from 'react-bootstrap'
+  Grid, Row, FormGroup, ControlLabel, Alert} from 'react-bootstrap'
 
 import SearchForm from './SearchForm'
 
-
-import {
-  InputGroup,
-  FormControl,
-  Glyphicon,
-
-  NavItem
-} from 'react-bootstrap'
-
-
-import {
-  LinkContainer
-} from 'react-router-bootstrap'
+//
+// import {
+//   InputGroup,
+//   FormControl,
+//   Glyphicon,
+//
+//   NavItem
+// } from 'react-bootstrap'
+//
+//
+// import {
+//   LinkContainer
+// } from 'react-router-bootstrap'
 
 
 const filters = {
@@ -97,7 +96,14 @@ class SearchTable extends React.Component {
 
   render() {
     const {searches} = this.props
+
+
+
+
+
     return (
+
+
       <div>
         <SearchForm
           searchPhrase={this.state.currentSearchPhrase}
@@ -106,7 +112,7 @@ class SearchTable extends React.Component {
 
         {
 
-          this.state.addFavourite === null ? null : <div>Dodano do ulubionych {this.state.addFavourite}</div>
+          this.state.addFavourite === null ? null : <div><Alert bsStyle="success">Dodano do ulubionych </Alert></div>
 
 
         }
