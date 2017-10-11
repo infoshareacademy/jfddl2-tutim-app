@@ -1,6 +1,7 @@
 import React from 'react'
 
 import SearchTable from './SearchTable'
+import SingleView from "./SingleView";
 
 class Search extends React.Component {
 
@@ -30,7 +31,7 @@ class Search extends React.Component {
 
   render() {
     const uid = this.props.match.params.uid || null
-
+    console.log(uid)
     const { searches, error, fetching } = this.state
 
     return (
@@ -54,8 +55,13 @@ class Search extends React.Component {
             null :
             <p>{error.message}</p>
         }
+        {
+          uid === null ?
+            <SearchTable searches={searches} /> :
+            <SingleView uid={uid}/>
+        }
 
-        <SearchTable searches={searches} />
+
       </div>
     )
   }

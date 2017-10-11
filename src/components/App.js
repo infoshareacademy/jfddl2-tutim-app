@@ -24,7 +24,7 @@ class App extends React.Component {
           <Route path="/tasker" component={Tasker}/>
           <Route path="/students" component={Students}/>
           <Route path="/groups" component={Groups}/>
-          <Route path="/search/" component={Search}/>
+          <Route exact path="/search/" component={Search}/>
           <Route path="/search/:uid" component={Search}/>
           <Route path="/favourite" component={Favourite}/>
 
