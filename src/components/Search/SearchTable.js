@@ -1,6 +1,5 @@
 import React from 'react'
-import {Table, ButtonToolbar, ButtonGroup, Button,
-  Grid, Row, FormGroup, ControlLabel, Alert} from 'react-bootstrap'
+import {Alert, Button, ButtonGroup, ButtonToolbar, Table} from 'react-bootstrap'
 
 import SearchForm from './SearchForm'
 
@@ -87,7 +86,7 @@ class SearchTable extends React.Component {
     this.setState({
       favourites: this.state.favourites.concat(id),
       addFavourite: id
-    }, ()=>{
+    }, () => {
       localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
     });
 
@@ -96,9 +95,6 @@ class SearchTable extends React.Component {
 
   render() {
     const {searches} = this.props
-
-
-
 
 
     return (
@@ -186,7 +182,9 @@ class SearchTable extends React.Component {
                   </td>
                   <td>
                     {favourite}
-                    <Button onClick={()=>{this.addToFavourites(index)}}>Dodaj do ulubionych</Button>
+                    <Button onClick={() => {
+                      this.addToFavourites(index)
+                    }}>Dodaj do ulubionych</Button>
                   </td>
 
                 </tr>
@@ -200,9 +198,6 @@ class SearchTable extends React.Component {
     )
   }
 }
-
-
-
 
 
 export default SearchTable

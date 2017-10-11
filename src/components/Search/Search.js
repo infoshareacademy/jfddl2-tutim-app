@@ -29,6 +29,8 @@ class Search extends React.Component {
   }
 
   render() {
+    const uid = this.props.match.params.uid || null
+
     const { searches, error, fetching } = this.state
 
     return (

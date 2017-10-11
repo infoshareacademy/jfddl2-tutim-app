@@ -33,5 +33,4 @@ class Favourite extends React.Component {
 
 
 }
-
 export default Favourite
