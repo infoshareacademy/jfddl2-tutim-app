@@ -50,7 +50,8 @@ class SearchTable extends React.Component {
   state = {
     activeFilterNames: [],
     currentSearchPhrase: '',
-    favourites: JSON.parse(localStorage.getItem('favourites')) || []
+    favourites: JSON.parse(localStorage.getItem('favourites')) || [],
+    addFavourite: null
   }
 
   handleSearchPhraseChange = event => {
@@ -85,10 +86,13 @@ class SearchTable extends React.Component {
 
   addToFavourites = (id) => {
     this.setState({
-      favourites: this.state.favourites.concat(id)
+      favourites: this.state.favourites.concat(id),
+      addFavourite: id
     }, ()=>{
       localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
     });
+
+
   }
 
   render() {
@@ -99,6 +103,13 @@ class SearchTable extends React.Component {
           searchPhrase={this.state.currentSearchPhrase}
           handleChange={this.handleSearchPhraseChange}
         />
+
+        {
+
+          this.state.addFavourite === null ? null : <div>Dodano do ulubionych {this.state.addFavourite}</div>
+
+
+        }
 
         <ButtonToolbar style={{marginTop: 20}}>
           {

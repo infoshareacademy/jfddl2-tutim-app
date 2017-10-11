@@ -17,7 +17,7 @@ class Favourite extends React.Component {
     })
 
     fetch (
-      `${process.env.PUBLIC_URL} /data/database.json`
+      localStorage
     ).then(
       response => response.json()
     ).then(
