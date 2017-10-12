@@ -1,22 +1,7 @@
 import React from 'react'
-import {Alert, Button, ButtonGroup, ButtonToolbar, Table} from 'react-bootstrap'
-
+import {Table, ButtonToolbar, ButtonGroup, Button,Alert} from 'react-bootstrap'
+import latinize from 'latinize'
 import SearchForm from './SearchForm'
-
-//
-// import {
-//   InputGroup,
-//   FormControl,
-//   Glyphicon,
-//
-//   NavItem
-// } from 'react-bootstrap'
-//
-//
-// import {
-//   LinkContainer
-// } from 'react-router-bootstrap'
-
 
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
@@ -47,9 +32,7 @@ class SearchTable extends React.Component {
 
   state = {
     activeFilterNames: [],
-    currentSearchPhrase: '',
-    favourites: JSON.parse(localStorage.getItem('favourites')) || [],
-    addFavourite: null
+    currentSearchPhrase: ''
   }
 
   handleSearchPhraseChange = event => {
@@ -166,9 +149,14 @@ class SearchTable extends React.Component {
                 f => f(search)
               )
             ).filter(
-              search => search.name.includes(this.state.currentSearchPhrase)
+                search =>
+    latinize(search.name.toLowerCase()).includes(
+        latinize(this.state.currentSearchPhrase.toLowerCase())
+    )
             ).map(
               ({uid, name, kcal, category, favourite}, index, allSearches) => (
+
+
                 <tr key={uid}>
                   <td>
                     {name}
@@ -199,9 +187,4 @@ class SearchTable extends React.Component {
   }
 }
 
-
 export default SearchTable
-
-
-
-
