@@ -16,11 +16,13 @@ class Search extends React.Component {
     })
 
     fetch(
-      `${process.env.PUBLIC_URL}/data/groups.json` // template string usage
+      `${process.env.PUBLIC_URL} /data/database.json` // template string usage
     ).then(
       response => response.json()
     ).then(
-      searches => this.setState({ searches, fetching: false })
+      searches => {
+        this.setState({ searches, fetching: false })
+      }
     ).catch(
       error => this.setState({ error, fetching: false })
     )
@@ -31,18 +33,18 @@ class Search extends React.Component {
 
     return (
       <div>
-        <h1>Groups</h1>
+        <h1>Wybierz posiłek</h1>
 
         {
           searches !== null ?
             null :
-            <p>No groups to show</p>
+            <p>Brak posiłków do wyświetlenia</p>
         }
 
         {
           fetching === false ?
             null :
-            <p>Fetching groups now...</p>
+            <p>Pobieranie posiłków...</p>
         }
 
         {
@@ -51,7 +53,7 @@ class Search extends React.Component {
             <p>{error.message}</p>
         }
 
-        <SearchTable search={searches} />
+        <SearchTable searches={searches} />
       </div>
     )
   }

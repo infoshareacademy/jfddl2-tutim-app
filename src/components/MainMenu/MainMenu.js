@@ -37,8 +37,8 @@ const MainMenu = () => (
         <NavItem>Students</NavItem>
       </LinkContainer>
 
-      <LinkContainer to="/groups">
-        <NavItem>Groups</NavItem>
+      <LinkContainer to="/search">
+        <NavItem>Wyszukaj</NavItem>
       </LinkContainer>
 
       <LinkContainer to="/addMeal">
