@@ -32,6 +32,7 @@ class SearchTable extends React.Component {
 
   state = {
     activeFilterNames: [],
+    favourites: JSON.parse(localStorage.getItem('favourites')) || [],
     currentSearchPhrase: ''
   }
 
@@ -61,19 +62,20 @@ class SearchTable extends React.Component {
 
   handleResetClick = () => {
     this.setState({
-      activeFilterNames: []
+      activeFilterNames: [],
     })
   }
 
   addToFavourites = (id) => {
+    console.log(this.state.favourites);
     this.setState({
-      favourites: this.state.favourites.concat(id),
+      favourites: this.state.favourites === null ? id : this.state.favourites.concat(id),
       addFavourite: id
     }, () => {
       localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
     });
 
-
+    console.log(this.state.favourites);
   }
 
   render() {
@@ -171,7 +173,7 @@ class SearchTable extends React.Component {
                   <td>
                     {favourite}
                     <Button onClick={() => {
-                      this.addToFavourites(index)
+                      this.addToFavourites(index + 1)
                     }}>Dodaj do ulubionych</Button>
                   </td>
 
