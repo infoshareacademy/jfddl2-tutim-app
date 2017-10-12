@@ -8,12 +8,14 @@ import {
 } from 'react-bootstrap'
 
 import MainMenu from './MainMenu'
-import Tasker from './Tasker'
 import Counter from './Counter'
 import Students from './Students'
 import Groups from './Groups'
 import Search from './Search'
 import Favourite from './Favourite'
+import AddMeal from './AddMeal/index'
+import Tasker from './Tasker'
+
 
 class App extends React.Component {
   render() {
@@ -28,6 +30,9 @@ class App extends React.Component {
           <Route path="/search/:uid" component={Search}/>
           <Route path="/favourite" component={Favourite}/>
 
+          <Route path="/search" component={Search}/>
+          <Route path="/addMeal" component={AddMeal}/>
+            <Route path="/tasker" component={Tasker}/>
 
           <Route
             path="/counter"
