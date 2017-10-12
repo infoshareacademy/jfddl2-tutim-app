@@ -1,6 +1,7 @@
 import React from 'react'
 
 import SearchTable from './SearchTable'
+import SingleView from "./SingleView";
 
 class Search extends React.Component {
 
@@ -16,33 +17,37 @@ class Search extends React.Component {
     })
 
     fetch(
-      `${process.env.PUBLIC_URL}/data/groups.json` // template string usage
+      `${process.env.PUBLIC_URL} /data/database.json` // template string usage
     ).then(
       response => response.json()
     ).then(
-      searches => this.setState({ searches, fetching: false })
+      searches => {
+        this.setState({ searches, fetching: false })
+      }
     ).catch(
       error => this.setState({ error, fetching: false })
     )
   }
 
   render() {
+    const uid = this.props.match.params.uid || null
+    console.log(uid)
     const { searches, error, fetching } = this.state
 
     return (
       <div>
-        <h1>Groups</h1>
+        <h1>Wybierz posiłek</h1>
 
         {
           searches !== null ?
             null :
-            <p>No groups to show</p>
+            <p>Brak posiłków do wyświetlenia</p>
         }
 
         {
           fetching === false ?
             null :
-            <p>Fetching groups now...</p>
+            <p>Pobieranie posiłków...</p>
         }
 
         {
@@ -50,8 +55,13 @@ class Search extends React.Component {
             null :
             <p>{error.message}</p>
         }
+        {
+          uid === null ?
+            <SearchTable searches={searches} /> :
+            <SingleView uid={uid}/>
+        }
 
-        <SearchTable search={searches} />
+
       </div>
     )
   }

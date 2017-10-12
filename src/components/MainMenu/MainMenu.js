@@ -13,6 +13,8 @@ import {
 
 import logo from './logo.svg'
 
+
+
 const MainMenu = () => (
   <Navbar>
     <Navbar.Header>
@@ -21,22 +23,22 @@ const MainMenu = () => (
       </Navbar.Brand>
     </Navbar.Header>
     <Nav>
-      <LinkContainer to="/counter">
-        <NavItem>
-          Counter
-        </NavItem>
+
+
+
+
+
+
+      <LinkContainer to="/search">
+        <NavItem>Wyszukaj</NavItem>
       </LinkContainer>
 
-      <LinkContainer to="/tasker">
-        <NavItem>Tasker</NavItem>
+      <LinkContainer to="favourite">
+        <NavItem>Ulubione</NavItem>
       </LinkContainer>
 
-      <LinkContainer to="/students">
-        <NavItem>Students</NavItem>
-      </LinkContainer>
-
-      <LinkContainer to="/groups">
-        <NavItem>Groups</NavItem>
+      <LinkContainer to="/addMeal">
+        <NavItem>Dodaj przepis</NavItem>
       </LinkContainer>
     </Nav>
   </Navbar>
