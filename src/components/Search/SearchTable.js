@@ -1,6 +1,6 @@
 import React from 'react'
 import {Table, ButtonToolbar, ButtonGroup, Button} from 'react-bootstrap'
-
+import latinize from 'latinize'
 import SearchForm from './SearchForm'
 
 const filters = {
@@ -126,9 +126,13 @@ class SearchTable extends React.Component {
                 f => f(search)
               )
             ).filter(
-              search => search.name.includes(this.state.currentSearchPhrase)
+                search =>
+    latinize(search.name.toLowerCase()).includes(
+        latinize(this.state.currentSearchPhrase.toLowerCase())
+    )
             ).map(
               ({uid, name, kcal, category}, index, allSearches) => (
+
                 <tr key={uid}>
                   <td>
                     {name}
