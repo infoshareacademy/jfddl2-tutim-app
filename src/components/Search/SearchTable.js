@@ -2,6 +2,7 @@ import React from 'react'
 import {Alert, Button, ButtonGroup, ButtonToolbar, Table} from 'react-bootstrap'
 
 import SearchForm from './SearchForm'
+import {   Link } from 'react-router-dom'
 
 //
 // import {
@@ -171,7 +172,7 @@ class SearchTable extends React.Component {
               ({uid, name, kcal, category, favourite}, index, allSearches) => (
                 <tr key={uid}>
                   <td>
-                    {name}
+                    <Link to={'/search/'+uid}>{name} </Link>
                   </td>
                   <td>
                     {kcal}
