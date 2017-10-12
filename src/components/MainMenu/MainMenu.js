@@ -23,19 +23,11 @@ const MainMenu = () => (
       </Navbar.Brand>
     </Navbar.Header>
     <Nav>
-      <LinkContainer to="/counter">
-        <NavItem>
-          Counter
-        </NavItem>
-      </LinkContainer>
 
-      <LinkContainer to="/tasker">
-        <NavItem>Tasker</NavItem>
-      </LinkContainer>
 
-      <LinkContainer to="/students">
-        <NavItem>Students</NavItem>
-      </LinkContainer>
+
+
+
 
       <LinkContainer to="/search">
         <NavItem>Wyszukaj</NavItem>
