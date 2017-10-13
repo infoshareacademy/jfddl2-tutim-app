@@ -1,7 +1,9 @@
 import React from 'react'
-import {Table, ButtonToolbar, ButtonGroup, Button,Alert} from 'react-bootstrap'
-import latinize from 'latinize'
+import {Alert, Button, ButtonGroup, ButtonToolbar, Table} from 'react-bootstrap'
+
 import SearchForm from './SearchForm'
+
+
 
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
@@ -32,8 +34,8 @@ class SearchTable extends React.Component {
 
   state = {
     activeFilterNames: [],
-    favourites: JSON.parse(localStorage.getItem('favourites')) || [],
     currentSearchPhrase: '',
+    favourites: JSON.parse(localStorage.getItem('favourites')) || [],
     addFavourite: null
   }
 
@@ -63,12 +65,11 @@ class SearchTable extends React.Component {
 
   handleResetClick = () => {
     this.setState({
-      activeFilterNames: [],
+      activeFilterNames: []
     })
   }
 
   addToFavourites = (id) => {
-
     this.setState({
       favourites: this.state.favourites.concat(id),
       addFavourite: id
@@ -152,14 +153,9 @@ class SearchTable extends React.Component {
                 f => f(search)
               )
             ).filter(
-                search =>
-    latinize(search.name.toLowerCase()).includes(
-        latinize(this.state.currentSearchPhrase.toLowerCase())
-    )
+              search => search.name.includes(this.state.currentSearchPhrase)
             ).map(
               ({uid, name, kcal, category, favourite}, index, allSearches) => (
-
-
                 <tr key={uid}>
                   <td>
                     {name}
@@ -174,7 +170,7 @@ class SearchTable extends React.Component {
                   <td>
                     {favourite}
                     <Button onClick={() => {
-                      this.addToFavourites(index + 1)
+                      this.addToFavourites(index)
                     }}>Dodaj do ulubionych</Button>
                   </td>
 
@@ -189,5 +185,6 @@ class SearchTable extends React.Component {
     )
   }
 }
+
 
 export default SearchTable
