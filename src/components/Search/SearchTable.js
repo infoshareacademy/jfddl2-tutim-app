@@ -98,38 +98,7 @@ class SearchTable extends React.Component {
 
         }
 
-        <ButtonToolbar style={{marginTop: 20}}>
-          {
-            filterSearches.map(
-              (search, index) => (
-                <ButtonGroup key={index}>
-                  {
-                    search.map(
-                      ({label, name}) => (
-                        <Button
-                          key={name}
-                          data-filter-name={name}
-                          onClick={this.handleToggleFilterClick}
-                          active={this.state.activeFilterNames.includes(name)}
-                        >
-                          {label}
-                        </Button>
-                      )
-                    )
-                  }
-                </ButtonGroup>
-              )
-            )
-          }
 
-          <ButtonGroup>
-            <Button
-              onClick={this.handleResetClick}
-            >
-              Pokaż wszystkie
-            </Button>
-          </ButtonGroup>
-        </ButtonToolbar>
 
         <Table striped bordered condensed hover style={{
           marginTop: 20
