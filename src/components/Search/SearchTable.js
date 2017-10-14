@@ -112,6 +112,12 @@ class SearchTable extends React.Component {
                           data-filter-name={name}
                           onClick={this.handleToggleFilterClick}
                           active={this.state.activeFilterNames.includes(name)}
+                          style={{
+                              background: "#933EC4",
+                              color: "#FFFFFF",
+                              textShadow: "none"
+                          }}
+
                         >
                           {label}
                         </Button>
@@ -126,6 +132,12 @@ class SearchTable extends React.Component {
           <ButtonGroup>
             <Button
               onClick={this.handleResetClick}
+            style={{
+                background: "#933EC4",
+                color: "#FFFFFF",
+                textShadow: "none"
+            }}
+
             >
               Pokaż wszystkie
             </Button>
@@ -175,6 +187,11 @@ class SearchTable extends React.Component {
                     {favourite}
                     <Button onClick={() => {
                       this.addToFavourites(index + 1)
+                    }}
+                    style={{
+                      background: '#adc43e',
+                        color: "#FFFFFF",
+                        textShadow: "none"
                     }}>Dodaj do ulubionych</Button>
                   </td>
 

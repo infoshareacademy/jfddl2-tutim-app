@@ -104,7 +104,8 @@ class SearchTable extends React.Component {
           {
             filterSearches.map(
               (search, index) => (
-                <ButtonGroup key={index}>
+                <ButtonGroup key={index}
+                >
                   {
                     search.map(
                       ({label, name}) => (
