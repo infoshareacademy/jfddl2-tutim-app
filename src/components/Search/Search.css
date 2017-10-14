@@ -4,8 +4,8 @@
 }
 
 tr {
-    color:white;
-    background: black;
+    color: black;
+
 
 }
 
@@ -13,3 +13,12 @@ tr {
     border: none;
 }
 
+table {
+    background-color: white ;
+    color: black;
+}
+
+table th {
+    background-color: black ;
+    color: white;
+}
