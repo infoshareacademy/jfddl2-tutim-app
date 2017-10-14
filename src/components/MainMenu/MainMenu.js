@@ -11,25 +11,30 @@ import {
   LinkContainer
 } from 'react-router-bootstrap'
 
-import logo from './logo.svg'
+import logo from './favicon.png'
+import styles from './MainMenu.css'
+
 
 
 
 const MainMenu = () => (
-  <Navbar>
-    <Navbar.Header>
+    <Navbar
+        style={{
+            background:'black',
+            color: '#FFFFFF'
+
+        }}
+    >
+    <Navbar.Header    >
       <Navbar.Brand>
-        <Link to="/"><img src={logo} style={{ height: 20 }} alt="sth"/></Link>
+        <Link to="/"><img src={logo} style={{ height: 40, paddingBottom: 15 }} alt="sth"/></Link>
       </Navbar.Brand>
-    </Navbar.Header>
-    <Nav>
+    </Navbar.Header
+    >
 
+      <Nav>
 
-
-
-
-
-      <LinkContainer to="/search">
+        <LinkContainer  to="/search">
         <NavItem>Wyszukaj</NavItem>
       </LinkContainer>
 

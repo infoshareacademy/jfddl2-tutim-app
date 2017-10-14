@@ -1,0 +1,24 @@
+#root {
+   background-image: url(warzywaowoce.jpg);
+
+}
+
+tr {
+    color: black;
+
+
+}
+
+.navbar-default {
+    border: none;
+}
+
+table {
+    background-color: white ;
+    color: black;
+}
+
+table th {
+    background-color: black ;
+    color: white;
+}

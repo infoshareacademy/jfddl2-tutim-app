@@ -2,6 +2,7 @@ import React from 'react'
 
 import SearchTable from './SearchTable'
 import SingleView from "./SingleView";
+import styles from './Search.css'
 
 class Search extends React.Component {
 
@@ -36,7 +37,11 @@ class Search extends React.Component {
 
     return (
       <div>
-        <h1>Wybierz posiłek</h1>
+        <h1
+        style={{
+          color: "white"
+        }}
+        >Wybierz posiłek</h1>
 
         {
           searches !== null ?
