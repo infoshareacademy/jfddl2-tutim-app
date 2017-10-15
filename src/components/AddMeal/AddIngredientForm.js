@@ -98,7 +98,7 @@ class AddIngredientForm extends React.Component {
 
 
         return (
-            <div>
+            <div class="addMM">
                 {this.state.isNewMealValid ? null : invalidInput}
                 {this.state.mealAdded ? mealAdded : null}
                 <form>

@@ -2,6 +2,7 @@ import React from 'react'
 
 import AddIngredientForm from './AddIngredientForm'
 import IngredientList from './IngredientList'
+import styles from './AddMeal.css'
 
 import {getNextId} from './_utils'
 
@@ -55,7 +56,7 @@ class AddMeal extends React.Component {
 
         return (
             <div>
-                <h2>
+                <h2 class="addMM">
                     Dodaj przepis
                 </h2>
 
@@ -66,12 +67,12 @@ class AddMeal extends React.Component {
                     handlers={handlers}
                 />
 
-                <ul>
+                <ul class="addMM">
                     {
                         ingredients.filter(
                             ingredient => ingredient.done
                         ).map(
-                            ingredient => <li key={ingredient.id}>{ingredient.title}</li>
+                            ingredient => <li class="addMM"  key={ingredient.id}>{ingredient.title}</li>
                         )
                     }
                 </ul>
