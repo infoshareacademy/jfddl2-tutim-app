@@ -2,6 +2,7 @@ import React from 'react'
 import {Table, ButtonToolbar, ButtonGroup, Button,Alert} from 'react-bootstrap'
 import latinize from 'latinize'
 import SearchForm from './SearchForm'
+import {   Link } from 'react-router-dom'
 
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
@@ -174,7 +175,7 @@ class SearchTable extends React.Component {
 
                 <tr key={uid}>
                   <td>
-                    {name}
+                    <Link to={'/search/'+uid}>{name} </Link>
                   </td>
                   <td>
                     {kcal}

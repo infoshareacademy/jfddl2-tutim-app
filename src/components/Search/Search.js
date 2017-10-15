@@ -7,7 +7,7 @@ import styles from './Search.css'
 class Search extends React.Component {
 
   state = {
-    searches: null,
+    searches: [],
     fetching: false,
     error: null
   }
@@ -32,7 +32,10 @@ class Search extends React.Component {
 
   render() {
     const uid = this.props.match.params.uid || null
-    console.log(uid)
+    let filteredProduct = this.state.searches.filter((recipe, index)=>{
+      return uid === recipe.uid
+    })[0]
+
     const { searches, error, fetching } = this.state
 
     return (
@@ -63,7 +66,7 @@ class Search extends React.Component {
         {
           uid === null ?
             <SearchTable searches={searches} /> :
-            <SingleView uid={uid}/>
+            <SingleView filteredProduct={filteredProduct}/>
         }
 
 
