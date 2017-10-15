@@ -1,3 +1,11 @@
 #root a{
     color: white;
+    font-weight: 800;
+}
+
+
+#root a:hover{
+    background: white;
+    color: black;
+    border-radius: 4%;
 }
