@@ -20,9 +20,9 @@ import styles from './MainMenu.css'
 const MainMenu = () => (
     <Navbar
         style={{
+            marginLefteft: 30,
             background:'black',
             color: '#FFFFFF'
-
         }}
     >
     <Navbar.Header    >
@@ -47,6 +47,9 @@ const MainMenu = () => (
       </LinkContainer>
     </Nav>
   </Navbar>
+
+
+
 )
 
 export default MainMenu
