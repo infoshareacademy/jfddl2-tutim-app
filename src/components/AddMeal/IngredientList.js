@@ -12,7 +12,7 @@ const IngredientList = ({
             ingredients.map(
                 ingredient => (
                     <IngredientListItem
-                        key={ingredient.id}
+                        key={ingredient.uid}
                         ingredient = {ingredient}
                         handlers={handlers}
                     />

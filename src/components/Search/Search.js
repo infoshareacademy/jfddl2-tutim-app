@@ -11,7 +11,8 @@ class Search extends React.Component {
   state = {
     searches: [],
     fetching: false,
-    error: null
+    error: null,
+    addMeal: JSON.parse(localStorage.getItem('addMeal')) || [],
   }
 
   componentDidMount() {
@@ -25,7 +26,7 @@ class Search extends React.Component {
       response => response.json()
     ).then(
       searches => {
-        this.setState({ searches, fetching: false })
+        this.setState({ searches: searches.concat(this.state.addMeal), fetching: false })
       }
     ).catch(
       error => this.setState({ error, fetching: false })
@@ -35,7 +36,7 @@ class Search extends React.Component {
   render() {
     const uid = this.props.match.params.uid || null
     let filteredProduct = this.state.searches.find((recipe)=>{
-      return uid === recipe.uid
+      return parseInt(uid) === parseInt(recipe.uid)
     })
 
     const { searches, error, fetching } = this.state
