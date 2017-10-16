@@ -1,9 +1,9 @@
 .addToFav a::hover {
-    color: #ffFFFf;
+    color: #ffFFFf !important;
 }
 
 a::hover {
-    color: #fFFFff;
+    color: #fFFFff !important;
 }
 
 .singleView {

@@ -4,15 +4,15 @@
 }
 
 #root a:hover {
-    color: #000000;
+    color: #FFFFFF;
     background-color: transparent;
-    padding-left: 3%;
+
 
 }
 
 #root a {
     color: #933ec4;
-    padding-left: 3%;
+
 }
 
 tr {
