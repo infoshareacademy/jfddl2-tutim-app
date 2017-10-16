@@ -1,0 +1,67 @@
+.addToFav a::hover {
+    color: #ffFFFf !important;
+}
+
+a::hover {
+    color: #fFFFff !important;
+}
+
+.singleView {
+    background-color: rgba(0, 0, 0, 0.63);
+    height: auto;
+    width: 900px;
+    margin-left:10%;
+
+}
+
+.likeMe {
+    float:right;
+
+}
+
+.singleView h2{
+    font-size: 5em;
+    color: #FFF;
+    padding-left: 3%;
+    padding-top: 3%;
+}
+
+.singleView h4 {
+    font-size: 1.5em;
+    color: #daff36;
+    padding-left: 5%;
+}
+
+.singleView p {
+    font-size: 1em;
+    color: #FFF;
+}
+
+.singleView a {
+    padding-left: 10%;
+}
+
+.singleView img {
+    width: 100%;
+    max-height: auto;
+}
+
+.heading {
+padding-bottom: 3%;
+}
+
+.addToFav {
+    margin-top: -10%;
+    margin-left: -10%;
+    /*padding-bottom: 2%;*/
+    /*padding-right: 2%;*/
+}
+
+.description {
+    padding: 3%;
+}
+
+.PrevNext {
+    padding-bottom: 3%;
+    padding-left: 3%;
+}

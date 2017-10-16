@@ -10,6 +10,9 @@ import registerServiceWorker from './registerServiceWorker'
 ReactDOM.render(
     <App title="My app"/>,
     document.getElementById('root')
+
+
+
 )
 
 registerServiceWorker()

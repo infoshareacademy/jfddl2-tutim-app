@@ -2,22 +2,15 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 
 const IngredientListItem = ({
-                          ingredient,
-                          handlers: {
-                              handleRemoveIngredientClick,
+                          ingredient
 
-                          }
                       }) => (
-    <li key={ingredient.id}>
+    <li key={ingredient.uid}>
 
-        {ingredient.title}
-
-        <Button
-            data-ingredient-id={ingredient.id}
-            onClick={handleRemoveIngredientClick}
-        >
-            Usuń
-        </Button>
+        {ingredient.uid},
+        {ingredient.name},
+        {ingredient.kcal},
+        {ingredient.recipe}
 
 
     </li>

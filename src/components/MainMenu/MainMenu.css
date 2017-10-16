@@ -1,0 +1,13 @@
+#root a{
+    color: white;
+    font-weight: 800;
+    text-align: center;
+
+}
+
+
+#root a:hover{
+    background: white;
+    color: black;
+    border-radius: 4%;
+}

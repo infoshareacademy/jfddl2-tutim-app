@@ -2,47 +2,30 @@ import React from 'react'
 
 import AddIngredientForm from './AddIngredientForm'
 import IngredientList from './IngredientList'
+import styles from './AddMeal.css'
 
-import { getNextId } from './_utils'
-
+import {getNextId} from './_utils'
 
 
 class AddMeal extends React.Component {
-
 
 
     state = {
         ingredients: []
     }
 
-    addIngredient = title => {
-        const { ingredients } = this.state
+    addRecipe = newMeal => {
+        const {ingredients} = this.state
         const maxIdSoFar = getNextId(ingredients)
 
         this.setState({
-            ingredients: ingredients.concat({
-                id: maxIdSoFar + 1,
-                title: title,
-                done: false,
-                isFavorite: false
-            })
-        }, () => {
-            localStorage.setItem('addMeal', JSON.stringify(this.state))
-        })
-    }
-
-    handleRemoveIngredientClick = event => {
-        const ingredientId = parseInt(event.target.dataset.ingredientId, 10)
-
-        this.setState({
-            ingredients: this.state.ingredients.filter(
-                ingredient => ingredientId  !== ingredient.id
+            ingredients: ingredients.concat(
+                newMeal
             )
         }, () => {
             localStorage.setItem('addMeal', JSON.stringify(this.state))
         })
     }
-
 
 
     componentWillMount() {
@@ -62,44 +45,43 @@ class AddMeal extends React.Component {
         console.log('addMeal will update')
     }
 
-    componentDidUpdate() {
-        console.log('addMeal did update')
-    }
-
+    componentDi
     render() {
         console.log('addMeal render')
 
-        const { ingredients } = this.state
+        const {ingredients} = this.state
         const handlers = {
-            handleRemoveIngredientClick: this.handleRemoveIngredientClick,
             handleToggleCompleteIngredientClick: this.handleToggleCompleteIngredientClick
         };
 
         return (
             <div>
-                <h2>
+                <h2 class="addMM">
                     Dodaj przepis
                 </h2>
 
-                <AddIngredientForm addIngredient={this.addIngredient}/>
+                <AddIngredientForm addRecipe={this.addRecipe}/>
 
-                 <IngredientList
+                <IngredientList
                     ingredients={ingredients}
                     handlers={handlers}
                 />
 
-                <ul>
+                <ul class="addMM">
                     {
                         ingredients.filter(
                             ingredient => ingredient.done
                         ).map(
-                            ingredient => <li key={ingredient.id}>{ingredient.title}</li>
+                            ingredient => <li class="addMM"  key={ingredient.id}>{ingredient.title}</li>
                         )
                     }
                 </ul>
             </div>
         )
+    }dUpdate() {
+        console.log('addMeal did update')
     }
+
 }
 
 export default AddMeal

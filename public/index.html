@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107688400-1"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
@@ -22,9 +24,13 @@
     <title>React App</title>
   </head>
   <body>
+
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+
+
+
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -36,5 +42,24 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-107688400-1');
+
+        <!-- Smartsupp Live Chat script -->
+
+        var _smartsupp = _smartsupp || {};
+        _smartsupp.key = '17137095ede98d8f53c7d189d94652f0858c32cf';
+        window.smartsupp||(function(d) {
+          var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+          s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+          c.type='text/javascript';c.charset='utf-8';c.async=true;
+          c.src='//www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+        })(document);
+
+    </script>
   </body>
 </html>

@@ -1,11 +1,15 @@
 import React from 'react'
 
 import SearchTable from './SearchTable'
+import SingleView from "./SingleView";
+import styles from './Search.css'
+import latinize from 'latinize'
+
 
 class Search extends React.Component {
 
   state = {
-    searches: null,
+    searches: [],
     fetching: false,
     error: null
   }
@@ -29,11 +33,20 @@ class Search extends React.Component {
   }
 
   render() {
+    const uid = this.props.match.params.uid || null
+    let filteredProduct = this.state.searches.filter((recipe, index)=>{
+      return uid === recipe.uid
+    })[0]
+
     const { searches, error, fetching } = this.state
 
     return (
       <div>
-        <h1>Wybierz posiłek</h1>
+        <h1
+        style={{
+          color: "white"
+        }}
+        >Wybierz posiłek</h1>
 
         {
           searches !== null ?
@@ -52,8 +65,13 @@ class Search extends React.Component {
             null :
             <p>{error.message}</p>
         }
+        {
+          uid === null ?
+            <SearchTable searches={searches} /> :
+            <SingleView filteredProduct={filteredProduct}/>
+        }
 
-        <SearchTable searches={searches} />
+
       </div>
     )
   }

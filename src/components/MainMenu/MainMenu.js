@@ -4,41 +4,40 @@ import {
   Nav,
   NavItem,
 } from 'react-bootstrap'
-import {
-  Link
-} from 'react-router-dom'
+import {   Link } from 'react-router-dom'
 import {
   LinkContainer
 } from 'react-router-bootstrap'
 
-import logo from './logo.svg'
+import logo from './favicon.png'
+import styles from './MainMenu.css'
+
 
 
 
 const MainMenu = () => (
-  <Navbar>
-    <Navbar.Header>
+    <Navbar
+        style={{
+            marginLefteft: 30,
+            background:'black',
+            color: '#FFFFFF'
+        }}
+    >
+    <Navbar.Header    >
       <Navbar.Brand>
-        <Link to="/"><img src={logo} style={{ height: 20 }} alt="sth"/></Link>
+        <Link to="/"><img src={logo} style={{ height: 40, paddingBottom: 15 }} alt="sth"/></Link>
       </Navbar.Brand>
-    </Navbar.Header>
-    <Nav>
-      <LinkContainer to="/counter">
-        <NavItem>
-          Counter
-        </NavItem>
-      </LinkContainer>
+    </Navbar.Header
+    >
 
-      <LinkContainer to="/tasker">
-        <NavItem>Tasker</NavItem>
-      </LinkContainer>
+      <Nav>
 
-      <LinkContainer to="/students">
-        <NavItem>Students</NavItem>
-      </LinkContainer>
-
-      <LinkContainer to="/search">
+        <LinkContainer  to="/search">
         <NavItem>Wyszukaj</NavItem>
+      </LinkContainer>
+
+      <LinkContainer to="favourite">
+        <NavItem>Ulubione</NavItem>
       </LinkContainer>
 
       <LinkContainer to="/addMeal">
@@ -46,6 +45,9 @@ const MainMenu = () => (
       </LinkContainer>
     </Nav>
   </Navbar>
+
+
+
 )
 
 export default MainMenu

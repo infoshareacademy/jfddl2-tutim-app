@@ -1,10 +1,12 @@
 import React from 'react'
-import {Grid, Row, Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
+import {Grid, Row, Button, FormGroup, ControlLabel, FormControl, Alert} from 'react-bootstrap'
 
 
 class AddIngredientForm extends React.Component {
 
     state = {
+        mealAdded: false,
+        isNewMealValid: true,
         ingredientsFormControlValue: '',
         ingredientsFormControlUrl: '',
         ingredientsFormControlTitle: '',
@@ -39,121 +41,117 @@ class AddIngredientForm extends React.Component {
         })
     }
 
-    handleSubmit = event => {
+    handleSubmitMain = event => {
         event.preventDefault()
 
-        this.props.addIngredient(this.state.ingredientsFormControlValue)
+        let newMeal = {
+            uid: Date.now(), // @TODO can be improved
+            name: this.state.ingredientsFormControlTitle,
+            kcal: this.state.ingredientsFormControlKcal,
+            recipe: this.state.ingredientsFormControlValue
+        }
 
+        let isNewMealValid = true;
 
-        this.setState({
-            ingredientsFormControlValue: '',
-
-        })
-    }
-
-    handleSubmit2 = event => {
-        event.preventDefault()
-
-        this.props.addIngredient(this.state.ingredientsFormControlUrl)
-
-
-        this.setState({
-            ingredientsFormControlUrl: '',
-
-        })
-    }
-
-    handleSubmit3 = event => {
-        event.preventDefault()
-
-        this.props.addIngredient(this.state.ingredientsFormControlTitle)
-
+        for (let variable in newMeal) {
+            if (!newMeal[variable]) {
+                isNewMealValid = false;
+                break;
+            }
+        }
 
         this.setState({
-            ingredientsFormControlTitle: '',
-
+            isNewMealValid: isNewMealValid,
         })
-    }
 
-    handleSubmit4 = event => {
-        event.preventDefault()
+        if (isNewMealValid) {
+            // dodajemy obiekt od storage
+            // mozemy wyswietlic alert kotry zniknie po kilku s (setTimeout)
+            // wyczyscuic caly state odnoszacy sie do tych pol
 
-        this.props.addIngredient(this.state.ingredientsFormControlKcal)
+            this.props.addRecipe(newMeal)
 
+            this.setState({
+                mealAdded: true,
+            }, () => {
+                setTimeout(() => {
+                    this.setState({
+                        mealAdded: false,
+                    })
+                }, 2000)
+            })
 
-        this.setState({
-            ingredientsFormControlKcal: ''
+        }
 
-        })
-    }
+    };
+
 
     render() {
+
+        const invalidInput = <Alert bsStyle="danger">
+            Złe wartości!
+        </Alert>;
+
+        const mealAdded =    <Alert bsStyle="success">
+            Przepis został dodany
+        </Alert>;
+
+
         return (
-            <form>
-                <Grid>
-                    <Row>
-                        <FormGroup controlId="newId">
-                            <ControlLabel>Nazwa dania</ControlLabel>
-                            <FormControl componentClass="textarea" placeholder=""
-                                         value={this.state.ingredientsFormControlTitle}
-                                         onChange={this.handleIngredientFormControlChange3}/>
-                        </FormGroup>
-                    </Row>
-                    <Row>
-                        <Button onClick={this.handleSubmit3} bsStyle="primary">
-                            Dodaj nazwę</Button>
-                    </Row>
-                </Grid>
+            <div class="addMM">
+                {this.state.isNewMealValid ? null : invalidInput}
+                {this.state.mealAdded ? mealAdded : null}
+                <form>
+                    <Grid>
+                        <Row>
+                            <FormGroup controlId="newId">
+                                <ControlLabel>Nazwa dania</ControlLabel>
+                                <FormControl componentClass="textarea" placeholder=""
+                                             value={this.state.ingredientsFormControlTitle}
+                                             onChange={this.handleIngredientFormControlChange3}/>
+                            </FormGroup>
+                        </Row>
+                    </Grid>
 
-                <Grid>
-                    <Row>
-                        <FormGroup controlId="newId">
-                            <ControlLabel>Liczba kalorii</ControlLabel>
-                            <FormControl componentClass="textarea" placeholder=""
-                                         value={this.state.ingredientsFormControlKcal}
-                                         onChange={this.handleIngredientFormControlChange4}/>
-                        </FormGroup>
-                    </Row>
-                    <Row>
-                        <Button onClick={this.handleSubmit4} bsStyle="primary">
-                            Dodaj</Button>
-                    </Row>
-                </Grid>
+                    <Grid>
+                        <Row>
+                            <FormGroup controlId="newId">
+                                <ControlLabel>Liczba kalorii</ControlLabel>
+                                <FormControl componentClass="textarea" placeholder=""
+                                             value={this.state.ingredientsFormControlKcal}
+                                             onChange={this.handleIngredientFormControlChange4}/>
+                            </FormGroup>
+                        </Row>
+                    </Grid>
 
 
-                <Grid>
-                    <Row>
-                        <FormGroup controlId="formControlsTextarea">
-                            <ControlLabel>Dodaj przepis</ControlLabel>
-                            <FormControl componentClass="textarea" placeholder=""
-                                         value={this.state.ingredientsFormControlValue}
-                                         onChange={this.handleIngredientFormControlChange}/>
-                        </FormGroup>
-                    </Row>
-                    <Row>
-                        <Button onClick={this.handleSubmit} bsStyle="primary">
-                            Dodaj przepis</Button>
-                    </Row>
-                </Grid>
+                    <Grid>
+                        <Row>
+                            <FormGroup controlId="formControlsTextarea">
+                                <ControlLabel>Dodaj przepis</ControlLabel>
+                                <FormControl componentClass="textarea" placeholder=""
+                                             value={this.state.ingredientsFormControlValue}
+                                             onChange={this.handleIngredientFormControlChange}/>
+                            </FormGroup>
+                        </Row>
+                    </Grid>
 
 
-                <Grid>
-                    <Row>
-                        <FormGroup controlId="newId">
-                            <ControlLabel>Dodaj URL zdjęcia</ControlLabel>
-                            <FormControl componentClass="textarea" placeholder=""
-                                         value={this.state.ingredientsFormControlUrl}
-                                         onChange={this.handleIngredientFormControlChange2}/>
-                        </FormGroup>
-                    </Row>
-                    <Row>
-                        <Button onClick={this.handleSubmit2} bsStyle="primary">
-                            Dodaj zdjęcie</Button>
-                    </Row>
-                </Grid>
+                    <Grid>
+                        <Row>
+                            <FormGroup controlId="newId">
+                                <ControlLabel>Dodaj URL zdjęcia</ControlLabel>
+                                <FormControl componentClass="textarea" placeholder=""
+                                             value={this.state.ingredientsFormControlUrl}
+                                             onChange={this.handleIngredientFormControlChange2}/>
+                            </FormGroup>
+                        </Row>
+                    </Grid>
 
-            </form>
 
+                    <Button onClick={this.handleSubmitMain}> Dodaj posiłek </Button>
+                </form>
+            </div>
         )
     }
 }

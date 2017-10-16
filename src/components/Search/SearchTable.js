@@ -1,7 +1,8 @@
 import React from 'react'
-import {Table, ButtonToolbar, ButtonGroup, Button} from 'react-bootstrap'
-
+import {Table, ButtonToolbar, ButtonGroup, Button,Alert} from 'react-bootstrap'
+import latinize from 'latinize'
 import SearchForm from './SearchForm'
+import {   Link } from 'react-router-dom'
 
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
@@ -32,7 +33,9 @@ class SearchTable extends React.Component {
 
   state = {
     activeFilterNames: [],
-    currentSearchPhrase: ''
+    favourites: JSON.parse(localStorage.getItem('favourites')) || [],
+    currentSearchPhrase: '',
+    addFavourite: null
   }
 
   handleSearchPhraseChange = event => {
@@ -61,18 +64,41 @@ class SearchTable extends React.Component {
 
   handleResetClick = () => {
     this.setState({
-      activeFilterNames: []
+      activeFilterNames: [],
     })
+  }
+
+  addToFavourites = (id) => {
+
+    this.setState({
+      favourites: this.state.favourites.concat(id),
+      addFavourite: id
+    }, () => {
+      localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
+    });
+
+
   }
 
   render() {
     const {searches} = this.props
+
+
     return (
+
+
       <div>
         <SearchForm
           searchPhrase={this.state.currentSearchPhrase}
           handleChange={this.handleSearchPhraseChange}
         />
+
+        {
+
+          this.state.addFavourite === null ? null : <div><Alert bsStyle="success">Dodano do ulubionych </Alert></div>
+
+
+        }
 
         <ButtonToolbar style={{marginTop: 20}}>
           {
@@ -87,6 +113,12 @@ class SearchTable extends React.Component {
                           data-filter-name={name}
                           onClick={this.handleToggleFilterClick}
                           active={this.state.activeFilterNames.includes(name)}
+                          style={{
+                              background: "#933EC4",
+                              color: "#FFFFFF",
+                              textShadow: "none"
+                          }}
+
                         >
                           {label}
                         </Button>
@@ -101,6 +133,12 @@ class SearchTable extends React.Component {
           <ButtonGroup>
             <Button
               onClick={this.handleResetClick}
+            style={{
+                background: "#933EC4",
+                color: "#FFFFFF",
+                textShadow: "none"
+            }}
+
             >
               Pokaż wszystkie
             </Button>
@@ -115,6 +153,7 @@ class SearchTable extends React.Component {
             <th>Nazwa posiłku</th>
             <th>Wartość kaloryczna</th>
             <th>Rodzaj posiłku</th>
+            <th>Dodaj do ulubionych</th>
           </tr>
           </thead>
           <tbody>
@@ -126,19 +165,37 @@ class SearchTable extends React.Component {
                 f => f(search)
               )
             ).filter(
-              search => search.name.includes(this.state.currentSearchPhrase)
+                search =>
+    latinize(search.name.toLowerCase()).includes(
+        latinize(this.state.currentSearchPhrase.toLowerCase())
+    )
             ).map(
-              ({uid, name, kcal, category}, index, allSearches) => (
+              ({uid, name, kcal, category, favourite}, index, allSearches) => (
+
+
                 <tr key={uid}>
                   <td>
-                    {name}
+                    <Link to={'/search/'+uid}>{name} </Link>
                   </td>
                   <td>
                     {kcal}
                   </td>
                   <td>
                     {category}
+
                   </td>
+                  <td>
+                    {favourite}
+                    <Button onClick={() => {
+                      this.addToFavourites(index + 1)
+                    }}
+                    style={{
+                      background: '#adc43e',
+                        color: "#FFFFFF",
+                        textShadow: "none"
+                    }}>Dodaj do ulubionych</Button>
+                  </td>
+
                 </tr>
               )
             )
