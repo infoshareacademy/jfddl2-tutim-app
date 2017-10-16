@@ -3,6 +3,18 @@
 
 }
 
+#root a:hover {
+    color: #000000;
+    background-color: transparent;
+    padding-left: 3%;
+
+}
+
+#root a {
+    color: #933ec4;
+    padding-left: 3%;
+}
+
 tr {
     color: black;
 
@@ -22,3 +34,6 @@ table th {
     background-color: black ;
     color: white;
 }
+
+
+
