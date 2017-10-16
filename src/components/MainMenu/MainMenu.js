@@ -36,7 +36,7 @@ const MainMenu = () => (
         <NavItem>Wyszukaj</NavItem>
       </LinkContainer>
 
-      <LinkContainer to="favourite">
+      <LinkContainer to="/favourite">
         <NavItem>Ulubione</NavItem>
       </LinkContainer>
 

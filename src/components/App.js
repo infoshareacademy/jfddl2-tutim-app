@@ -24,7 +24,7 @@ class App extends React.Component {
           <MainMenu/>
 
             <Route exact path="/" component={Home}></Route>
-          <Route exact path="/search/" component={Search}/>
+          <Route exact path="/search" component={Search}/>
           <Route path="/search/:uid" component={Search}/>
           <Route path="/favourite" component={Favourite}/>
 

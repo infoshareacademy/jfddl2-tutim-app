@@ -15,7 +15,7 @@ class Favourite extends React.Component {
       response => response.json()
     ).then((recipes) => {
         let filteredRecipes = recipes.filter((recipe) => {
-          return this.state.favourites.includes(parseInt(recipe.uid))
+          return this.state.favourites.includes(recipe.uid)
         })
         this.setState({
           filteredRecipes: filteredRecipes

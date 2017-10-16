@@ -1,18 +1,39 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Alert, Button, ButtonGroup, ButtonToolbar, Table} from 'react-bootstrap'
-import styles from './jakub.css';
+import styles from './jakub.css'
+
+
 
 class SingleView extends React.Component {
+
+  state = {
+    favourites:  JSON.parse(localStorage.getItem('favourites')) || []
+  }
+
+  addToFavourites = (id) => {
+
+    this.setState({
+      favourites: this.state.favourites.concat(id)
+    }, () => {
+      localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
+    });
+
+
+  }
+
   render() {
     console.log(this.props.filteredProduct)
     return (
+
+
+
       <div>
         {
           this.props.filteredProduct ?
             <div className="singleView">
               <h2> {this.props.filteredProduct.name}
-              </h2>     <div className="addToFav likeMe"> <a href="#">dodaj do ulubionych</a></div>
+              </h2>     <div className="addToFav likeMe"> <a href="#" onClick={() => this.addToFavourites(this.props.filteredProduct.uid)}>dodaj do ulubionych</a></div>
 
               <div className="heading">
                 <h4>Kategoria: {this.props.filteredProduct.category}
@@ -40,6 +61,10 @@ class SingleView extends React.Component {
             :
             'Ładowanie'
         }
+
+
+
+
       </div>
 
 

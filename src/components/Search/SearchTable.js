@@ -187,7 +187,7 @@ class SearchTable extends React.Component {
                   <td>
                     {favourite}
                     <Button onClick={() => {
-                      this.addToFavourites(index + 1)
+                      this.addToFavourites(uid)
                     }}
                     style={{
                       background: '#adc43e',
