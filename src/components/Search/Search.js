@@ -34,9 +34,9 @@ class Search extends React.Component {
 
   render() {
     const uid = this.props.match.params.uid || null
-    let filteredProduct = this.state.searches.filter((recipe, index)=>{
+    let filteredProduct = this.state.searches.find((recipe)=>{
       return uid === recipe.uid
-    })[0]
+    })
 
     const { searches, error, fetching } = this.state
 
