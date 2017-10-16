@@ -11,7 +11,7 @@ class AddMeal extends React.Component {
 
 
     state = {
-        ingredients: []
+        ingredients: JSON.parse(localStorage.getItem('addMeal')) || []
     }
 
     addRecipe = newMeal => {
@@ -23,29 +23,10 @@ class AddMeal extends React.Component {
                 newMeal
             )
         }, () => {
-            localStorage.setItem('addMeal', JSON.stringify(this.state))
+            localStorage.setItem('addMeal', JSON.stringify(this.state.ingredients))
         })
     }
 
-
-    componentWillMount() {
-        console.log('addMeal will mount')
-        this.setState(
-            JSON.parse(
-                localStorage.getItem('addMeal')
-            )
-        )
-    }
-
-    componentDidMount() {
-        console.log('addMeal did mount')
-    }
-
-    componentWillUpdate() {
-        console.log('addMeal will update')
-    }
-
-    componentDi
     render() {
         console.log('addMeal render')
 
@@ -56,7 +37,7 @@ class AddMeal extends React.Component {
 
         return (
             <div>
-                <h2 class="addMM">
+                <h2 className="addMM">
                     Dodaj przepis
                 </h2>
 
@@ -67,12 +48,12 @@ class AddMeal extends React.Component {
                     handlers={handlers}
                 />
 
-                <ul class="addMM">
+                <ul className="addMM">
                     {
                         ingredients.filter(
                             ingredient => ingredient.done
                         ).map(
-                            ingredient => <li class="addMM"  key={ingredient.id}>{ingredient.title}</li>
+                            ingredient => <li className="addMM"  key={ingredient.id}>{ingredient.title}</li>
                         )
                     }
                 </ul>

@@ -8,7 +8,8 @@ import styles from './jakub.css'
 class SingleView extends React.Component {
 
   state = {
-    favourites:  JSON.parse(localStorage.getItem('favourites')) || []
+    favourites:  JSON.parse(localStorage.getItem('favourites')) || [],
+    addMeal: JSON.parse(localStorage.getItem('addMeal')) || [],
   }
 
   addToFavourites = (id) => {
@@ -23,7 +24,6 @@ class SingleView extends React.Component {
   }
 
   render() {
-    console.log(this.props.filteredProduct)
     return (
 
 
@@ -33,7 +33,8 @@ class SingleView extends React.Component {
           this.props.filteredProduct ?
             <div className="singleView">
               <h2> {this.props.filteredProduct.name}
-              </h2>     <div className="addToFav likeMe"> <a href="#" onClick={() => this.addToFavourites(this.props.filteredProduct.uid)}>dodaj do ulubionych</a></div>
+              </h2>     <div className="addToFav likeMe"> <button><a href="#" onClick={() => this.addToFavourites(this.props.filteredProduct.uid)}
+             class="linker">dodaj do ulubionych</a></button></div>
 
               <div className="heading">
                 <h4>Kategoria: {this.props.filteredProduct.category}
