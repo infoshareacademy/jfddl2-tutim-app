@@ -24,7 +24,11 @@ class SingleView extends React.Component {
                 src="https://www.foodlion.com/content/dam/food-lion/recipes/Citrus%20Glazed%20Spiral%20Cut%20Ham/citrusspiralcutham_main.jpg.adapt.full.high.jpg"/>
               </div>
              <div className="description"> <p>
-               <b>Szczegóły przepisu:</b> &nbsp; {this.props.filteredProduct.recipe}
+               <b>Szczegóły przepisu:</b> &nbsp; {
+               this.props.filteredProduct.recipe.split('\n').map(
+                 row => <p>{row}</p>
+               )
+             }
               </p></div>
 
               {/*button do przodu i do tyłlu*/}

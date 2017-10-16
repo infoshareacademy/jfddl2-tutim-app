@@ -3,6 +3,8 @@ import React from 'react'
 import SearchTable from './SearchTable'
 import SingleView from "./SingleView";
 import styles from './Search.css'
+import latinize from 'latinize'
+
 
 class Search extends React.Component {
 
