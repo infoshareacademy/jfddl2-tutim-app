@@ -44,7 +44,7 @@ class AddMeal extends React.Component {
         console.log('addMeal will update')
     }
 
-    componentDi
+
     render() {
         console.log('addMeal render')
 
@@ -77,9 +77,8 @@ class AddMeal extends React.Component {
                 </ul>
             </div>
         )
-    }dUpdate() {
-        console.log('addMeal did update')
     }
+
 
 }
 
