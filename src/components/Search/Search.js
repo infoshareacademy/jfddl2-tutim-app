@@ -2,13 +2,17 @@ import React from 'react'
 
 import SearchTable from './SearchTable'
 import SingleView from "./SingleView";
+import styles from './Search.css'
+import latinize from 'latinize'
+
 
 class Search extends React.Component {
 
   state = {
-    searches: null,
+    searches: [],
     fetching: false,
-    error: null
+    error: null,
+    addMeal: JSON.parse(localStorage.getItem('addMeal')) || [],
   }
 
   componentDidMount() {
@@ -22,7 +26,7 @@ class Search extends React.Component {
       response => response.json()
     ).then(
       searches => {
-        this.setState({ searches, fetching: false })
+        this.setState({ searches: searches.concat(this.state.addMeal), fetching: false })
       }
     ).catch(
       error => this.setState({ error, fetching: false })
@@ -31,12 +35,19 @@ class Search extends React.Component {
 
   render() {
     const uid = this.props.match.params.uid || null
-    console.log(uid)
+    let filteredProduct = this.state.searches.find((recipe)=>{
+      return parseInt(uid) === parseInt(recipe.uid)
+    })
+
     const { searches, error, fetching } = this.state
 
     return (
       <div>
-        <h1>Wybierz posiłek</h1>
+        <h1
+        style={{
+          color: "white"
+        }}
+        >Wybierz posiłek</h1>
 
         {
           searches !== null ?
@@ -58,7 +69,7 @@ class Search extends React.Component {
         {
           uid === null ?
             <SearchTable searches={searches} /> :
-            <SingleView uid={uid}/>
+            <SingleView filteredProduct={filteredProduct}/>
         }
 
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './Favourite.css'
 
 class Favourite extends React.Component {
 
@@ -14,7 +15,7 @@ class Favourite extends React.Component {
       response => response.json()
     ).then((recipes) => {
         let filteredRecipes = recipes.filter((recipe) => {
-          return this.state.favourites.includes(parseInt(recipe.uid))
+          return this.state.favourites.includes(recipe.uid)
         })
         this.setState({
           filteredRecipes: filteredRecipes
@@ -26,7 +27,9 @@ class Favourite extends React.Component {
   render() {
     return (
       this.state.filteredRecipes.map((recipe, index) => {
-        return <li key={index}>{recipe.name}</li>
+        return <div class="favdPI"><ul class="favPI"><li key={index} class="favPI">{recipe.name}
+
+        </li></ul></div>
       })
     )
   }

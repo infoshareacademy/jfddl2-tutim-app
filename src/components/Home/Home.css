@@ -1,0 +1,49 @@
+h1.welcomePI {
+    color: #adc43e;
+    position: absolute;
+    text-align: center;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-weight: 900;
+    background: rgba(0,0,0,.8);
+    padding: 3%;
+    border-radius: 50%;
+    font-size: 3.5em;
+}
+
+
+p.rightsreservedPI{
+    position:absolute;
+    text-align: right;
+    top: 0;
+    right: 0;
+}
+
+#root {
+    background-image: url(warzywaowoce.jpg) no-repeat;
+    height: 1500px;
+}
+
+div.firstPI{
+    position: absolute;
+    top: 85%;
+    left: 80%;
+    transform: translate(-65%,-65%);
+    height: 42.5%;
+    width: 35%;
+    background-color: rgba(0,0,0,.8);
+    border: 2px solid black;
+    border-radius: 15px 50px 30px;
+
+}
+
+p.firstPI{
+    font-size: 1.3em;
+    padding: 4%;
+    color: #adc43e;
+    font-weight: 600;
+
+}
+
+

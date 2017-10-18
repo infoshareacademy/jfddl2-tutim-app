@@ -1,55 +1,42 @@
 import React from 'react'
-import { Table, ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap'
+import {Alert, Button, ButtonGroup, ButtonToolbar, Table} from 'react-bootstrap'
 
-import GroupSearchForm from './GroupSearchForm'
+import SearchForm from './SearchForm'
+
+
 
 const filters = {
-  city_gdynia: group => group.city === 'Gdynia',
-  city_gdansk: group => group.city === 'Gdańsk',
-  city_sopot: group => group.city === 'Sopot',
-  level_beginner: group => group.level === 'beginner',
-  level_intermediate: group => group.level === 'intermediate',
-  level_advanced: group => group.level === 'advanced'
+  meal_breakfast: search => search.category.includes('śniadanie'),
+  meal_dinner: search => search.category.includes('obiad'),
+  meal_supper: search => search.category.includes('kolacja')
 }
 
-const filterGroups = [
+const filterSearches = [
   [
     {
-      label: 'Gdynia',
-      name: 'city_gdynia'
+      label: 'Śniadanie',
+      name: 'meal_breakfast'
     },
     {
-      label: 'Sopot',
-      name: 'city_sopot'
+      label: 'Obiad',
+      name: 'meal_dinner'
     },
     {
-      label: 'Gdańsk',
-      name: 'city_gdansk'
+      label: 'Kolacja',
+      name: 'meal_supper'
     }
   ],
 
-  [
-    {
-      label: 'Beginner',
-      name: 'level_beginner'
-    },
-    {
-      label: 'Intermediate',
-      name: 'level_intermediate'
-    },
-    {
-      label: 'Advanced',
-      name: 'level_advanced'
-    }
-  ]
 ]
 
 
-class GroupTable extends React.Component {
+class SearchTable extends React.Component {
 
   state = {
     activeFilterNames: [],
-    currentSearchPhrase: ''
+    currentSearchPhrase: '',
+    favourites: JSON.parse(localStorage.getItem('favourites')) || [],
+    addFavourite: null
   }
 
   handleSearchPhraseChange = event => {
@@ -60,7 +47,7 @@ class GroupTable extends React.Component {
 
   handleToggleFilterClick = event => {
     const filterName = event.target.dataset.filterName
-    const { activeFilterNames } = this.state
+    const {activeFilterNames} = this.state
     const filterNameExists = activeFilterNames.includes(filterName)
 
     this.setState({
@@ -82,24 +69,46 @@ class GroupTable extends React.Component {
     })
   }
 
+  addToFavourites = (id) => {
+    this.setState({
+      favourites: this.state.favourites.concat(id),
+      addFavourite: id
+    }, () => {
+      localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
+    });
+
+
+  }
+
   render() {
-    const { groups } = this.props
+    const {searches} = this.props
+
 
     return (
+
+
       <div>
-        <GroupSearchForm
+        <SearchForm
           searchPhrase={this.state.currentSearchPhrase}
-          handleChange={this.handleSearchPhraseChange }
+          handleChange={this.handleSearchPhraseChange}
         />
 
-        <ButtonToolbar style={{ marginTop: 20 }}>
+        {
+
+          this.state.addFavourite === null ? null : <div><Alert bsStyle="success">Dodano do ulubionych </Alert></div>
+
+
+        }
+
+        <ButtonToolbar style={{marginTop: 20}}>
           {
-            filterGroups.map(
-              (group, index) => (
-                <ButtonGroup key={index}>
+            filterSearches.map(
+              (search, index) => (
+                <ButtonGroup key={index}
+                >
                   {
-                    group.map(
-                      ({ label, name }) => (
+                    search.map(
+                      ({label, name}) => (
                         <Button
                           key={name}
                           data-filter-name={name}
@@ -120,7 +129,7 @@ class GroupTable extends React.Component {
             <Button
               onClick={this.handleResetClick}
             >
-              RESET
+              Pokaż wszystkie
             </Button>
           </ButtonGroup>
         </ButtonToolbar>
@@ -130,33 +139,42 @@ class GroupTable extends React.Component {
         }}>
           <thead>
           <tr>
-            <th>Name</th>
-            <th>City</th>
-            <th>Level</th>
+            <th>Nazwa posiłku</th>
+            <th>Wartość kaloryczna</th>
+            <th>Rodzaj posiłku</th>
+            <th>Dodaj do ulubionych</th>
           </tr>
           </thead>
           <tbody>
           {
-            groups && groups.filter(
-              group => this.state.activeFilterNames.map(
+            searches && searches.filter(
+              search => this.state.activeFilterNames.map(
                 activeFilterName => filters[activeFilterName]
               ).every(
-                f => f(group)
+                f => f(search)
               )
             ).filter(
-              group => group.name.includes(this.state.currentSearchPhrase)
+              search => search.name.includes(this.state.currentSearchPhrase)
             ).map(
-              ({ id, name, city, level }, index, allGroups) => (
-                <tr key={id}>
+              ({uid, name, kcal, category, favourite}, index, allSearches) => (
+                <tr key={uid}>
                   <td>
                     {name}
                   </td>
                   <td>
-                    {city}
+                    {kcal}
                   </td>
                   <td>
-                    {level}
+                    {category}
+
                   </td>
+                  <td>
+                    {favourite}
+                    <Button onClick={() => {
+                      this.addToFavourites(index)
+                    }}>Dodaj do ulubionych</Button>
+                  </td>
+
                 </tr>
               )
             )
@@ -169,4 +187,5 @@ class GroupTable extends React.Component {
   }
 }
 
-export default GroupTable
+
+export default SearchTable

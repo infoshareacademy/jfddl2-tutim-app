@@ -1,0 +1,21 @@
+li.favPI{
+    color: white;
+    list-style: none;
+    text-decoration: none;
+    font-size: 1.3em;
+    font-weight: 600;
+    text-align: center;
+
+}
+
+li.favPI::before{
+    content: "♥      ";
+}
+
+
+
+div.favdPI{
+    margin-top: 4%;
+    background: rgba(0,0,0,.7);
+    width: 38%;
+}

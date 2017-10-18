@@ -2,6 +2,7 @@ import React from 'react'
 import {Table, ButtonToolbar, ButtonGroup, Button,Alert} from 'react-bootstrap'
 import latinize from 'latinize'
 import SearchForm from './SearchForm'
+import {   Link } from 'react-router-dom'
 
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
@@ -32,7 +33,9 @@ class SearchTable extends React.Component {
 
   state = {
     activeFilterNames: [],
-    currentSearchPhrase: ''
+    favourites: JSON.parse(localStorage.getItem('favourites')) || [],
+    currentSearchPhrase: '',
+    addFavourite: null
   }
 
   handleSearchPhraseChange = event => {
@@ -61,11 +64,12 @@ class SearchTable extends React.Component {
 
   handleResetClick = () => {
     this.setState({
-      activeFilterNames: []
+      activeFilterNames: [],
     })
   }
 
   addToFavourites = (id) => {
+
     this.setState({
       favourites: this.state.favourites.concat(id),
       addFavourite: id
@@ -109,6 +113,12 @@ class SearchTable extends React.Component {
                           data-filter-name={name}
                           onClick={this.handleToggleFilterClick}
                           active={this.state.activeFilterNames.includes(name)}
+                          style={{
+                              background: "#933EC4",
+                              color: "#FFFFFF",
+                              textShadow: "none"
+                          }}
+
                         >
                           {label}
                         </Button>
@@ -123,6 +133,12 @@ class SearchTable extends React.Component {
           <ButtonGroup>
             <Button
               onClick={this.handleResetClick}
+            style={{
+                background: "#933EC4",
+                color: "#FFFFFF",
+                textShadow: "none"
+            }}
+
             >
               Pokaż wszystkie
             </Button>
@@ -159,7 +175,7 @@ class SearchTable extends React.Component {
 
                 <tr key={uid}>
                   <td>
-                    {name}
+                    <Link to={'/search/'+uid}>{name} </Link>
                   </td>
                   <td>
                     {kcal}
@@ -171,7 +187,12 @@ class SearchTable extends React.Component {
                   <td>
                     {favourite}
                     <Button onClick={() => {
-                      this.addToFavourites(index)
+                      this.addToFavourites(uid)
+                    }}
+                    style={{
+                      background: '#adc43e',
+                        color: "#FFFFFF",
+                        textShadow: "none"
                     }}>Dodaj do ulubionych</Button>
                   </td>
 
