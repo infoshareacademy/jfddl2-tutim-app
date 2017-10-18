@@ -59,7 +59,7 @@ class AddMeal extends React.Component {
                     Dodaj przepis
                 </h2>
 
-                <AddIngredientForm addRecipe={this.addRecipe}/>
+               <AddIngredientForm addRecipe={this.addRecipe}/>
 
                 <IngredientList
                     ingredients={ingredients}
