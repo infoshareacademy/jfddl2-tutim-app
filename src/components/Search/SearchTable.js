@@ -3,6 +3,7 @@ import {Table, ButtonToolbar, ButtonGroup, Button,Alert} from 'react-bootstrap'
 import latinize from 'latinize'
 import SearchForm from './SearchForm'
 import {   Link } from 'react-router-dom'
+import InputRange from 'react-input-range'
 
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
@@ -144,6 +145,16 @@ class SearchTable extends React.Component {
             </Button>
           </ButtonGroup>
         </ButtonToolbar>
+
+
+          <InputRange
+              maxValue={200}
+              minValue={0}
+              value={this.state.value }
+              onChange={value => this.setState({value})}/>
+
+
+
 
         <Table striped bordered condensed hover style={{
           marginTop: 20
