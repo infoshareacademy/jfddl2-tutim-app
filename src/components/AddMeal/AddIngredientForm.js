@@ -89,11 +89,11 @@ class AddIngredientForm extends React.Component {
     render() {
 
         const invalidInput = <Alert bsStyle="danger">
-            Złe wartości!
+            Proszę uzupełnić wszystkie pola
         </Alert>;
 
         const mealAdded =    <Alert bsStyle="success">
-            Przepis został dodany
+            Przepis został dodany pomyślnie
         </Alert>;
 
 
