@@ -124,9 +124,10 @@ class AddIngredientForm extends React.Component {
                     <Grid>
                         <Row>
                                    <FormGroup controlId="formControlsSelect">
-                                    <ControlLabel>Kategoria</ControlLabel>
+                                    <ControlLabel>Wybierz kategorie posiłku</ControlLabel>
                                     <FormControl componentClass="select" placeholder="select" value={this.state.ingredientsFormControlCategory}
                                                  onChange={this.handleIngredientFormControlChange5}>
+                                        <option value="Select"></option>
                                         <option value="Śniadanie">Śniadanie</option>
                                         <option value="Obiad">Obiad</option>
                                         <option value="Kolacja">Kolacja</option>
