@@ -1,6 +1,7 @@
 import React from 'react'
-import {  BrowserRouter as Router,
-      Route,
+import {
+  BrowserRouter as Router,
+  Route,
 } from 'react-router-dom'
 import {
   Grid
@@ -13,7 +14,7 @@ import Home from './Home'
 import Search from './Search'
 import Favourite from './Favourite'
 import AddMeal from './AddMeal/index'
-
+import UserProfile from './UserProfile'
 
 
 class App extends React.Component {
@@ -23,14 +24,12 @@ class App extends React.Component {
         <Grid>
           <MainMenu/>
 
-            <Route exact path="/" component={Home}></Route>
+          <Route exact path="/" component={Home}></Route>
           <Route exact path="/search/" component={Search}/>
           <Route path="/search/:uid" component={Search}/>
           <Route path="/favourite" component={Favourite}/>
-
-
           <Route path="/addMeal" component={AddMeal}/>
-
+          <Route path="/userprofile" component={UserProfile}/>
 
         </Grid>
       </Router>
