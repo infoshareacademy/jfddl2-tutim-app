@@ -21,7 +21,7 @@ class Search extends React.Component {
     })
 
     fetch(
-      `${process.env.PUBLIC_URL} /data/database.json` // template string usage
+        'https://jfddl2-tutim.firebaseio.com/recipes.json' // template string usage
     ).then(
       response => response.json()
     ).then(

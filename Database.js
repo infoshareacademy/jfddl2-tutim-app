@@ -751,11 +751,11 @@ var database = {
             uid:"25",
             name: "Drożdżówki z jabłkami",
             kcal: 247,
-            containsIn100g: [{
+            containsIn100g: {
                 protein: 40,
                 carbs: 50,
                 fat: 10
-            }],
+            },
             recipe:
             "Składniki:" +
             "Jaja kurze - JEDNO średnie jajko (60g) - 1/8 sztuki (5 g)\n" +

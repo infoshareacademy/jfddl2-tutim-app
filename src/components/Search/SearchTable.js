@@ -1,9 +1,10 @@
 import React from 'react'
-import {Table, ButtonToolbar, ButtonGroup, Button,Alert} from 'react-bootstrap'
+import {Table, ButtonToolbar, ButtonGroup, Button,Alert, Row, Col} from 'react-bootstrap'
 import latinize from 'latinize'
 import SearchForm from './SearchForm'
 import {   Link } from 'react-router-dom'
 import InputRange from 'react-input-range'
+import 'react-input-range/lib/css/index.css'
 
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
@@ -36,7 +37,8 @@ class SearchTable extends React.Component {
     activeFilterNames: [],
     favourites: JSON.parse(localStorage.getItem('favourites')) || [],
     currentSearchPhrase: '',
-    addFavourite: null
+    addFavourite: null,
+      value:{min:0, max:100}
   }
 
   handleSearchPhraseChange = event => {
@@ -100,7 +102,8 @@ class SearchTable extends React.Component {
 
 
         }
-
+        <Row>
+          <Col sm={4}>
         <ButtonToolbar style={{marginTop: 20}}>
           {
             filterSearches.map(
@@ -145,15 +148,17 @@ class SearchTable extends React.Component {
             </Button>
           </ButtonGroup>
         </ButtonToolbar>
+          </Col>
 
 
+  <Col sm={4}>
           <InputRange
               maxValue={200}
               minValue={0}
               value={this.state.value }
               onChange={value => this.setState({value})}/>
-
-
+  </Col>
+</Row>
 
 
         <Table striped bordered condensed hover style={{
