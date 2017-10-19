@@ -5,77 +5,72 @@ import SingleView from "./SingleView";
 import styles from './Search.css'
 import latinize from 'latinize'
 
+import {database} from '../../firebase'
 
 class Search extends React.Component {
 
-  state = {
-    searches: [],
-    fetching: false,
-    error: null,
-    addMeal: JSON.parse(localStorage.getItem('addMeal')) || [],
-  }
+    state = {
+        searches: [],
+        fetching: false,
+        error: null,
+        addMeal: JSON.parse(localStorage.getItem('addMeal')) || [],
+    }
 
-  componentDidMount() {
-    this.setState({
-      fetching: true
-    })
+    componentDidMount() {
+        this.setState({
+            fetching: true
+        })
 
-    fetch(
-        'https://jfddl2-tutim.firebaseio.com/recipes.json' // template string usage
-    ).then(
-      response => response.json()
-    ).then(
-      searches => {
-        this.setState({ searches: searches.concat(this.state.addMeal), fetching: false })
-      }
-    ).catch(
-      error => this.setState({ error, fetching: false })
-    )
-  }
+        database().ref('recipes').on('value', snapshot => {
+            let searches = snapshot.val()
+            this.setState({searches: searches.concat(this.state.addMeal), fetching: false})
+        })
 
-  render() {
-    const uid = this.props.match.params.uid || null
-    let filteredProduct = this.state.searches.find((recipe)=>{
-      return parseInt(uid) === parseInt(recipe.uid)
-    })
+    }
 
-    const { searches, error, fetching } = this.state
+    render() {
+        const uid = this.props.match.params.uid || null
+        let filteredProduct = this.state.searches.find((recipe) => {
+            return parseInt(uid) === parseInt(recipe.uid)
+        })
 
-    return (
-      <div>
-        <h1
-        style={{
-          color: "white"
-        }}
-        >Wybierz posiłek</h1>
+        const {searches, error, fetching} = this.state
 
-        {
-          searches !== null ?
-            null :
-            <p>Brak posiłków do wyświetlenia</p>
-        }
+        return (
+            <div>
+                <h1
+                    style={{
+                        color: "white"
+                    }}
+                >Wybierz posiłek</h1>
 
-        {
-          fetching === false ?
-            null :
-            <p>Pobieranie posiłków...</p>
-        }
+                {
+                    searches !== null ?
+                        null :
+                        <p>Brak posiłków do wyświetlenia</p>
+                }
 
-        {
-          error === null ?
-            null :
-            <p>{error.message}</p>
-        }
-        {
-          uid === null ?
-            <SearchTable searches={searches} /> :
-            <SingleView filteredProduct={filteredProduct}/>
-        }
+                {
+                    fetching === false ?
+                        null :
+                        <p>Pobieranie posiłków...</p>
+                }
+
+                {
+                    error === null ?
+                        null :
+                        <p>{error.message}</p>
+                }
+                {
+                    uid === null ?
+                        <SearchTable searches={searches}/> :
+                        <SingleView filteredProduct={filteredProduct}/>
+                }
 
 
-      </div>
-    )
-  }
+            </div>
+        )
+    }
 }
 
 export default Search
