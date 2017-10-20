@@ -5,15 +5,16 @@ import SingleView from "./SingleView";
 import styles from './Search.css'
 import latinize from 'latinize'
 
+import {database} from '../../firebase'
 
 class Search extends React.Component {
 
-  state = {
-    searches: [],
-    fetching: false,
-    error: null,
-    addMeal: JSON.parse(localStorage.getItem('addMeal')) || [],
-  }
+    state = {
+        searches: [],
+        fetching: false,
+        error: null,
+        addMeal: JSON.parse(database()('addMeal')) || [],
+    }
 
   componentDidMount() {
     this.setState({
@@ -49,11 +50,11 @@ class Search extends React.Component {
         }}
         >Wybierz posiłek</h1>
 
-        {
-          searches !== null ?
-            null :
-            <p>Brak posiłków do wyświetlenia</p>
-        }
+                {
+                    searches !== null ?
+                        null :
+                        <p>Brak posiłków do wyświetlenia</p>
+                }
 
         {
           fetching === false ?
