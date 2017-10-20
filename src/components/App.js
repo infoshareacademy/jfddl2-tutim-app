@@ -13,6 +13,8 @@ import Home from './Home'
 import Search from './Search'
 import Favourite from './Favourite'
 import AddMeal from './AddMeal/index'
+import Tasker from './Tasker'
+import SocialShare from './SocialShare'
 
 
 
@@ -30,6 +32,8 @@ class App extends React.Component {
 
 
           <Route path="/addMeal" component={AddMeal}/>
+          <Route path="/tasker" component={Tasker}/>
+          <Route path="/socialShare" component={SocialShare}/>
 
 
         </Grid>

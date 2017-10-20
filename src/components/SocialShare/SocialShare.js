@@ -1,15 +1,23 @@
 import React from 'react'
 
-import {
-    ShareButtons,
-    ShareCounts,
-    generateShareIcon
-} from 'react-share';
+import {FacebookButton, FacebookCount} from "react-social";
 
-const {
-    FacebookShareButton,
+class SocialShare extends React.Component {
 
-} = ShareButtons;
+    render() {
+
+        let url = "https://www.facebook.com/";
+
+        return (
+
+            <FacebookButton url={url}>
+                <FacebookCount url={url}/>
+                Share
+            </FacebookButton>
+        );
+    }
+}
 
 
 export default SocialShare
+

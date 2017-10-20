@@ -27,6 +27,25 @@ class AddMeal extends React.Component {
         })
     }
 
+
+    componentWillMount() {
+        console.log('addMeal will mount')
+        this.setState(
+            JSON.parse(
+                localStorage.getItem('addMeal')
+            )
+        )
+    }
+
+    componentDidMount() {
+        console.log('addMeal did mount')
+    }
+
+    componentWillUpdate() {
+        console.log('addMeal will update')
+    }
+
+
     render() {
         console.log('addMeal render')
 
@@ -41,7 +60,7 @@ class AddMeal extends React.Component {
                     Dodaj przepis
                 </h2>
 
-                <AddIngredientForm addRecipe={this.addRecipe}/>
+               <AddIngredientForm addRecipe={this.addRecipe}/>
 
                 <IngredientList
                     ingredients={ingredients}
@@ -62,6 +81,7 @@ class AddMeal extends React.Component {
     }dUpdate() {
         console.log('addMeal did update')
     }
+
 
 }
 
