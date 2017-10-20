@@ -9,8 +9,7 @@ import thunk from 'redux-thunk'
 import auth, { init as initAuth } from './state/auth'
 
 const reducer = combineReducers({
-  auth,
-
+  auth
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
