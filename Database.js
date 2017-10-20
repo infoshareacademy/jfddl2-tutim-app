@@ -11,6 +11,11 @@ var database = {
             uid: "1",
             name: "Tortilla z kurczakiem",
             kcal: 320,
+            containsIn100g: [{
+                protein: 20,
+                carbs: 30,
+                fat: 50
+            }],
             recipe: "Składniki:\n" +
             "Mięso z piersi kurczaka bez skóry - 1/2 sztuki (100 g)\n" +
             "Cebula czerwona - 1/4 sztuki (27 g)\n" +
@@ -42,6 +47,11 @@ var database = {
             uid: "2" ,
             name: "Pasta twarogow-jajeczna",
             kcal: 120,
+            containsIn100g: [{
+                protein: 20,
+                carbs: 70,
+                fat: 10
+            }],
             recipe:"Składniki:\n" +
             "Szczypiorek - 1/3 sztuki (7 g)\n" +
             "Jajka kurze, na twardo - 1 i 1/3 sztuki (75 g)\n" +
@@ -62,6 +72,11 @@ var database = {
             uid:"3",
             name: "Kasza jaglana z gruszką",
             kcal: 110,
+            containsIn100g: [{
+                protein: 45,
+                carbs: 5,
+                fat: 50
+            }],
             recipe:
             "Składniki:\n" +
             "Cytryna - 1/8 sztuki (5 g)\n" +
@@ -90,6 +105,11 @@ var database = {
             uid:"4",
             name: "Naleśniki szpinakowe z fetą",
             kcal: 210,
+            containsIn100g: [{
+                protein: 60,
+                carbs: 15,
+                fat: 25
+            }],
             recipe:"Składniki:\n" +
             "Jaja kurze całe - 1/2 sztuki (25 g)\n" +
             "Czosnek - 1 i 2/3 sztuki (8 g)\n" +
@@ -123,6 +143,11 @@ var database = {
             uid:"5",
             name: "Koktajl jaglano-truskawkowy",
             kcal: 110,
+            containsIn100g: [{
+                protein: 60,
+                carbs: 10,
+                fat: 30
+            }],
             recipe:"Składniki:\n" +
             "Kasza jaglana - 1/3 szklanki (60 g)\n" +
             "Miód pszczeli - 1 łyżka (24 g)\n" +
@@ -148,6 +173,11 @@ var database = {
             uid:"6",
             name: "Omlet orkiszowy",
             kcal: 150,
+            containsIn100g: [{
+                protein: 20,
+                carbs: 60,
+                fat: 20
+            }],
             recipe:"Składniki:\n" +
             "Jaja kurze całe - 2 sztuki (100 g)\n" +
             "Mleko 2% OSM - 1/8 szklanki (20 ml)\n" +
@@ -172,6 +202,11 @@ var database = {
             uid:"7",
             name: "Kolorowy chłodnik",
             kcal: 140,
+            containsIn100g: [{
+                protein: 45,
+                carbs: 30,
+                fat: 25
+            }],
             recipe:"Składniki:\n" +
             "Kefir 1,5% tłuszczu OSM - 1 szklanka (220 ml)\n" +
             "Koperek świeży - 1/2 łyżeczki (2 g)\n" +
@@ -191,6 +226,11 @@ var database = {
             uid:"8",
             name: "Chleb z szynką",
             kcal: 190,
+            containsIn100g: [{
+                protein: 30,
+                carbs: 30,
+                fat: 40
+            }],
             recipe:"Składniki:\n" +
             "Chleb sitkowy - 2 kromki (90 g)\n" +
             "Masło - 1/2 łyżeczki (2 g)\n" +
@@ -205,6 +245,11 @@ var database = {
             uid:"9",
             name: "Płatki śniadaniowe z mlekiem",
             kcal: 230,
+            containsIn100g: [{
+                protein: 40,
+                carbs: 50,
+                fat: 10
+            }],
             recipe: "Składniki:\n" +
             "Płatki corn flakes -  (150 g)\n" +
             "Mleko 2% - (200 ml)" +
@@ -218,6 +263,11 @@ var database = {
             uid:"10",
             name: "Owsianka z musem malinowym",
             kcal: 270,
+            containsIn100g: [{
+                protein: 70,
+                carbs: 20,
+                fat: 10
+            }],
             recipe:"Składniki:\n" +
             "Maliny - 3/4 szklanki (100 g)\n" +
             "Miód pszczeli - 1/2 łyżki (13 g)\n" +
@@ -237,6 +287,11 @@ var database = {
             uid:"11",
             name: "Kasza bulgur z humusem",
             kcal: 220,
+            containsIn100g: [{
+                protein: 20,
+                carbs: 30,
+                fat: 50
+            }],
             recipe:"Składniki:\n" +
             "Cebula - 1/4 sztuki (25 g)\n" +
             "Cieciorka konserwowa - 3 łyżki (60 g)\n" +
@@ -295,6 +350,11 @@ var database = {
             uid:"12",
             name:"Kakaowa owsianka z bananem i rodzynkami",
             kcal: 205,
+            containsIn100g: [{
+                protein: 55,
+                carbs: 20,
+                fat: 25
+            }],
             recipe:"Składniki:" +
             "Banan - 3/4 sztuki (90 g)\n" +
             "Kakao ciemne Gellwe - 1/2 łyżki (5 g)\n" +
@@ -312,6 +372,11 @@ var database = {
             uid:"13",
             name: "Placuszki z kaszy manny",
             kcal: 211,
+            containsIn100g: [{
+                protein: 60,
+                carbs: 30,
+                fat: 10
+            }],
             recipe: "Składniki:" +
             "Jaja kurze całe - 1/5 sztuki (10 g)\n" +
             "Kasza manna - 1/5 szklanki (34 g)\n" +
@@ -342,6 +407,11 @@ var database = {
             uid:"14",
             name: "Jagodowa owsianka z orzechami",
             kcal: 201,
+            containsIn100g: [{
+                protein: 80,
+                carbs: 15,
+                fat: 5
+            }],
             recipe:
             "Składniki:" +
             "Czarne jagody - 2 szklanki (250 g)\n" +
@@ -358,6 +428,11 @@ var database = {
             uid:"15",
             name: "Fit deser a`la Snickers",
             kcal: 250,
+            containsIn100g: [{
+                protein: 40,
+                carbs: 10,
+                fat: 50
+            }],
             recipe:
             "Składniki:" +
             "Cukier waniliowy - 2 łyżeczki (8 g)\n" +
@@ -391,6 +466,11 @@ var database = {
             uid:"16",
             name: "Jaglany koktajl ananasowy",
             kcal: 179,
+            containsIn100g: [{
+                protein: 60,
+                carbs: 30,
+                fat: 10
+            }],
             recipe:
             "Składniki:" +
             "Ananas - 1/7 sztuki (90 g)\n" +
@@ -415,6 +495,11 @@ var database = {
             uid:"17",
             name: "Burgery z mięsem i szpinakiem",
             kcal: 317,
+            containsIn100g: [{
+                protein: 10,
+                carbs: 40,
+                fat: 50
+            }],
             recipe:
             "Składniki:" +
             "Jaja kurze całe - 1/3 sztuki (17 g)\n" +
@@ -446,6 +531,11 @@ var database = {
             uid:"18",
             name: "Bataty z dipem serowym",
             kcal: 276,
+            containsIn100g: [{
+                protein: 20,
+                carbs: 50,
+                fat: 30
+            }],
             recipe:
             "Składniki:" +
             "Czosnek - 1 sztuka (5 g)\n" +
@@ -467,6 +557,11 @@ var database = {
             uid:"19",
             name: "Naleśniki",
             kcal: 327,
+            containsIn100g: [{
+                protein: 30,
+                carbs: 30,
+                fat: 40
+            }],
             recipe:
             "Składniki:" +
             "Mąka gryczana - 1/8 szklanki (13 g)\n" +
@@ -488,6 +583,11 @@ var database = {
             uid:"20",
             name:"Indyk z warzywami",
             kcal: 354,
+            containsIn100g: [{
+                protein: 20,
+                carbs: 30,
+                fat: 50
+            }],
             recipe:
             "Składniki:" +
             "Brokuły - 1/5 sztuki (100 g)\n" +
@@ -513,6 +613,11 @@ var database = {
             uid:"21",
             name:"Zapiekanki domowe",
             kcal: 302,
+            containsIn100g: [{
+                protein: 10,
+                carbs: 30,
+                fat: 60
+            }],
             recipe:
             "Składniki:" +
             "Bułka grahamka - 2/3 sztuki (50 g)\n" +
@@ -537,6 +642,11 @@ var database = {
             uid:"22",
             name: "Sernik z ciastkiem i galaretką",
             kcal: 289,
+            containsIn100g: [{
+                protein: 20,
+                carbs: 60,
+                fat: 20
+            }],
             recipe:
             "Składniki:" +
             "Jogurt naturalny 2% OSM - 2 i 3/4 łyżki (70 g)\n" +
@@ -577,6 +687,11 @@ var database = {
             uid:"23",
             name: "Dorsz pieczony",
             kcal: 312,
+            containsIn100g: [{
+                protein: 20,
+                carbs: 10,
+                fat: 70
+            }],
             recipe:
             "Składniki:" +
             "Dorsz świeży, filety bez skóry - 1 i 1/2 sztuki (150 g)\n" +
@@ -608,6 +723,11 @@ var database = {
             uid:"24",
             name: "Sałatka z makaronem",
             kcal: 215,
+            containsIn100g: [{
+                protein: 20,
+                carbs: 50,
+                fat: 30
+            }],
             recipe:
             "Składniki:" +
             "Czosnek - 2 sztuki (10 g)\n" +
@@ -631,6 +751,11 @@ var database = {
             uid:"25",
             name: "Drożdżówki z jabłkami",
             kcal: 247,
+            containsIn100g: {
+                protein: 40,
+                carbs: 50,
+                fat: 10
+            },
             recipe:
             "Składniki:" +
             "Jaja kurze - JEDNO średnie jajko (60g) - 1/8 sztuki (5 g)\n" +
@@ -660,6 +785,11 @@ var database = {
             uid:"26",
             name: "Serek z malinami",
             kcal: 189,
+            containsIn100g: [{
+                protein: 20,
+                carbs: 30,
+                fat: 50
+            }],
             recipe:
             "Składniki:" +
             "Borówka amerykańska - 2 garście (100 g)\n" +

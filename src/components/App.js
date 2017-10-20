@@ -1,9 +1,10 @@
 import React from 'react'
-import {  BrowserRouter as Router,
-      Route,
+import {
+    BrowserRouter as Router,
+    Route,
 } from 'react-router-dom'
 import {
-  Grid
+    Grid
 } from 'react-bootstrap'
 
 import MainMenu from './MainMenu'
@@ -15,27 +16,21 @@ import Favourite from './Favourite'
 import AddMeal from './AddMeal/index'
 
 
-
 class App extends React.Component {
-  render() {
-    return (
-      <Router>
-        <Grid>
-          <MainMenu/>
-
-            <Route exact path="/" component={Home}></Route>
-          <Route exact path="/search" component={Search}/>
-          <Route path="/search/:uid" component={Search}/>
-          <Route path="/favourite" component={Favourite}/>
-
-
-          <Route path="/addMeal" component={AddMeal}/>
-
-
-        </Grid>
-      </Router>
-    )
-  }
+    render() {
+        return (
+            <Router>
+                <Grid>
+                    <MainMenu/>
+                    <Route exact path="/" component={Home}></Route>
+                    <Route exact path="/search" component={Search}/>
+                    <Route path="/search/:uid" component={Search}/>
+                    <Route path="/favourite" component={Favourite}/>
+                    <Route path="/addMeal" component={AddMeal}/>
+                </Grid>
+            </Router>
+        )
+    }
 }
 
 export default App
