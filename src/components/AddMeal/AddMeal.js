@@ -2,6 +2,7 @@ import React from 'react'
 
 import AddIngredientForm from './AddIngredientForm'
 import IngredientList from './IngredientList'
+import styles from './AddMeal.css'
 
 import {getNextId} from './_utils'
 
@@ -10,7 +11,7 @@ class AddMeal extends React.Component {
 
 
     state = {
-        ingredients: []
+        ingredients: JSON.parse(localStorage.getItem('addMeal')) || []
     }
 
     addRecipe = newMeal => {
@@ -22,9 +23,10 @@ class AddMeal extends React.Component {
                 newMeal
             )
         }, () => {
-            localStorage.setItem('addMeal', JSON.stringify(this.state))
+            localStorage.setItem('addMeal', JSON.stringify(this.state.ingredients))
         })
     }
+
 
 
     componentWillMount() {
@@ -45,6 +47,7 @@ class AddMeal extends React.Component {
     }
 
 
+
     render() {
         console.log('addMeal render')
 
@@ -55,7 +58,7 @@ class AddMeal extends React.Component {
 
         return (
             <div>
-                <h2>
+                <h2 className="addMM">
                     Dodaj przepis
                 </h2>
 
@@ -66,12 +69,12 @@ class AddMeal extends React.Component {
                     handlers={handlers}
                 />
 
-                <ul>
+                <ul className="addMM">
                     {
                         ingredients.filter(
                             ingredient => ingredient.done
                         ).map(
-                            ingredient => <li key={ingredient.id}>{ingredient.title}</li>
+                            ingredient => <li className="addMM"  key={ingredient.id}>{ingredient.title}</li>
                         )
                     }
                 </ul>

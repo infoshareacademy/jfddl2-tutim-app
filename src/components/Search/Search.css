@@ -1,0 +1,39 @@
+#root {
+   background-image: url(warzywaowoce.jpg);
+
+}
+
+#root a:hover {
+    color: #FFFFFF;
+    background-color: transparent;
+
+
+}
+
+#root a {
+    color: #933ec4;
+
+}
+
+tr {
+    color: black;
+
+
+}
+
+.navbar-default {
+    border: none;
+}
+
+table {
+    background-color: white ;
+    color: black;
+}
+
+table th {
+    background-color: black ;
+    color: white;
+}
+
+
+

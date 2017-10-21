@@ -17,14 +17,23 @@ class SearchForm extends React.Component {
             type="text"
           />
           <InputGroup.Button>
-            <Button>
-              <Glyphicon glyph="search"/> Search
+            <Button
+            style={{
+              background: "#933EC4",
+                color: "#FFFFFF",
+                textShadow: "none"
+            }}>
+              <Glyphicon glyph="search"/> Szukaj
             </Button>
           </InputGroup.Button>
         </InputGroup>
       </form>
     )
   }
+
+
+
+
 }
 
 export default SearchForm
