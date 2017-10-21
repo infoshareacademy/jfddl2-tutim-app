@@ -1,19 +1,21 @@
 import React from 'react'
 
-import {FacebookButton, FacebookCount} from "react-social";
+import FacebookProvider , { Share }from "react-facebook";
 
 class SocialShare extends React.Component {
 
     render() {
 
-        let url = "https://www.facebook.com/";
 
         return (
 
-            <FacebookButton url={url}>
-                <FacebookCount url={url}/>
-                Share
-            </FacebookButton>
+            <FacebookProvider appId="1">
+                <Share href="http://www.facebook.com">
+                    <button type="button">
+                        Udostępnij
+                    </button>
+                </Share>
+            </FacebookProvider>
         );
     }
 }
