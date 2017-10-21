@@ -8,6 +8,7 @@ class AddIngredientForm extends React.Component {
         mealAdded: false,
         isNewMealValid: true,
         ingredientsFormControlValue: '',
+        ingredientsFormControlCategory: '',
         ingredientsFormControlUrl: '',
         ingredientsFormControlTitle: '',
         ingredientsFormControlKcal: ''
@@ -16,6 +17,13 @@ class AddIngredientForm extends React.Component {
     handleIngredientFormControlChange = event => {
         this.setState({
             ingredientsFormControlValue: event.target.value,
+
+        })
+    }
+
+    handleIngredientFormControlChange5 = event => {
+        this.setState({
+            ingredientsFormControlCategory: event.target.value,
 
         })
     }
@@ -48,7 +56,8 @@ class AddIngredientForm extends React.Component {
             uid: Date.now(), // @TODO can be improved
             name: this.state.ingredientsFormControlTitle,
             kcal: this.state.ingredientsFormControlKcal,
-            recipe: this.state.ingredientsFormControlValue
+            recipe: this.state.ingredientsFormControlValue,
+            category: this.state.ingredientsFormControlCategory
         }
 
         let isNewMealValid = true;
@@ -65,9 +74,8 @@ class AddIngredientForm extends React.Component {
         })
 
         if (isNewMealValid) {
-            // dodajemy obiekt od storage
-            // mozemy wyswietlic alert kotry zniknie po kilku s (setTimeout)
-            // wyczyscuic caly state odnoszacy sie do tych pol
+
+
 
             this.props.addRecipe(newMeal)
 
@@ -110,6 +118,21 @@ class AddIngredientForm extends React.Component {
                                              value={this.state.ingredientsFormControlTitle}
                                              onChange={this.handleIngredientFormControlChange3}/>
                             </FormGroup>
+                        </Row>
+                    </Grid>
+
+                    <Grid>
+                        <Row>
+                                   <FormGroup controlId="formControlsSelect">
+                                    <ControlLabel>Wybierz kategorie posiłku</ControlLabel>
+                                    <FormControl componentClass="select" placeholder="select" value={this.state.ingredientsFormControlCategory}
+                                                 onChange={this.handleIngredientFormControlChange5}>
+                                        <option value="Select"></option>
+                                        <option value="Śniadanie">Śniadanie</option>
+                                        <option value="Obiad">Obiad</option>
+                                        <option value="Kolacja">Kolacja</option>
+                                    </FormControl>
+                                </FormGroup>
                         </Row>
                     </Grid>
 

@@ -11,6 +11,7 @@ const IngredientListItem = ({
         {ingredient.name},
         {ingredient.kcal},
         {ingredient.recipe}
+        {ingredient.category}
 
 
     </li>
