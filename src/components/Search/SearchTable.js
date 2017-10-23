@@ -1,8 +1,10 @@
 import React from 'react'
-import {Table, ButtonToolbar, ButtonGroup, Button,Alert} from 'react-bootstrap'
+import {Table, ButtonToolbar, ButtonGroup, Button, Alert, Row, Col, SplitButton, MenuItem} from 'react-bootstrap'
 import latinize from 'latinize'
 import SearchForm from './SearchForm'
-import {   Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
+import InputRange from 'react-input-range'
+import 'react-input-range/lib/css/index.css'
 
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
@@ -35,7 +37,11 @@ class SearchTable extends React.Component {
     activeFilterNames: [],
     favourites: JSON.parse(localStorage.getItem('favourites')) || [],
     currentSearchPhrase: '',
-    addFavourite: null
+    addFavourite: null,
+    value: {
+       min: 100, //this.props.searches.reduce((min, next) => Math.min(min, next.kcal), Infinity),
+       max: 500, //this.props.searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)
+    }
   }
 
   handleSearchPhraseChange = event => {
@@ -95,55 +101,69 @@ class SearchTable extends React.Component {
 
         {
 
-          this.state.addFavourite === null ? null : <div><Alert bsStyle="success">Dodano do ulubionych </Alert></div>
+          this.state.addFavourite === null ? null :
+            <div><Alert bsStyle="success">Dodano do Twojego dnia! </Alert></div>
 
 
         }
+        <Row>
+          <Col sm={4}>
+            <ButtonToolbar style={{marginTop: 20}}>
+              {
+                filterSearches.map(
+                  (search, index) => (
+                    <ButtonGroup key={index}>
+                      {
+                        search.map(
+                          ({label, name}) => (
+                            <Button
+                              key={name}
+                              data-filter-name={name}
+                              onClick={this.handleToggleFilterClick}
+                              active={this.state.activeFilterNames.includes(name)}
+                              style={{
+                                background: "#933EC4",
+                                color: "#FFFFFF",
+                                textShadow: "none"
+                              }}
 
-        <ButtonToolbar style={{marginTop: 20}}>
-          {
-            filterSearches.map(
-              (search, index) => (
-                <ButtonGroup key={index}>
-                  {
-                    search.map(
-                      ({label, name}) => (
-                        <Button
-                          key={name}
-                          data-filter-name={name}
-                          onClick={this.handleToggleFilterClick}
-                          active={this.state.activeFilterNames.includes(name)}
-                          style={{
-                              background: "#933EC4",
-                              color: "#FFFFFF",
-                              textShadow: "none"
-                          }}
+                            >
+                              {label}
+                            </Button>
+                          )
+                        )
+                      }
+                    </ButtonGroup>
+                  )
+                )
+              }
 
-                        >
-                          {label}
-                        </Button>
-                      )
-                    )
-                  }
-                </ButtonGroup>
-              )
-            )
-          }
+              <ButtonGroup>
+                <Button
+                  onClick={this.handleResetClick}
+                  style={{
+                    background: "#933EC4",
+                    color: "#FFFFFF",
+                    textShadow: "none"
+                  }}
 
-          <ButtonGroup>
-            <Button
-              onClick={this.handleResetClick}
-            style={{
-                background: "#933EC4",
-                color: "#FFFFFF",
-                textShadow: "none"
-            }}
+                >
+                  Pokaż wszystkie
+                </Button>
+              </ButtonGroup>
+            </ButtonToolbar>
+          </Col>
 
-            >
-              Pokaż wszystkie
-            </Button>
-          </ButtonGroup>
-        </ButtonToolbar>
+
+          <Col sm={4}>
+            <InputRange
+              minValue={searches.reduce((min, next) => Math.min(min, next.kcal), Infinity)}
+              maxValue={searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)}
+              value={this.state.value}
+              onChange={value => this.setState({value})}/>
+          </Col>
+        </Row>
+
 
         <Table striped bordered condensed hover style={{
           marginTop: 20
@@ -153,7 +173,7 @@ class SearchTable extends React.Component {
             <th>Nazwa posiłku</th>
             <th>Wartość kaloryczna</th>
             <th>Rodzaj posiłku</th>
-            <th>Dodaj do ulubionych</th>
+            <th>Dodaj do swojego dnia</th>
           </tr>
           </thead>
           <tbody>
@@ -165,17 +185,19 @@ class SearchTable extends React.Component {
                 f => f(search)
               )
             ).filter(
-                search =>
-    latinize(search.name.toLowerCase()).includes(
-        latinize(this.state.currentSearchPhrase.toLowerCase())
-    )
+              search =>
+                latinize(search.name.toLowerCase()).includes(
+                  latinize(this.state.currentSearchPhrase.toLowerCase())
+                )
+            ).filter(
+              item => item.kcal > this.state.value.min && item.kcal < this.state.value.max
             ).map(
               ({uid, name, kcal, category, favourite}, index, allSearches) => (
 
 
                 <tr key={uid}>
                   <td>
-                    <Link to={'/search/'+uid}>{name} </Link>
+                    <Link to={'/search/' + uid}>{name} </Link>
                   </td>
                   <td>
                     {kcal}
@@ -186,15 +208,15 @@ class SearchTable extends React.Component {
                   </td>
                   <td>
                     {favourite}
-                    <Button onClick={() => {
-                      this.addToFavourites(index + 1)
-                    }}
-                    style={{
-                      background: '#adc43e',
-                        color: "#FFFFFF",
-                        textShadow: "none"
-                    }}>Dodaj do ulubionych</Button>
+                    <ButtonToolbar>
+                      <SplitButton bsStyle="primary" title="Dodaj do Planera" pullRight
+                      id="split-button-pull-right">
+                        <MenuItem eventKey="1">Dzień</MenuItem>
+                        <MenuItem eventKey="2">Pora dnia</MenuItem>
+                      </SplitButton>
+                    </ButtonToolbar>
                   </td>
+
 
                 </tr>
               )

@@ -4,15 +4,24 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "firebase": "^4.5.2",
     "latinize": "^0.4.0",
     "react": "^16.0.0",
+    "react-big-calendar": "^0.16.1",
     "react-bootstrap": "^0.31.3",
     "react-dom": "^16.0.0",
+    "react-facebook": "^4.0.16",
     "react-g-analytics": "^0.4.2",
     "react-ga": "^2.3.5",
+    "react-input-range": "^1.2.1",
+    "react-redux": "^5.0.6",
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.14"
+    "react-scripts": "1.0.14",
+    "react-social": "^1.10.0",
+    "react-social-sharebuttons": "^2.1.4",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

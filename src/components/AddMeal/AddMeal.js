@@ -11,7 +11,7 @@ class AddMeal extends React.Component {
 
 
     state = {
-        ingredients: []
+        ingredients: JSON.parse(localStorage.getItem('addMeal')) || []
     }
 
     addRecipe = newMeal => {
@@ -23,12 +23,14 @@ class AddMeal extends React.Component {
                 newMeal
             )
         }, () => {
-            localStorage.setItem('addMeal', JSON.stringify(this.state))
+            localStorage.setItem('addMeal', JSON.stringify(this.state.ingredients))
         })
     }
 
 
+
     componentWillMount() {
+        console.log('addMeal will mount')
         this.setState(
             JSON.parse(
                 localStorage.getItem('addMeal')
@@ -37,13 +39,17 @@ class AddMeal extends React.Component {
     }
 
     componentDidMount() {
+        console.log('addMeal did mount')
     }
 
     componentWillUpdate() {
+        console.log('addMeal will update')
     }
 
-    componentDi
+
+
     render() {
+        console.log('addMeal render')
 
         const {ingredients} = this.state
         const handlers = {
@@ -56,7 +62,7 @@ class AddMeal extends React.Component {
                     Dodaj przepis
                 </h2>
 
-                <AddIngredientForm addRecipe={this.addRecipe}/>
+               <AddIngredientForm addRecipe={this.addRecipe}/>
 
                 <IngredientList
                     ingredients={ingredients}
@@ -74,8 +80,8 @@ class AddMeal extends React.Component {
                 </ul>
             </div>
         )
-    } Update() {
     }
+
 
 }
 
