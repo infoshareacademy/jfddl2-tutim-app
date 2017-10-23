@@ -28,6 +28,7 @@ class AddMeal extends React.Component {
     }
 
 
+
     componentWillMount() {
         console.log('addMeal will mount')
         this.setState(
@@ -44,6 +45,7 @@ class AddMeal extends React.Component {
     componentWillUpdate() {
         console.log('addMeal will update')
     }
+
 
 
     render() {
@@ -78,8 +80,6 @@ class AddMeal extends React.Component {
                 </ul>
             </div>
         )
-    }dUpdate() {
-        console.log('addMeal did update')
     }
 
 
