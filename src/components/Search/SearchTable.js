@@ -1,10 +1,11 @@
 import React from 'react'
-import {Table, ButtonToolbar, ButtonGroup, Button, Alert, Row, Col, SplitButton, MenuItem} from 'react-bootstrap'
+import {Table, ButtonToolbar, ButtonGroup, Button, Alert, Row, Col,DropdownButton,MenuItem} from 'react-bootstrap'
 import latinize from 'latinize'
 import SearchForm from './SearchForm'
 import {Link} from 'react-router-dom'
 import InputRange from 'react-input-range'
 import 'react-input-range/lib/css/index.css'
+import Planer from '../Planer'
 
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
@@ -35,6 +36,7 @@ class SearchTable extends React.Component {
 
   state = {
     activeFilterNames: [],
+    planerModalShow: false,
     favourites: JSON.parse(localStorage.getItem('favourites')) || [],
     currentSearchPhrase: '',
     addFavourite: null,
@@ -88,12 +90,18 @@ class SearchTable extends React.Component {
 
   render() {
     const {searches} = this.props
-
+    const planerModalClose = () => this.setState({ planerModalShow: false });
 
     return (
 
 
       <div>
+        <Planer show={this.state.planerModalShow} onHide={planerModalClose} />
+
+        <Button bsStyle="primary" onClick={()=>this.setState({ planerModalShow: true })}>
+          Launch small demo modal
+        </Button>
+
         <SearchForm
           searchPhrase={this.state.currentSearchPhrase}
           handleChange={this.handleSearchPhraseChange}
@@ -208,13 +216,16 @@ class SearchTable extends React.Component {
                   </td>
                   <td>
                     {favourite}
-                    <ButtonToolbar>
-                      <SplitButton bsStyle="primary" title="Dodaj do Planera" pullRight
-                      id="split-button-pull-right">
-                        <MenuItem eventKey="1">Dzień</MenuItem>
-                        <MenuItem eventKey="2">Pora dnia</MenuItem>
-                      </SplitButton>
-                    </ButtonToolbar>
+                    <DropdownButton id={`dropdown-${uid}`} title='asdfgh' onSelect={(event)=>{console.log(event)}}>
+                      <MenuItem eventKey="1">Action</MenuItem>
+                      <MenuItem eventKey="2">Another action</MenuItem>
+                      <MenuItem eventKey="3" active>Active Item</MenuItem>
+                      <MenuItem divider />
+                      <MenuItem eventKey="4">Separated link</MenuItem>
+                    </DropdownButton>
+                    <Button onClick={() => {
+                      this.addToFavourites(uid)
+                    }}>Dodaj do Planera</Button>
                   </td>
 
 
