@@ -14,8 +14,8 @@ import Home from './Home'
 import Search from './Search'
 import Favourite from './Favourite'
 import AddMeal from './AddMeal/index'
-
 import SocialShare from './SocialShare'
+import UserProfile from './UserProfile'
 
 
 class App extends React.Component {
@@ -35,6 +35,9 @@ class App extends React.Component {
                             component={Favourite}/>
                     <Route path="/socialShare"
                            component={SocialShare}/>
+
+                  <Route path="/userProfile"
+                           component={UserProfile}/>
 
 
                 </Grid>

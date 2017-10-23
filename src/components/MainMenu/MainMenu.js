@@ -48,6 +48,10 @@ const MainMenu = () => (
         <NavItem>Dodaj</NavItem>
       </LinkContainer>
 
+        <LinkContainer to="/userProfile">
+        <NavItem>Twoje konto</NavItem>
+      </LinkContainer>
+
     </Nav>
   </Navbar>
 
