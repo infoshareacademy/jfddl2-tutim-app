@@ -5,6 +5,7 @@ import SearchForm from './SearchForm'
 import {Link} from 'react-router-dom'
 import InputRange from 'react-input-range'
 import 'react-input-range/lib/css/index.css'
+import styles from './SearchTable.css'
 
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
@@ -39,8 +40,8 @@ class SearchTable extends React.Component {
     currentSearchPhrase: '',
     addFavourite: null,
     value: {
-      // min: 100, //this.props.searches.reduce((min, next) => Math.min(min, next.kcal), Infinity),
-      // max: 500, //this.props.searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)
+      min: 100, //this.props.searches.reduce((min, next) => Math.min(min, next.kcal), Infinity),
+      max: 400, //this.props.searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)
     }
   }
 
@@ -155,6 +156,7 @@ class SearchTable extends React.Component {
           </Col>
 
 
+        <div class="mm_input">
           <Col sm={4}>
             <InputRange
               minValue={searches.reduce((min, next) => Math.min(min, next.kcal), Infinity)}
@@ -162,6 +164,8 @@ class SearchTable extends React.Component {
               value={this.state.value}
               onChange={value => this.setState({value})}/>
           </Col>
+        </div>
+
         </Row>
 
 
