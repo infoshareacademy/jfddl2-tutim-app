@@ -1,14 +1,15 @@
 #user-profile {
     width: 50vw;
-    height: 50vh;
+    height: 75vh;
     margin: 0 auto;
     border-radius: 5px;
     text-align: center;
     overflow: hidden;
     box-shadow: 2px 2px 5px #000;
-    border: 1px solid #000;
+    border: 2px solid #000;
     background-color: rgba(0, 0, 0, 0.64);
     color: white;
+}
 
 hr {
     margin: 20px auto;
@@ -31,7 +32,6 @@ h3 {
 
 h4 {
     font-size: 16px;
-    padding-top: 4%;
 
 }
 
@@ -40,7 +40,7 @@ p {
 }
 
 .top, .bottom {
-    padding: 30px;
+    padding: 20px;
 
 }
 
@@ -54,28 +54,33 @@ p {
 #avatar {
     border-radius: 50%;
     overflow: hidden;
-    display: inline-flex;
-    margin-bottom: 15px;
+    position: relative;
+    margin-bottom: 50px;
     border: 1px solid #000;
-    max-width: 10vw;
-    max-height: 10vh;
+    max-width: 2vw;
+    max-height: 2vh;
+    text-align: center;
+
+
 }
 
 .avatar img {
-    border-radius: 50%;
     overflow: hidden;
-    display: inline-flex;
-    margin-bottom: 15px;
-    border: 1px solid #000;
-    max-width: 10vw;
-    max-height: 10vh;
-}
-
-img {
-    max-width: 100%;
-}
-
+    max-width: 20vw;
+    max-height: 20vh;
+    border-radius: 50%;
+    position: relative;
+    text-align: center;
+margin-left:14em;
 
 }
+
+#user-profile a {
+    display: inline;
+    position: relative;
+    padding: 10px;
+
+}
+
 
 
