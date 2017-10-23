@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, ButtonToolbar, ButtonGroup, Button, Alert, Row, Col} from 'react-bootstrap'
+import {Table, ButtonToolbar, ButtonGroup, Button, Alert, Row, Col, SplitButton, MenuItem} from 'react-bootstrap'
 import latinize from 'latinize'
 import SearchForm from './SearchForm'
 import {Link} from 'react-router-dom'
@@ -39,8 +39,8 @@ class SearchTable extends React.Component {
     currentSearchPhrase: '',
     addFavourite: null,
     value: {
-      // min: 100, //this.props.searches.reduce((min, next) => Math.min(min, next.kcal), Infinity),
-      // max: 500, //this.props.searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)
+       min: 100, //this.props.searches.reduce((min, next) => Math.min(min, next.kcal), Infinity),
+       max: 500, //this.props.searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)
     }
   }
 
@@ -102,7 +102,7 @@ class SearchTable extends React.Component {
         {
 
           this.state.addFavourite === null ? null :
-            <div><Alert bsStyle="success">Dodano do ulubionych </Alert></div>
+            <div><Alert bsStyle="success">Dodano do Twojego dnia! </Alert></div>
 
 
         }
@@ -173,7 +173,7 @@ class SearchTable extends React.Component {
             <th>Nazwa posiłku</th>
             <th>Wartość kaloryczna</th>
             <th>Rodzaj posiłku</th>
-            <th>Dodaj do ulubionych</th>
+            <th>Dodaj do swojego dnia</th>
           </tr>
           </thead>
           <tbody>
@@ -208,15 +208,15 @@ class SearchTable extends React.Component {
                   </td>
                   <td>
                     {favourite}
-                    <Button onClick={() => {
-                      this.addToFavourites(uid)
-                    }}
-                            style={{
-                              background: '#adc43e',
-                              color: "#FFFFFF",
-                              textShadow: "none"
-                            }}>Dodaj do ulubionych</Button>
+                    <ButtonToolbar>
+                      <SplitButton bsStyle="primary" title="Dodaj do Planera" pullRight
+                      id="split-button-pull-right">
+                        <MenuItem eventKey="1">Dzień</MenuItem>
+                        <MenuItem eventKey="2">Pora dnia</MenuItem>
+                      </SplitButton>
+                    </ButtonToolbar>
                   </td>
+
 
                 </tr>
               )

@@ -37,7 +37,7 @@ const MainMenu = () => (
       </LinkContainer>
 
       <LinkContainer to="/favourite">
-        <NavItem>Ulubione</NavItem>
+        <NavItem>Twój Planer</NavItem>
       </LinkContainer>
 
       <LinkContainer to="/addMeal">
