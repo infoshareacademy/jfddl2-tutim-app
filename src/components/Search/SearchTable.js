@@ -1,11 +1,11 @@
 import React from 'react'
-import {Table, ButtonToolbar, ButtonGroup, Button, Alert, Row, Col,DropdownButton,MenuItem} from 'react-bootstrap'
+import {Table, ButtonToolbar, ButtonGroup, Button, Alert, Row, Col, FormControl, FormGroup, ControlLabel} from 'react-bootstrap'
 import latinize from 'latinize'
 import SearchForm from './SearchForm'
 import {Link} from 'react-router-dom'
 import InputRange from 'react-input-range'
 import 'react-input-range/lib/css/index.css'
-import Planer from '../Planer'
+import Modal from 'react-modal';
 
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
@@ -35,7 +35,9 @@ const filterSearches = [
 class SearchTable extends React.Component {
 
   state = {
+
     activeFilterNames: [],
+    modalIsOpen: false,
     planerModalShow: false,
     favourites: JSON.parse(localStorage.getItem('favourites')) || [],
     currentSearchPhrase: '',
@@ -88,19 +90,76 @@ class SearchTable extends React.Component {
 
   }
 
+  openModal = () => {
+    this.setState({modalIsOpen: true});
+  }
+
+  afterOpenModal = () => {
+    // references are now sync'd and can be accessed.
+    this.subtitle.style.color = 'black';
+  }
+
+  closeModal = () => {
+    this.setState({modalIsOpen: false});
+  }
+
   render() {
+    const customStyles = {
+      content : {
+        top                   : '50%',
+        left                  : '50%',
+        right                 : 'auto',
+        bottom                : 'auto',
+        marginRight           : '-50%',
+        transform             : 'translate(-50%, -50%)'
+      }
+    };
     const {searches} = this.props
-    const planerModalClose = () => this.setState({ planerModalShow: false });
+
 
     return (
 
 
       <div>
-        <Planer show={this.state.planerModalShow} onHide={planerModalClose} />
+        <button onClick={this.openModal}>Open Modal</button>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
 
-        <Button bsStyle="primary" onClick={()=>this.setState({ planerModalShow: true })}>
-          Launch small demo modal
-        </Button>
+          <h2 ref={subtitle => this.subtitle = subtitle}>Dodaj</h2>
+          <button onClick={this.closeModal}>Zatwierdź</button>
+
+          <form>
+
+            <FormGroup controlId="formControlsSelect">
+              <ControlLabel>Dzień tygodnia</ControlLabel>
+              <FormControl componentClass="select" placeholder="select">
+                <option value="select">Wybierz</option>
+                <option value="other">Poniedziałek</option>
+                <option value="other">Wtorek</option>
+                <option value="other">Środa</option>
+                <option value="other">Czwartek</option>
+                <option value="other">Piątek</option>
+                <option value="other">Sobota</option>
+                <option value="other">Niedziela</option>
+              </FormControl>
+                <ControlLabel>Pora dnia</ControlLabel>
+                <FormControl componentClass="select" placeholder="select">
+                  <option value="select">Wybierz</option>
+                <option value="other">Śniadanie</option>
+                <option value="other">Obiad</option>
+                <option value="other">Kolacja</option>
+              </FormControl>
+            </FormGroup>
+            <FormGroup controlId="formControlsSelectMultiple">
+
+            </FormGroup>
+          </form>
+        </Modal>
 
         <SearchForm
           searchPhrase={this.state.currentSearchPhrase}
@@ -216,13 +275,13 @@ class SearchTable extends React.Component {
                   </td>
                   <td>
                     {favourite}
-                    <DropdownButton id={`dropdown-${uid}`} title='asdfgh' onSelect={(event)=>{console.log(event)}}>
-                      <MenuItem eventKey="1">Action</MenuItem>
-                      <MenuItem eventKey="2">Another action</MenuItem>
-                      <MenuItem eventKey="3" active>Active Item</MenuItem>
-                      <MenuItem divider />
-                      <MenuItem eventKey="4">Separated link</MenuItem>
-                    </DropdownButton>
+                    {/*<DropdownButton id={`dropdown-${uid}`} title='asdfgh' onSelect={(event)=>{console.log(event)}}>*/}
+                      {/*<MenuItem eventKey="1">Action</MenuItem>*/}
+                      {/*<MenuItem eventKey="2">Another action</MenuItem>*/}
+                      {/*<MenuItem eventKey="3" active>Active Item</MenuItem>*/}
+                      {/*<MenuItem divider />*/}
+                      {/*<MenuItem eventKey="4">Separated link</MenuItem>*/}
+                    {/*</DropdownButton>*/}
                     <Button onClick={() => {
                       this.addToFavourites(uid)
                     }}>Dodaj do Planera</Button>

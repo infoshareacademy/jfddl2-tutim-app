@@ -23,6 +23,7 @@ class Search extends React.Component {
 
         database().ref('recipes').on('value', snapshot => {
             let searches = snapshot.val()
+          console.log('searches', searches)
             this.setState({searches: searches.concat(this.state.addMeal), fetching: false})
         })
 
