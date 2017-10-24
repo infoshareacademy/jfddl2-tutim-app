@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import InputRange from 'react-input-range'
 import 'react-input-range/lib/css/index.css'
 import Modal from 'react-modal';
+import styles from './SearchTable.css'
 
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
@@ -35,7 +36,6 @@ const filterSearches = [
 class SearchTable extends React.Component {
 
   state = {
-
     activeFilterNames: [],
     modalIsOpen: false,
     planerModalShow: false,
@@ -43,8 +43,8 @@ class SearchTable extends React.Component {
     currentSearchPhrase: '',
     addFavourite: null,
     value: {
-       min: 100, //this.props.searches.reduce((min, next) => Math.min(min, next.kcal), Infinity),
-       max: 500, //this.props.searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)
+      min: 100, //this.props.searches.reduce((min, next) => Math.min(min, next.kcal), Infinity),
+      max: 400, //this.props.searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)
     }
   }
 
@@ -174,7 +174,7 @@ class SearchTable extends React.Component {
 
         }
         <Row>
-          <Col sm={4}>
+          <Col sm={6}>
             <ButtonToolbar style={{marginTop: 20}}>
               {
                 filterSearches.map(
@@ -220,8 +220,13 @@ class SearchTable extends React.Component {
               </ButtonGroup>
             </ButtonToolbar>
           </Col>
+    </Row>
+<div class="kcal">
+        <h5> Zakres kaloryczny posiłku
+    </h5>
+        </div>
 
-
+        <div class="mm_input">
           <Col sm={4}>
             <InputRange
               minValue={searches.reduce((min, next) => Math.min(min, next.kcal), Infinity)}
@@ -275,18 +280,15 @@ class SearchTable extends React.Component {
                   </td>
                   <td>
                     {favourite}
-                    {/*<DropdownButton id={`dropdown-${uid}`} title='asdfgh' onSelect={(event)=>{console.log(event)}}>*/}
-                      {/*<MenuItem eventKey="1">Action</MenuItem>*/}
-                      {/*<MenuItem eventKey="2">Another action</MenuItem>*/}
-                      {/*<MenuItem eventKey="3" active>Active Item</MenuItem>*/}
-                      {/*<MenuItem divider />*/}
-                      {/*<MenuItem eventKey="4">Separated link</MenuItem>*/}
-                    {/*</DropdownButton>*/}
                     <Button onClick={() => {
                       this.addToFavourites(uid)
-                    }}>Dodaj do Planera</Button>
+                    }}
+                            style={{
+                              background: '#adc43e',
+                              color: "#FFFFFF",
+                              textShadow: "none"
+                            }}>Dodaj do ulubionych</Button>
                   </td>
-
 
                 </tr>
               )
