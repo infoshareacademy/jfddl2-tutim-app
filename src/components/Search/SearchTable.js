@@ -108,7 +108,7 @@ class SearchTable extends React.Component {
 
         }
         <Row>
-          <Col sm={4}>
+          <Col sm={6}>
             <ButtonToolbar style={{marginTop: 20}}>
               {
                 filterSearches.map(
@@ -154,7 +154,11 @@ class SearchTable extends React.Component {
               </ButtonGroup>
             </ButtonToolbar>
           </Col>
-
+    </Row>
+<div class="kcal">
+        <h5> Zakres kaloryczny posiłku
+    </h5>
+        </div>
 
         <div class="mm_input">
           <Col sm={4}>
@@ -166,7 +170,7 @@ class SearchTable extends React.Component {
           </Col>
         </div>
 
-        </Row>
+
 
 
         <Table striped bordered condensed hover style={{

@@ -40,7 +40,11 @@ class SingleView extends React.Component {
                 <h4>Kategoria: {this.props.filteredProduct.category}
                 </h4>
                 <h4>Liczba kalorii: {this.props.filteredProduct.kcal}</h4>
-              </div>
+                <h4>Składniki odżywcze w 100 g produktu:</h4>
+                <h4>Białka: {this.props.filteredProduct.containsIn100g.protein}</h4>
+                <h4>Tłuszcze: {this.props.filteredProduct.containsIn100g.fat}</h4>
+                <h4>Węglowodany: {this.props.filteredProduct.containsIn100g.carbs}</h4>
+    </div>
 
               <div><img
                 src="https://www.foodlion.com/content/dam/food-lion/recipes/Citrus%20Glazed%20Spiral%20Cut%20Ham/citrusspiralcutham_main.jpg.adapt.full.high.jpg"/>
