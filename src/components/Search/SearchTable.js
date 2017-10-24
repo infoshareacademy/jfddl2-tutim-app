@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, ButtonToolbar, ButtonGroup, Button, Alert, Row, Col, FormControl, FormGroup, ControlLabel} from 'react-bootstrap'
+import {Table, ButtonToolbar, ButtonGroup, Button, Alert, Row, Col, FormGroup, FormControl, ControlLabel} from 'react-bootstrap'
 import latinize from 'latinize'
 import SearchForm from './SearchForm'
 import {Link} from 'react-router-dom'
@@ -174,7 +174,7 @@ class SearchTable extends React.Component {
 
         }
         <Row>
-          <Col sm={6}>
+          <Col sm={4}>
             <ButtonToolbar style={{marginTop: 20}}>
               {
                 filterSearches.map(
@@ -220,13 +220,8 @@ class SearchTable extends React.Component {
               </ButtonGroup>
             </ButtonToolbar>
           </Col>
-    </Row>
-<div class="kcal">
-        <h5> Zakres kaloryczny posiłku
-    </h5>
-        </div>
 
-        <div class="mm_input">
+
           <Col sm={4}>
             <InputRange
               minValue={searches.reduce((min, next) => Math.min(min, next.kcal), Infinity)}
