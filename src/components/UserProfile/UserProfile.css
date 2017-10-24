@@ -1,6 +1,6 @@
 #user-profile {
     width: 50vw;
-    height: 75vh;
+    height: auto;
     margin: 0 auto;
     border-radius: 5px;
     text-align: center;
@@ -9,6 +9,7 @@
     border: 2px solid #000;
     background-color: rgba(0, 0, 0, 0.64);
     color: white;
+    padding-bottom: 30px;
 }
 
 hr {
@@ -80,6 +81,25 @@ margin-left:14em;
     position: relative;
     padding: 10px;
 
+}
+
+.user-profile-heading h2 {
+    text-align: left;
+    font-size: 1em;
+    padding-top: 2%;
+    color: #daff36;
+    padding-left: 1%;
+}
+
+
+.user-profile-heading hr {
+
+    margin: 20px auto;
+    width: 175px;
+    border: 1px solid #daff36;
+    position: absolute;
+    left: 25%;
+    top: 13%;
 }
 
 

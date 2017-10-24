@@ -1,19 +1,9 @@
 import React from "react"
 import styles from './UserProfile.css'
+import {auth, user} from 'firebase'
 
 
-// var userProfile = firebase.auth().currentUser;
-// var name, email, photoUrl, uid, emailVerified;
-//
-// if (userProfile != null) {
-//   name = userProfile.displayName;
-//   email = userProfile.email;
-//   photoUrl = userProfile.photoURL;
-//   emailVerified = userProfile.emailVerified;
-//   uid = userProfile.uid;
-// }
-
-var user = {
+var userProfile = {
   basicInfo: {
     name: "Janka Kowalska",
     gender: "Kobieta",
@@ -25,6 +15,8 @@ var user = {
 }
 
 class Avatar extends React.Component {
+
+
   render() {
     let image = this.props.image,
       style = {
@@ -44,11 +36,18 @@ class Avatar extends React.Component {
 
 class MainPanel extends React.Component {
   render() {
+
+    const userProfile = auth().currentUser;
+    const name = userProfile.displayName;
+    const userEmail = userProfile.email;
+    const photoUrl = userProfile.photoURL;
+
     let info = this.props.info;
     if (!info) return null;
 
     return (
       <div>
+        <div className="user-profile-heading"><h2>Informacje o Twoim koncie</h2><hr/></div>
         <div className="top">
           <Avatar
             image={info.image}
@@ -56,6 +55,9 @@ class MainPanel extends React.Component {
             height={150}
           />
           <h2>{info.name}</h2>
+          <h4>Zarejestrowany adres: {userEmail}</h4>
+          <h4>Zarejestrowany imię: {name}</h4>
+          <h4>Zarejestrowany photo: {photoUrl}</h4>
           <h4>{info.location}</h4>
 
           <hr/>
@@ -65,6 +67,8 @@ class MainPanel extends React.Component {
         <div className="bottom">
           <h4>O sobie</h4>
           <p>{info.bio}</p>
+
+
             </div>
       </div>
     );
@@ -73,11 +77,15 @@ class MainPanel extends React.Component {
 
 class UserProfile extends React.Component {
   render() {
+
     return (
       <div id="user-profile">
-        <MainPanel info={user.basicInfo}/>
+
+        <MainPanel info={userProfile.basicInfo}/>
         <a href="#">Edytuj swoje dane</a>
         <a href="#">Wygeneruj nowe hasło</a>
+        <a href="#">Zmień adres e-mail</a>
+
       </div>
     )
   }
