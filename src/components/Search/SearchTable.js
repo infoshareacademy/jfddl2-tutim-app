@@ -36,6 +36,8 @@ const filterSearches = [
 class SearchTable extends React.Component {
 
   state = {
+    timeAdded: null,
+    dayAdded: null,
     activeFilterNames: [],
     modalIsOpen: false,
     planerModalShow: false,
@@ -103,6 +105,18 @@ class SearchTable extends React.Component {
     this.setState({modalIsOpen: false});
   }
 
+  handleDayChange = (event) => {
+    this.setState({
+      dayAdded: event.target.value
+    })
+  }
+
+  handleTimeChange = (event) => {
+    this.setState({
+      timeAdded: event.target.value
+    })
+  }
+
   render() {
     const customStyles = {
       content : {
@@ -137,22 +151,22 @@ class SearchTable extends React.Component {
 
             <FormGroup controlId="formControlsSelect">
               <ControlLabel>Dzień tygodnia</ControlLabel>
-              <FormControl componentClass="select" placeholder="select">
+              <FormControl onChange={this.handleDayChange}componentClass="select" placeholder="select">
                 <option value="select">Wybierz</option>
-                <option value="other">Poniedziałek</option>
-                <option value="other">Wtorek</option>
-                <option value="other">Środa</option>
-                <option value="other">Czwartek</option>
-                <option value="other">Piątek</option>
-                <option value="other">Sobota</option>
-                <option value="other">Niedziela</option>
+                <option value="Poniedziałek">Poniedziałek</option>
+                <option value="Wtorek">Wtorek</option>
+                <option value="Środa">Środa</option>
+                <option value="Czwartek">Czwartek</option>
+                <option value="Piątek">Piątek</option>
+                <option value="Sobota">Sobota</option>
+                <option value="Niedziela">Niedziela</option>
               </FormControl>
                 <ControlLabel>Pora dnia</ControlLabel>
-                <FormControl componentClass="select" placeholder="select">
+                <FormControl onChange={this.handleTimeChange}componentClass="select" placeholder="select">
                   <option value="select">Wybierz</option>
-                <option value="other">Śniadanie</option>
-                <option value="other">Obiad</option>
-                <option value="other">Kolacja</option>
+                <option value="śniadanie">śniadanie</option>
+                <option value="obiad">obiad</option>
+                <option value="kolacja">kolacja</option>
               </FormControl>
             </FormGroup>
             <FormGroup controlId="formControlsSelectMultiple">
