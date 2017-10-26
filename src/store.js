@@ -7,9 +7,11 @@ import {
 import thunk from 'redux-thunk'
 
 import auth, { init as initAuth } from './state/auth'
+import planer from './state/planer'
 
 const reducer = combineReducers({
-  auth
+  auth,
+  planer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

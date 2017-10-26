@@ -1,4 +1,5 @@
 import { auth } from '../firebase'
+import {initPlanSync} from "./planer";
 
 const SET_USER = 'auth/SET_USER'
 
@@ -9,7 +10,11 @@ const setUser = user => ({
 
 export const init = () => dispatch => {
   auth().onAuthStateChanged(
-    user => dispatch(setUser(user))
+    user => {
+      dispatch(setUser(user))
+      if(user)
+        dispatch(initPlanSync())
+    }
   )
 }
 
