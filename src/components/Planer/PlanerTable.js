@@ -37,11 +37,24 @@ import events from './events'
 
 class PlanerTable extends React.Component {
   render() {
+    const getRecipeData = (uid) => this.props.recipes.filter((recipe)=> parseInt(recipe.uid) === parseInt(uid) )[0]
+
     const getPlanForMealAndDay = (meal, day) => this.props.planerData.filter((recipe) => recipe.meal === meal && recipe.day === day)
 
-    const renderRecipes = (arrayOfRecipes) => arrayOfRecipes.map((recipe) => <div>{recipe.uid}</div>)
+    const renderRecipes = (arrayOfRecipes) => arrayOfRecipes.map(
+      (recipe) => {
+        const recipeData = getRecipeData(recipe.uid)
+        return recipeData ?
+          <div>{recipeData.name} | {recipeData.kcal} //button uid</div>
+          :
+          null
+      }
+    )
 
-    console.log(renderRecipes(getPlanForMealAndDay(1, 2)))
+    const meals = ['Śniadanie', 'Obiad', 'Kolacja']
+
+    const days = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Nd']
+
 
     return (
 
@@ -49,55 +62,16 @@ class PlanerTable extends React.Component {
         <thead>
         <tr>
           <th>Posiłek</th>
-          <th>Pon</th>
-          <th>Wt</th>
-          <th>Śr</th>
-          <th>Czw</th>
-          <th>Pt</th>
-          <th>Sob</th>
-          <th>Sob</th>
-          <th>Nd</th>
+          {days.map((day) => <th>{day}</th>)}
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>Śniadanie</td>
-          <td>
-          </td>
-          <td>
-
-          </td>
-          <td>
-            {renderRecipes(getPlanForMealAndDay(1, 2))}
-          </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Śniadanie</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Śniadanie</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+        {meals.map((meal,mealIndex) => (
+          <tr>
+            <td>{meal}</td>
+            {days.map((day, dayIndex) => <td>{renderRecipes(getPlanForMealAndDay(mealIndex, dayIndex))}</td>)}
+          </tr>
+        ))}
         </tbody>
       </Table>
     )
@@ -105,7 +79,8 @@ class PlanerTable extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  planerData: state.planer.plan
+  planerData: state.planer.plan,
+  recipes: state.recipes.recipes
 })
 
 export default connect(
