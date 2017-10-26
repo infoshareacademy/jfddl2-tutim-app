@@ -10,7 +10,7 @@ class Favourite extends React.Component {
 
   componentDidMount() {
     fetch(
-      `${process.env.PUBLIC_URL} /data/database.json` // template string usage
+      `${process.env.PUBLIC_URL} https://jfddl2-tutim.firebaseio.com/` // template string usage
     ).then(
       response => response.json()
     ).then((recipes) => {
@@ -27,7 +27,8 @@ class Favourite extends React.Component {
   render() {
     return (
       this.state.filteredRecipes.map((recipe, index) => {
-        return <div class="favdPI"><ul class="favPI"><li key={index} class="favPI">{recipe.name}
+        return <div class="favPI"><ul class="favPI"><li key={index} class="favPI">
+
 
         </li></ul></div>
       })
