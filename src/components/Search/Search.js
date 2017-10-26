@@ -9,68 +9,68 @@ import {database} from '../../firebase'
 
 class Search extends React.Component {
 
-    state = {
-        searches: [],
-        fetching: false,
-        error: null,
-        addMeal: JSON.parse(localStorage.getItem('addMeal')) || [],
-    }
+  state = {
+    searches: [],
+    fetching: false,
+    error: null
+  }
 
-    componentDidMount() {
-        this.setState({
-            fetching: true
-        })
+  componentDidMount() {
+    this.setState({
+      fetching: true
+    })
 
-        database().ref('recipes').on('value', snapshot => {
-            let searches = snapshot.val()
-            this.setState({searches: searches.concat(this.state.addMeal), fetching: false})
-        })
+    database().ref('recipes').on('value', snapshot => {
+      let searches = snapshot.val()
+      console.log('searches', searches)
+      this.setState({searches: searches, fetching: false})
+    })
 
-    }
+  }
 
-    render() {
-        const uid = this.props.match.params.uid || null
-        let filteredProduct = this.state.searches.find((recipe) => {
-            return parseInt(uid) === parseInt(recipe.uid)
-        })
+  render() {
+    const uid = this.props.match.params.uid || null
+    let filteredProduct = this.state.searches.find((recipe) => {
+      return parseInt(uid) === parseInt(recipe.uid)
+    })
 
-        const {searches, error, fetching} = this.state
+    const {searches, error, fetching} = this.state
 
-        return (
-            <div>
-                <h1
-                    style={{
-                        color: "white"
-                    }}
-                >Wybierz posiłek</h1>
+    return (
+      <div>
+        <h1
+          style={{
+            color: "white"
+          }}
+        >Wybierz posiłek</h1>
 
-                {
-                    searches !== null ?
-                        null :
-                        <p>Brak posiłków do wyświetlenia</p>
-                }
+        {
+          searches !== null ?
+            null :
+            <p>Brak posiłków do wyświetlenia</p>
+        }
 
-                {
-                    fetching === false ?
-                        null :
-                        <p>Pobieranie posiłków...</p>
-                }
+        {
+          fetching === false ?
+            null :
+            <p>Pobieranie posiłków...</p>
+        }
 
-                {
-                    error === null ?
-                        null :
-                        <p>{error.message}</p>
-                }
-                {
-                    uid === null ?
-                        <SearchTable searches={searches}/> :
-                        <SingleView filteredProduct={filteredProduct}/>
-                }
+        {
+          error === null ?
+            null :
+            <p>{error.message}</p>
+        }
+        {
+          uid === null ?
+            <SearchTable searches={searches}/> :
+            <SingleView filteredProduct={filteredProduct}/>
+        }
 
 
-            </div>
-        )
-    }
+      </div>
+    )
+  }
 }
 
 export default Search

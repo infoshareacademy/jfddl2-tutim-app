@@ -1,0 +1,25 @@
+.input-range {
+    background-color: white;
+
+    padding-bottom: 20px;
+    margin: 20px 0;
+}
+
+span.input-range__label-container {
+    color:red;
+    font-size: 14px;
+    margin: 0;
+}
+
+.input-range__track--active {
+    background: rgb(147, 62, 196);
+}
+
+
+.input-range__slider {
+    background: rgb(147, 62, 196)
+}
+
+h5 {
+    color: white;
+}

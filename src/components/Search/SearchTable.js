@@ -1,10 +1,12 @@
 import React from 'react'
-import {Table, ButtonToolbar, ButtonGroup, Button, Alert, Row, Col, SplitButton, MenuItem} from 'react-bootstrap'
+import {Table, ButtonToolbar, ButtonGroup, Button, Alert, Row, Col, FormGroup, FormControl, ControlLabel} from 'react-bootstrap'
 import latinize from 'latinize'
 import SearchForm from './SearchForm'
 import {Link} from 'react-router-dom'
 import InputRange from 'react-input-range'
 import 'react-input-range/lib/css/index.css'
+import Modal from 'react-modal';
+import styles from './SearchTable.css'
 
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
@@ -34,13 +36,17 @@ const filterSearches = [
 class SearchTable extends React.Component {
 
   state = {
+    timeAdded: null,
+    dayAdded: null,
     activeFilterNames: [],
+    modalIsOpen: false,
+    planerModalShow: false,
     favourites: JSON.parse(localStorage.getItem('favourites')) || [],
     currentSearchPhrase: '',
     addFavourite: null,
     value: {
-       min: 100, //this.props.searches.reduce((min, next) => Math.min(min, next.kcal), Infinity),
-       max: 500, //this.props.searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)
+      min: 100, //this.props.searches.reduce((min, next) => Math.min(min, next.kcal), Infinity),
+      max: 400, //this.props.searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)
     }
   }
 
@@ -86,7 +92,42 @@ class SearchTable extends React.Component {
 
   }
 
+  openModal = () => {
+    this.setState({modalIsOpen: true});
+  }
+
+  afterOpenModal = () => {
+    // references are now sync'd and can be accessed.
+    this.subtitle.style.color = 'black';
+  }
+
+  closeModal = () => {
+    this.setState({modalIsOpen: false});
+  }
+
+  handleDayChange = (event) => {
+    this.setState({
+      dayAdded: event.target.value
+    })
+  }
+
+  handleTimeChange = (event) => {
+    this.setState({
+      timeAdded: event.target.value
+    })
+  }
+
   render() {
+    const customStyles = {
+      content : {
+        top                   : '50%',
+        left                  : '50%',
+        right                 : 'auto',
+        bottom                : 'auto',
+        marginRight           : '-50%',
+        transform             : 'translate(-50%, -50%)'
+      }
+    };
     const {searches} = this.props
 
 
@@ -94,6 +135,46 @@ class SearchTable extends React.Component {
 
 
       <div>
+        <button onClick={this.openModal}>Open Modal</button>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+
+          <h2 ref={subtitle => this.subtitle = subtitle}>Dodaj</h2>
+          <button onClick={this.closeModal}>Zatwierdź</button>
+
+          <form>
+
+            <FormGroup controlId="formControlsSelect">
+              <ControlLabel>Dzień tygodnia</ControlLabel>
+              <FormControl onChange={this.handleDayChange}componentClass="select" placeholder="select">
+                <option value="select">Wybierz</option>
+                <option value="Poniedziałek">Poniedziałek</option>
+                <option value="Wtorek">Wtorek</option>
+                <option value="Środa">Środa</option>
+                <option value="Czwartek">Czwartek</option>
+                <option value="Piątek">Piątek</option>
+                <option value="Sobota">Sobota</option>
+                <option value="Niedziela">Niedziela</option>
+              </FormControl>
+                <ControlLabel>Pora dnia</ControlLabel>
+                <FormControl onChange={this.handleTimeChange}componentClass="select" placeholder="select">
+                  <option value="select">Wybierz</option>
+                <option value="śniadanie">śniadanie</option>
+                <option value="obiad">obiad</option>
+                <option value="kolacja">kolacja</option>
+              </FormControl>
+            </FormGroup>
+            <FormGroup controlId="formControlsSelectMultiple">
+
+            </FormGroup>
+          </form>
+        </Modal>
+
         <SearchForm
           searchPhrase={this.state.currentSearchPhrase}
           handleChange={this.handleSearchPhraseChange}
@@ -208,15 +289,15 @@ class SearchTable extends React.Component {
                   </td>
                   <td>
                     {favourite}
-                    <ButtonToolbar>
-                      <SplitButton bsStyle="primary" title="Dodaj do Planera" pullRight
-                      id="split-button-pull-right">
-                        <MenuItem eventKey="1">Dzień</MenuItem>
-                        <MenuItem eventKey="2">Pora dnia</MenuItem>
-                      </SplitButton>
-                    </ButtonToolbar>
+                    <Button onClick={() => {
+                      this.addToFavourites(uid)
+                    }}
+                            style={{
+                              background: '#adc43e',
+                              color: "#FFFFFF",
+                              textShadow: "none"
+                            }}>Dodaj do ulubionych</Button>
                   </td>
-
 
                 </tr>
               )
