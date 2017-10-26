@@ -1,1 +1,1 @@
-export { default } from './Planer'
+export { default } from './PlanerTable'

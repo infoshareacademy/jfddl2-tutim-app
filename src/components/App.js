@@ -16,7 +16,7 @@ import Favourite from './Favourite'
 import AddMeal from './AddMeal/index'
 import SocialShare from './SocialShare'
 import UserProfile from './UserProfile'
-
+import PlanerTable from './Planer'
 
 class App extends React.Component {
     render() {
@@ -39,6 +39,8 @@ class App extends React.Component {
                   <Route path="/userProfile"
                            component={UserProfile}/>
 
+                  <Route path="/planerTable"
+                         component={PlanerTable}/>
 
                 </Grid>
             </Router>
