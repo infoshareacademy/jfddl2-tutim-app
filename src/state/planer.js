@@ -1,19 +1,18 @@
 import { database } from "../firebase";
 
 
-const ADD_PLAN = 'planer/ADD_PLAN'
+const SET_PLAN = 'planer/SET_PLAN'
 
-const addPlan = plan => ({
-  plan: ADD_PLAN
+const setPlan = plan => ({
+  type: SET_PLAN,
+  plan: plan
 })
 
 
-export const addPlan = plan => () => {
-  const id = planer().currentData.id
-  database().ref('/planer' + id + '/planer').push({
-    category: category,
-    dayTime: dayTime
-
+export const initPlanSync = () => (dispatch, getState) => {
+  const uid = getState().auth.user.uid
+  database().ref(`/mealPlans/${uid}`).on('value', (snapshot) => {
+    dispatch(setPlan(snapshot.val()))
   })
 }
 
@@ -26,12 +25,14 @@ const initialState = {
   ]
 }
 
-const reducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
-    case ADD_PLAN:
+    case SET_PLAN:
       return {
         ...state,
-        plan: Object.entries
+        plan: action.plan
       }
+    default:
+      return state
   }
 }
