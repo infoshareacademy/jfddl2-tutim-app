@@ -1,66 +1,25 @@
 import React from 'react'
-
+import { database } from "../../firebase";
 import AddIngredientForm from './AddIngredientForm'
-import IngredientList from './IngredientList'
-import styles from './AddMeal.css'
-
-import {getNextId} from './_utils'
-
 
 class AddMeal extends React.Component {
-
-
-    state = {
-        ingredients: JSON.parse(localStorage.getItem('addMeal')) || []
-    }
-
     addRecipe = newMeal => {
-        const {ingredients} = this.state
-        const maxIdSoFar = getNextId(ingredients)
 
-        this.setState({
-            ingredients: ingredients.concat(
-                newMeal
-            )
-        }, () => {
-            localStorage.setItem('addMeal', JSON.stringify(this.state.ingredients))
-        })
+          database().ref('recipes').once('value').then((snapshot)=>{
+            let length = snapshot.val().length
+            database().ref(`recipes/${length}`).set(newMeal)
+          })
     }
 
     render() {
-        console.log('addMeal render')
-
-        const {ingredients} = this.state
-        const handlers = {
-            handleToggleCompleteIngredientClick: this.handleToggleCompleteIngredientClick
-        };
-
         return (
             <div>
                 <h2 className="addMM">
                     Dodaj przepis
                 </h2>
-
-                <AddIngredientForm addRecipe={this.addRecipe}/>
-
-                <IngredientList
-                    ingredients={ingredients}
-                    handlers={handlers}
-                />
-
-                <ul className="addMM">
-                    {
-                        ingredients.filter(
-                            ingredient => ingredient.done
-                        ).map(
-                            ingredient => <li className="addMM"  key={ingredient.id}>{ingredient.title}</li>
-                        )
-                    }
-                </ul>
+               <AddIngredientForm addRecipe={this.addRecipe}/>
             </div>
         )
-    }dUpdate() {
-        console.log('addMeal did update')
     }
 
 }

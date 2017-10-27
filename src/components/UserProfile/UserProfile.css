@@ -1,0 +1,106 @@
+#user-profile {
+    width: 50vw;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 2px 2px 5px #000;
+    border: 2px solid #000;
+    background-color: rgba(0, 0, 0, 0.64);
+    color: white;
+    padding-bottom: 30px;
+}
+
+hr {
+    margin: 20px auto;
+    width: 50px;
+    border: 1px solid white;
+    background-color: transparent;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 16px;
+
+}
+
+p {
+    font-size: 14px;
+}
+
+.top, .bottom {
+    padding: 20px;
+
+}
+
+.bottom {
+
+    background-color: rgba(white, 0.3);
+    padding-top: 3%;
+    text-align: left;
+}
+
+#avatar {
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 50px;
+    border: 1px solid #000;
+    max-width: 2vw;
+    max-height: 2vh;
+    text-align: center;
+
+
+}
+
+.avatar img {
+    overflow: hidden;
+    max-width: 20vw;
+    max-height: 20vh;
+    border-radius: 50%;
+    position: relative;
+    text-align: center;
+margin-left:14em;
+
+}
+
+#user-profile a {
+    display: inline;
+    position: relative;
+    padding: 10px;
+
+}
+
+.user-profile-heading h2 {
+    text-align: left;
+    font-size: 1em;
+    padding-top: 2%;
+    color: #daff36;
+    padding-left: 1%;
+}
+
+
+.user-profile-heading hr {
+
+    margin: 20px auto;
+    width: 175px;
+    border: 1px solid #daff36;
+    position: absolute;
+    left: 25%;
+    top: 13%;
+}
+
+
+

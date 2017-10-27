@@ -1,4 +1,6 @@
 import { auth } from '../firebase'
+import {initPlanSync} from "./planer";
+import {initRecipesSync} from "./recipes";
 
 const SET_USER = 'auth/SET_USER'
 
@@ -9,7 +11,14 @@ const setUser = user => ({
 
 export const init = () => dispatch => {
   auth().onAuthStateChanged(
-    user => dispatch(setUser(user))
+    user => {
+      dispatch(setUser(user))
+      if(user) {
+        //@TODO .off this listeners when logout
+        dispatch(initPlanSync())
+        dispatch(initRecipesSync())
+      }
+    }
   )
 }
 

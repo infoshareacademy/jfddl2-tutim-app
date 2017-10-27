@@ -14,7 +14,9 @@ import Home from './Home'
 import Search from './Search'
 import Favourite from './Favourite'
 import AddMeal from './AddMeal/index'
-
+import SocialShare from './SocialShare'
+import UserProfile from './UserProfile'
+import PlanerTable from './Planer'
 
 class App extends React.Component {
     render() {
@@ -22,15 +24,31 @@ class App extends React.Component {
             <Router>
                 <Grid>
                     <MainMenu/>
-                    <Route exact path="/" component={Home}></Route>
-                    <Route exact path="/search" component={Search}/>
-                    <Route path="/search/:uid" component={Search}/>
-                    <Route path="/favourite" component={Favourite}/>
-                    <Route path="/addMeal" component={AddMeal}/>
+
+
+
+                    <Route path="/search"
+                           component={Search}/>
+                    <Route path="/addMeal"
+                           component={AddMeal}/>
+                     <Route path="/favourite"
+                            component={Favourite}/>
+                    <Route path="/socialShare"
+                           component={SocialShare}/>
+
+                  <Route path="/userProfile"
+                           component={UserProfile}/>
+
+                  <Route path="/planerTable"
+                         component={PlanerTable}/>
+
                 </Grid>
             </Router>
         )
     }
+
 }
+
+
 
 export default App

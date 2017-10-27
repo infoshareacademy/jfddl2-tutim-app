@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
 import { signIn } from '../../state/auth'
 
 class SignInForm extends React.Component {

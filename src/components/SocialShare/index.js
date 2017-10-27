@@ -1,1 +1,1 @@
-import
+export { default } from './SocialShare'

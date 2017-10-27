@@ -36,13 +36,22 @@ const MainMenu = () => (
         <NavItem>Wyszukaj</NavItem>
       </LinkContainer>
 
-      <LinkContainer to="/favourite">
-        <NavItem>Ulubione</NavItem>
+      <LinkContainer to="/planerTable">
+        <NavItem>Twój Planer</NavItem>
       </LinkContainer>
 
       <LinkContainer to="/addMeal">
         <NavItem>Dodaj przepis</NavItem>
       </LinkContainer>
+
+      <LinkContainer to="/socialShare">
+        <NavItem>Dodaj</NavItem>
+      </LinkContainer>
+
+        <LinkContainer to="/userProfile">
+        <NavItem>Twoje konto</NavItem>
+      </LinkContainer>
+
     </Nav>
   </Navbar>
 
