@@ -8,10 +8,12 @@ import thunk from 'redux-thunk'
 
 import auth, { init as initAuth } from './state/auth'
 import planer from './state/planer'
+import recipes from './state/recipes'
 
 const reducer = combineReducers({
   auth,
-  planer
+  planer,
+  recipes
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
