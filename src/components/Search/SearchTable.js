@@ -61,7 +61,7 @@ class SearchTable extends React.Component {
     addFavourite: null,
     value: {
       min: 100, //this.props.searches.reduce((min, next) => Math.min(min, next.kcal), Infinity),
-      max: 400, //this.props.searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)
+      max: 500, //this.props.searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)
     }
   }
 
@@ -271,8 +271,8 @@ class SearchTable extends React.Component {
 
           <Col sm={4}>
             <InputRange
-              minValue={searches.reduce((min, next) => Math.min(min, next.kcal), Infinity)}
-              maxValue={searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)}
+              minValue={100}
+              maxValue={500}
               value={this.state.value}
               onChange={value => this.setState({value})}/>
           </Col>

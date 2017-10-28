@@ -33,7 +33,8 @@ class SingleView extends React.Component {
           this.props.filteredProduct ?
             <div className="singleView">
               <h2> {this.props.filteredProduct.name}
-              </h2>     <div className="addToFav likeMe"> <button><a href="#" onClick={() => this.addToFavourites(this.props.filteredProduct.uid)}
+              </h2>
+              <div className="addToFav likeMe"> <button><a href="#" onClick={() => this.addToFavourites(this.props.filteredProduct.uid)}
                                                                      class="linker">dodaj do ulubionych</a></button></div>
 
               <div className="heading">
