@@ -27,12 +27,13 @@ class App extends React.Component {
 
 
 
-                    <Route path="/search"
+                    <Route exact path="/search"
                            component={Search}/>
+                  <Route path="/search/:uid"
+                         component={Search}/>
                     <Route path="/addMeal"
                            component={AddMeal}/>
-                     <Route path="/favourite"
-                            component={Favourite}/>
+
                     <Route path="/socialShare"
                            component={SocialShare}/>
 
