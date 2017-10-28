@@ -19,6 +19,9 @@ import 'react-input-range/lib/css/index.css'
 import Modal from 'react-modal';
 import styles from './SearchTable.css'
 
+import {connect} from 'react-redux'
+import {addMealToPlan} from '../../state/planer'
+
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
   meal_dinner: search => search.category.includes('obiad'),
@@ -133,6 +136,8 @@ class SearchTable extends React.Component {
     }
 
     console.log(newMeal)
+
+    this.props.addMealToPlan(newMeal)
   }
 
   handleDayChange = (event) => {
@@ -345,4 +350,11 @@ class SearchTable extends React.Component {
   }
 }
 
-export default SearchTable
+const mapDispatchToProps = (dispatch) => ({
+  addMealToPlan: (newMeal) => dispatch(addMealToPlan(newMeal))
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SearchTable)
