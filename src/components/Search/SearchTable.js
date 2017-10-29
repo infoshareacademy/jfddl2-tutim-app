@@ -323,7 +323,7 @@ class SearchTable extends React.Component {
                   <td>
 
                     <Button onClick={() => this.openModal(parseInt(uid))}>
-                      Open Modal
+                      Dodaj do Planera
                     </Button>
                   </td>
 
