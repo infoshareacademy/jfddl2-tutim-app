@@ -251,7 +251,7 @@ class SearchTable extends React.Component {
                       {
                         search.map(
                           ({label, name}) => (
-                            <Button
+                            <Button className ="breakfastBttn"
                               key={name}
                               data-filter-name={name}
                               onClick={this.handleToggleFilterClick}
@@ -274,7 +274,7 @@ class SearchTable extends React.Component {
               }
 
               <ButtonGroup>
-                <Button
+                <Button className="breakfastBttn"
                   onClick={this.handleResetClick}
                   style={{
                     background: "#933EC4",
@@ -343,7 +343,7 @@ class SearchTable extends React.Component {
                   </td>
                   <td>
 
-                    <Button onClick={() => this.openModal(parseInt(uid))}>
+                    <Button className="addingToPlanBttn" onClick={() => this.openModal(parseInt(uid))}>
                       Dodaj do Planera
                     </Button>
                   </td>
