@@ -1,6 +1,6 @@
 import React from 'react'
 import {Grid, Row, Button, FormGroup, ControlLabel, FormControl, Alert} from 'react-bootstrap'
-import styles from './AddInggit .css'
+import styles from './AddIng.css'
 
 
 class AddIngredientForm extends React.Component {
@@ -173,7 +173,7 @@ class AddIngredientForm extends React.Component {
                     </Grid>
 
 
-                    <Button className="ingredientInput" onClick={this.handleSubmitMain}> Dodaj posiłek </Button>
+                    <Button className="ingredientInput, addINGbutton" onClick={this.handleSubmitMain}> Dodaj posiłek </Button>
                 </form>
             </div>
         )
