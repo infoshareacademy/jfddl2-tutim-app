@@ -1,5 +1,6 @@
 import React from 'react'
 import {Grid, Row, Button, FormGroup, ControlLabel, FormControl, Alert} from 'react-bootstrap'
+import styles from './AddInggit .css'
 
 
 class AddIngredientForm extends React.Component {
@@ -96,11 +97,11 @@ class AddIngredientForm extends React.Component {
 
     render() {
 
-        const invalidInput = <Alert bsStyle="danger">
+        const invalidInput = <Alert bsStyle="danger" className="ingredientInput">
             Proszę uzupełnić wszystkie pola
         </Alert>;
 
-        const mealAdded =    <Alert bsStyle="success">
+        const mealAdded =    <Alert bsStyle="success" className="ingredientInput">
             Przepis został dodany pomyślnie
         </Alert>;
 
@@ -113,7 +114,7 @@ class AddIngredientForm extends React.Component {
                     <Grid>
                         <Row>
                             <FormGroup controlId="newId">
-                                <ControlLabel>Nazwa dania</ControlLabel>
+                                <ControlLabel className="ingredientInput">Nazwa dania</ControlLabel>
                                 <FormControl componentClass="textarea" placeholder=""
                                              value={this.state.ingredientsFormControlTitle}
                                              onChange={this.handleIngredientFormControlChange3}/>
@@ -125,7 +126,7 @@ class AddIngredientForm extends React.Component {
                         <Row>
                                    <FormGroup controlId="formControlsSelect">
                                     <ControlLabel>Wybierz kategorie posiłku</ControlLabel>
-                                    <FormControl componentClass="select" placeholder="select" value={this.state.ingredientsFormControlCategory}
+                                    <FormControl className="ingredientInput" componentClass="select" placeholder="select" value={this.state.ingredientsFormControlCategory}
                                                  onChange={this.handleIngredientFormControlChange5}>
                                         <option value="Select"></option>
                                         <option value="Śniadanie">Śniadanie</option>
@@ -139,7 +140,7 @@ class AddIngredientForm extends React.Component {
                     <Grid>
                         <Row>
                             <FormGroup controlId="newId">
-                                <ControlLabel>Liczba kalorii</ControlLabel>
+                                <ControlLabel className="ingredientInput">Liczba kalorii</ControlLabel>
                                 <FormControl componentClass="textarea" placeholder=""
                                              value={this.state.ingredientsFormControlKcal}
                                              onChange={this.handleIngredientFormControlChange4}/>
@@ -151,7 +152,7 @@ class AddIngredientForm extends React.Component {
                     <Grid>
                         <Row>
                             <FormGroup controlId="formControlsTextarea">
-                                <ControlLabel>Dodaj przepis</ControlLabel>
+                                <ControlLabel className="ingredientInput">Dodaj przepis</ControlLabel>
                                 <FormControl componentClass="textarea" placeholder=""
                                              value={this.state.ingredientsFormControlValue}
                                              onChange={this.handleIngredientFormControlChange}/>
@@ -163,7 +164,7 @@ class AddIngredientForm extends React.Component {
                     <Grid>
                         <Row>
                             <FormGroup controlId="newId">
-                                <ControlLabel>Dodaj URL zdjęcia</ControlLabel>
+                                <ControlLabel className="ingredientInput">Dodaj URL zdjęcia</ControlLabel>
                                 <FormControl componentClass="textarea" placeholder=""
                                              value={this.state.ingredientsFormControlUrl}
                                              onChange={this.handleIngredientFormControlChange2}/>
@@ -172,7 +173,7 @@ class AddIngredientForm extends React.Component {
                     </Grid>
 
 
-                    <Button onClick={this.handleSubmitMain}> Dodaj posiłek </Button>
+                    <Button className="ingredientInput" onClick={this.handleSubmitMain}> Dodaj posiłek </Button>
                 </form>
             </div>
         )

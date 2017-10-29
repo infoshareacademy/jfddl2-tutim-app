@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,500,600');
+
 .input-range {
     background-color: white;
 
@@ -29,7 +31,7 @@ h5 {
     border: rgb(208,255,0) solid;
     background-color: rgb(255,255,255);
     height: 30%;
-
+    font-family: 'Montserrat Alternates', sans-serif;
 }
 
 
@@ -42,9 +44,11 @@ h5 {
     border: none;
     margin-left: 22%;
     font-size: 2em;
+    font-family: 'Montserrat Alternates', sans-serif;
 
 }
 
 .addHeader {
     margin-left: 42%;
+    font-family: 'Montserrat Alternates', sans-serif;
 }
