@@ -196,7 +196,7 @@ class SearchTable extends React.Component {
           contentLabel="Example Modal"
         >
 
-          <h2 ref={subtitle => this.subtitle = subtitle}>Dodaj</h2>
+          <h2 className="addHeader" ref={subtitle => this.subtitle = subtitle}>Dodaj</h2>
           <form>
 
             <FormGroup controlId="formControlsSelect" >

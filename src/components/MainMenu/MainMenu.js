@@ -9,6 +9,7 @@ import {
   LinkContainer
 } from 'react-router-bootstrap'
 
+import FacebookProvider , { Share }from "react-facebook";
 import logo from './favicon.png'
 import styles from './MainMenu.css'
 
@@ -44,13 +45,21 @@ const MainMenu = () => (
         <NavItem>Dodaj przepis</NavItem>
       </LinkContainer>
 
-      <LinkContainer to="/socialShare">
-        <NavItem>Dodaj</NavItem>
-      </LinkContainer>
+
 
         <LinkContainer to="/userProfile">
         <NavItem>Twoje konto</NavItem>
       </LinkContainer>
+
+
+              <NavItem><FacebookProvider appId="1">
+                  <Share href="http://www.facebook.com">
+                      <button type="button">
+                          Udostępnij
+                      </button>
+                  </Share>
+              </FacebookProvider></NavItem>
+
 
     </Nav>
   </Navbar>

@@ -41,5 +41,10 @@ h5 {
     color: white;
     border: none;
     margin-left: 22%;
+    font-size: 2em;
 
+}
+
+.addHeader {
+    margin-left: 42%;
 }
