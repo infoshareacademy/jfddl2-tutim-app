@@ -65,6 +65,7 @@ class Search extends React.Component {
           uid === null ?
             <SearchTable searches={searches}/> :
             <SingleView filteredProduct={filteredProduct}/>
+
         }
 
 

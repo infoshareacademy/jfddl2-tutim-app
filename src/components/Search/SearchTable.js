@@ -1,5 +1,16 @@
 import React from 'react'
-import {Table, ButtonToolbar, ButtonGroup, Button, Alert, Row, Col, FormGroup, FormControl, ControlLabel} from 'react-bootstrap'
+import {
+  Table,
+  ButtonToolbar,
+  ButtonGroup,
+  Button,
+  Alert,
+  Row,
+  Col,
+  FormGroup,
+  FormControl,
+  ControlLabel
+} from 'react-bootstrap'
 import latinize from 'latinize'
 import SearchForm from './SearchForm'
 import {Link} from 'react-router-dom'
@@ -7,6 +18,9 @@ import InputRange from 'react-input-range'
 import 'react-input-range/lib/css/index.css'
 import Modal from 'react-modal';
 import styles from './SearchTable.css'
+
+import {connect} from 'react-redux'
+import {addMealToPlan} from '../../state/planer'
 
 const filters = {
   meal_breakfast: search => search.category.includes('śniadanie'),
@@ -36,8 +50,9 @@ const filterSearches = [
 class SearchTable extends React.Component {
 
   state = {
-    timeAdded: null,
-    dayAdded: null,
+    mealAdded: null,
+    timeAdded: 0,
+    dayAdded: 0,
     activeFilterNames: [],
     modalIsOpen: false,
     planerModalShow: false,
@@ -46,7 +61,7 @@ class SearchTable extends React.Component {
     addFavourite: null,
     value: {
       min: 100, //this.props.searches.reduce((min, next) => Math.min(min, next.kcal), Infinity),
-      max: 400, //this.props.searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)
+      max: 500, //this.props.searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)
     }
   }
 
@@ -92,8 +107,11 @@ class SearchTable extends React.Component {
 
   }
 
-  openModal = () => {
-    this.setState({modalIsOpen: true});
+  openModal = (mealUid) => {
+    this.setState({
+      modalIsOpen: true,
+      mealAdded: mealUid
+    });
   }
 
   afterOpenModal = () => {
@@ -102,30 +120,47 @@ class SearchTable extends React.Component {
   }
 
   closeModal = () => {
-    this.setState({modalIsOpen: false});
+    this.setState({
+      modalIsOpen: false,
+      mealAdded: null
+    });
+  }
+
+  addMealHandler = () => {
+    this.closeModal()
+
+    const newMeal = {
+      day: this.state.dayAdded,
+      meal: this.state.timeAdded,
+      uid: this.state.mealAdded
+    }
+
+    console.log(newMeal)
+
+    this.props.addMealToPlan(newMeal)
   }
 
   handleDayChange = (event) => {
     this.setState({
-      dayAdded: event.target.value
+      dayAdded: parseInt(event.target.value)
     })
   }
 
   handleTimeChange = (event) => {
     this.setState({
-      timeAdded: event.target.value
+      timeAdded: parseInt(event.target.value)
     })
   }
 
   render() {
     const customStyles = {
-      content : {
-        top                   : '50%',
-        left                  : '50%',
-        right                 : 'auto',
-        bottom                : 'auto',
-        marginRight           : '-50%',
-        transform             : 'translate(-50%, -50%)'
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
       }
     };
     const {searches} = this.props
@@ -135,7 +170,6 @@ class SearchTable extends React.Component {
 
 
       <div>
-        <button onClick={this.openModal}>Open Modal</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -145,34 +179,33 @@ class SearchTable extends React.Component {
         >
 
           <h2 ref={subtitle => this.subtitle = subtitle}>Dodaj</h2>
-          <button onClick={this.closeModal}>Zatwierdź</button>
-
           <form>
 
             <FormGroup controlId="formControlsSelect">
               <ControlLabel>Dzień tygodnia</ControlLabel>
-              <FormControl onChange={this.handleDayChange}componentClass="select" placeholder="select">
-                <option value="select">Wybierz</option>
-                <option value="Poniedziałek">Poniedziałek</option>
-                <option value="Wtorek">Wtorek</option>
-                <option value="Środa">Środa</option>
-                <option value="Czwartek">Czwartek</option>
-                <option value="Piątek">Piątek</option>
-                <option value="Sobota">Sobota</option>
-                <option value="Niedziela">Niedziela</option>
+              <FormControl onChange={this.handleDayChange} componentClass="select" placeholder="select">
+                <option value="0">Poniedziałek</option>
+                <option value="1">Wtorek</option>
+                <option value="2">Środa</option>
+                <option value="3">Czwartek</option>
+                <option value="4">Piątek</option>
+                <option value="5">Sobota</option>
+                <option value="6">Niedziela</option>
               </FormControl>
-                <ControlLabel>Pora dnia</ControlLabel>
-                <FormControl onChange={this.handleTimeChange}componentClass="select" placeholder="select">
-                  <option value="select">Wybierz</option>
-                <option value="śniadanie">śniadanie</option>
-                <option value="obiad">obiad</option>
-                <option value="kolacja">kolacja</option>
+              <ControlLabel>Pora dnia</ControlLabel>
+              <FormControl onChange={this.handleTimeChange} componentClass="select" placeholder="select">
+                <option value="0">śniadanie</option>
+                <option value="1">obiad</option>
+                <option value="2">kolacja</option>
               </FormControl>
             </FormGroup>
             <FormGroup controlId="formControlsSelectMultiple">
 
             </FormGroup>
           </form>
+
+          <button onClick={this.addMealHandler}>Zatwierdź</button>
+
         </Modal>
 
         <SearchForm
@@ -238,8 +271,8 @@ class SearchTable extends React.Component {
 
           <Col sm={4}>
             <InputRange
-              minValue={searches.reduce((min, next) => Math.min(min, next.kcal), Infinity)}
-              maxValue={searches.reduce((max, next) => Math.max(max, next.kcal), -Infinity)}
+              minValue={100}
+              maxValue={500}
               value={this.state.value}
               onChange={value => this.setState({value})}/>
           </Col>
@@ -288,15 +321,10 @@ class SearchTable extends React.Component {
 
                   </td>
                   <td>
-                    {favourite}
-                    <Button onClick={() => {
-                      this.addToFavourites(uid)
-                    }}
-                            style={{
-                              background: '#adc43e',
-                              color: "#FFFFFF",
-                              textShadow: "none"
-                            }}>Dodaj do ulubionych</Button>
+
+                    <Button onClick={() => this.openModal(parseInt(uid))}>
+                      Open Modal
+                    </Button>
                   </td>
 
                 </tr>
@@ -311,4 +339,17 @@ class SearchTable extends React.Component {
   }
 }
 
-export default SearchTable
+
+
+
+const mapDispatchToProps = (dispatch) => ({
+  addMealToPlan: (newMeal) => dispatch(addMealToPlan(newMeal))
+})
+
+
+
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SearchTable)
