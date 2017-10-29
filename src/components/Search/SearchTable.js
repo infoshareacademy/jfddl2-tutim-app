@@ -321,18 +321,7 @@ class SearchTable extends React.Component {
 
                   </td>
                   <td>
-                    {favourite}
-                    <Button
-                      onClick={() => {
-                        this.addToFavourites(uid)
-                      }}
-                      style={{
-                        background: '#adc43e',
-                        color: "#FFFFFF",
-                        textShadow: "none"
-                      }}>
-                      Dodaj do ulubionych
-                    </Button>
+
                     <Button onClick={() => this.openModal(parseInt(uid))}>
                       Open Modal
                     </Button>
@@ -350,9 +339,15 @@ class SearchTable extends React.Component {
   }
 }
 
+
+
+
 const mapDispatchToProps = (dispatch) => ({
   addMealToPlan: (newMeal) => dispatch(addMealToPlan(newMeal))
 })
+
+
+
 
 export default connect(
   null,

@@ -19,12 +19,9 @@
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
-
     "recharts": "^1.0.0-beta.0",
-
     "react-social": "^1.10.0",
     "react-social-sharebuttons": "^2.1.4",
-
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
   },

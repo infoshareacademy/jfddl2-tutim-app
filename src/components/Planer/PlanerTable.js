@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 
 import BigCalendar from 'react-big-calendar'
 import events from './events'
+import recipes from "../../state/recipes";
 
 
 //
@@ -40,6 +41,10 @@ class PlanerTable extends React.Component {
     const getRecipeData = (uid) => this.props.recipes.filter((recipe)=> parseInt(recipe.uid) === parseInt(uid) )[0]
 
     const getPlanForMealAndDay = (meal, day) => this.props.planerData.filter((recipe) => recipe.meal === meal && recipe.day === day)
+
+      if((meal, day) => this.props.planerData.filter((recipe) => recipe.meal === meal && recipe.day === day) === null) {
+        return [];
+      }
 
     const renderRecipes = (arrayOfRecipes) => arrayOfRecipes.map(
       (recipe) => {

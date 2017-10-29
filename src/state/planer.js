@@ -19,6 +19,11 @@ export const initPlanSync = () => (dispatch, getState) => {
 export const addMealToPlan = (newMeal) => (dispatch, getState) => {
   const uid = getState().auth.user.uid
   const nextIndex = getState().planer.plan.length
+
+    if(getState().planer.plan.length === null) {
+    return [];
+    }
+
   database().ref(`/mealPlans/${uid}/${nextIndex}`).set(newMeal)
 }
 
