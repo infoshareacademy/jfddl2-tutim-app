@@ -17,6 +17,7 @@ import AddMeal from './AddMeal/index'
 import SocialShare from './SocialShare'
 import UserProfile from './UserProfile'
 import PlanerTable from './Planer'
+import v2 from './v2'
 
 class App extends React.Component {
     render() {
@@ -42,6 +43,9 @@ class App extends React.Component {
 
                   <Route path="/planerTable"
                          component={PlanerTable}/>
+
+                    <Route path="/v2"
+                           component={v2}/>
 
                 </Grid>
             </Router>

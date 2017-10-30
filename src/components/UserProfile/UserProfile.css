@@ -1,106 +1,157 @@
-#user-profile {
-    width: 50vw;
-    height: auto;
-    margin: 0 auto;
-    border-radius: 5px;
-    text-align: center;
-    overflow: hidden;
-    box-shadow: 2px 2px 5px #000;
-    border: 2px solid #000;
-    background-color: rgba(0, 0, 0, 0.64);
-    color: white;
-    padding-bottom: 30px;
+@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat');
+
+.avatar-bg {
+    border-width: 30px;
+    border-color: rgb(166, 166, 166);
+    border-style: solid;
+    width: 5%;
+    height: 5%;
 }
 
-hr {
-    margin: 20px auto;
-    width: 50px;
-    border: 1px solid white;
-    background-color: transparent;
-}
-
-h1, h2, h3, h4, h5, h6, p {
-    margin: 0;
-}
-
-h2 {
-    font-size: 30px;
-}
-
-h3 {
-    font-size: 18px;
-}
-
-h4 {
-    font-size: 16px;
-
-}
-
-p {
-    font-size: 14px;
-}
-
-.top, .bottom {
-    padding: 20px;
-
-}
-
-.bottom {
-
-    background-color: rgba(white, 0.3);
-    padding-top: 3%;
-    text-align: left;
-}
-
-#avatar {
-    border-radius: 50%;
-    overflow: hidden;
+ .avatar img  {
     position: relative;
-    margin-bottom: 50px;
-    border: 1px solid #000;
-    max-width: 2vw;
-    max-height: 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+     margin-left: 100%;
+}
 
+.float {
+float: left;
 
 }
 
-.avatar img {
-    overflow: hidden;
-    max-width: 20vw;
-    max-height: 20vh;
-    border-radius: 50%;
+.button-purple {
+    background: rgb(148, 0, 233);
     position: relative;
+    width: 463px;
+    height: 101px;
+    color: #FFF;
+    font-size: 1.6em;
     text-align: center;
-margin-left:14em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   padding-top: 6%;
+}
+
+.button-purple:hover {
+    text-decoration: underline;
 
 }
 
-#user-profile a {
+.button-purple a {
+    text-decoration: none;
+    color: #fff !important;
+
+}
+
+
+@-webkit-keyframes hvr-buzz {
+    50% {
+        -webkit-transform: translateX(3px) rotate(2deg);
+        transform: translateX(3px) rotate(2deg);
+    }
+    100% {
+        -webkit-transform: translateX(-3px) rotate(-2deg);
+        transform: translateX(-3px) rotate(-2deg);
+    }
+}
+
+@keyframes hvr-buzz {
+    50% {
+        -webkit-transform: translateX(3px) rotate(2deg);
+        transform: translateX(3px) rotate(2deg);
+    }
+    100% {
+        -webkit-transform: translateX(-3px) rotate(-2deg);
+        transform: translateX(-3px) rotate(-2deg);
+    }
+}
+
+.hvr-buzz {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px transparent;
+}
+
+.hvr-buzz:hover, .hvr-buzz:focus, .hvr-buzz:active {
+    -webkit-animation-name: hvr-buzz;
+    animation-name: hvr-buzz;
+    -webkit-animation-duration: 0.15s;
+    animation-duration: 0.15s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+a .user-buttons {
+    padding: 3% !important;
+    position: relative;
     display: inline;
-    position: relative;
-    padding: 10px;
+
+}
+ .user-profile-heading {
+    text-align: center;
+}
+
+ .User-Name p {
+     font-size: 1.5em;
+     color: #525252;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 0% 2% 0% 2%;
+
+ }
+
+.User-Name input {
+
+    border-width: 1px;
+    border-color: rgb(148, 0, 233);
+    border-style: solid;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px 120px 15px 120px;
+    max-width: 100%;
+    display: inline;
 
 }
 
-.user-profile-heading h2 {
-    text-align: left;
+.User-Name h5 {
     font-size: 1em;
-    padding-top: 2%;
-    color: #daff36;
-    padding-left: 1%;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
-.user-profile-heading hr {
+.user-profile a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    margin: 20px auto;
-    width: 175px;
-    border: 1px solid #daff36;
-    position: absolute;
-    left: 25%;
-    top: 13%;
 }
 
+.user-profile a:hover {
+    color: #000 !important;
+}
+
+.save-changes {
+    color: #aec200 !important;
+    /*display: flex;*/
+    /*align-items: right;*/
+    text-align: right;
+    font-size: 1em;
+    /*background-color: #a5c226;*/
+}
 
 
