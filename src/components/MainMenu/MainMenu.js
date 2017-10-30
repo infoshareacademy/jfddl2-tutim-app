@@ -13,10 +13,12 @@ import FacebookProvider , { Share }from "react-facebook";
 import logo from './favicon.png'
 import styles from './MainMenu.css'
 
+import {connect} from 'react-redux'
+
+import {signOut} from '../../state/auth'
 
 
-
-const MainMenu = () => (
+const MainMenu = (props) => (
     <Navbar
         style={{
             marginLefteft: 30,
@@ -61,6 +63,10 @@ const MainMenu = () => (
               </FacebookProvider></NavItem>
 
 
+          <NavItem onClick={props.signOut}>Wyloguj</NavItem>
+
+
+
     </Nav>
   </Navbar>
 
@@ -68,4 +74,9 @@ const MainMenu = () => (
 
 )
 
-export default MainMenu
+export default connect(
+  null,
+  (dispatch)=>({
+    signOut: () => dispatch(signOut())
+  })
+)(MainMenu)
