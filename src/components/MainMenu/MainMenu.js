@@ -53,6 +53,9 @@ const MainMenu = (props) => (
         <NavItem>Twoje konto</NavItem>
       </LinkContainer>
 
+          <LinkContainer to="/v2">
+              <NavItem>wersja 2.0</NavItem>
+          </LinkContainer>
 
               <NavItem><FacebookProvider appId="1">
                   <Share href="http://www.facebook.com">

@@ -1,0 +1,22 @@
+.foto img {
+    max-width: 100%;
+    height: auto;
+}
+
+.foto {
+    background: url('mockup1.jpg');
+    background-size: cover;
+    height: 700px;
+}
+
+.foto1 {
+    background: url('Mockup2.jpg');
+    background-size: cover;
+    height: 700px;
+}
+.foto2 {
+
+    background: url('mockup3.jpg');
+    background-size: cover;
+    height: 700px;
+}
