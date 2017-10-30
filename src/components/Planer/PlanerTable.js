@@ -42,10 +42,6 @@ class PlanerTable extends React.Component {
 
     const getPlanForMealAndDay = (meal, day) => this.props.planerData.filter((recipe) => recipe.meal === meal && recipe.day === day)
 
-      if((meal, day) => this.props.planerData.filter((recipe) => recipe.meal === meal && recipe.day === day) === null) {
-        return [];
-      }
-
     const renderRecipes = (arrayOfRecipes) => arrayOfRecipes.map(
       (recipe) => {
         const recipeData = getRecipeData(recipe.uid)
