@@ -9,13 +9,16 @@ import {
   LinkContainer
 } from 'react-router-bootstrap'
 
+import FacebookProvider , { Share }from "react-facebook";
 import logo from './favicon.png'
 import styles from './MainMenu.css'
 
+import {connect} from 'react-redux'
+
+import {signOut} from '../../state/auth'
 
 
-
-const MainMenu = () => (
+const MainMenu = (props) => (
     <Navbar
         style={{
             marginLefteft: 30,
@@ -44,13 +47,25 @@ const MainMenu = () => (
         <NavItem>Dodaj przepis</NavItem>
       </LinkContainer>
 
-      <LinkContainer to="/socialShare">
-        <NavItem>Dodaj</NavItem>
-      </LinkContainer>
+
 
         <LinkContainer to="/userProfile">
         <NavItem>Twoje konto</NavItem>
       </LinkContainer>
+
+
+              <NavItem><FacebookProvider appId="1">
+                  <Share href="http://www.facebook.com">
+                      <button type="button">
+                          Udostępnij
+                      </button>
+                  </Share>
+              </FacebookProvider></NavItem>
+
+
+          <NavItem onClick={props.signOut}>Wyloguj</NavItem>
+
+
 
     </Nav>
   </Navbar>
@@ -59,4 +74,9 @@ const MainMenu = () => (
 
 )
 
-export default MainMenu
+export default connect(
+  null,
+  (dispatch)=>({
+    signOut: () => dispatch(signOut())
+  })
+)(MainMenu)

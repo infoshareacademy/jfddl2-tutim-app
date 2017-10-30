@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { signIn, signInByGoogle } from '../../state/auth'
+import {FormControl, Button, Grid, FormGroup} from 'react-bootstrap'
 
 class SignInForm extends React.Component {
 
@@ -25,27 +26,37 @@ class SignInForm extends React.Component {
 
   render() {
     return (
+      <Grid>
       <form onSubmit={this.handleSubmit}>
         <h1>Zaloguj się</h1>
-        <input
+        <FormGroup>
+        <FormControl
+          placeholder="adres email"
           type="text"
           name="email"
           onChange={this.handleChange}
           value={this.state.email}
         />
-
-        <input
+        </FormGroup>
+        <FormGroup>
+        <FormControl
+          placeholder="hasło"
           type="password"
           name="password"
           onChange={this.handleChange}
           value={this.state.password}
         />
 
-        <button>Sign in</button>
-
-        <button onClick={this.handleLoginByGoogle}>Sign in by Google</button>
-
+        </FormGroup>
+        <FormGroup>
+        <Button bsStyle="primary"
+        type="submit"
+        >Sign in</Button>
+        <span>   </span>
+        <Button bsStyle="danger" onClick={this.handleLoginByGoogle}>Sign in by Google</Button>
+        </FormGroup>
       </form>
+      </Grid>
     )
   }
 }

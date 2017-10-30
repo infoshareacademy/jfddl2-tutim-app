@@ -29,11 +29,7 @@ export const addMealToPlan = (newMeal) => (dispatch, getState) => {
 
 
 const initialState = {
-  plan : [{
-    id: '',
-    dayTime: ''
-  }
-  ]
+  plan : []
 }
 
 export default (state = initialState, action) => {
@@ -41,7 +37,7 @@ export default (state = initialState, action) => {
     case SET_PLAN:
       return {
         ...state,
-        plan: action.plan
+        plan: action.plan || initialState.plan
       }
     default:
       return state

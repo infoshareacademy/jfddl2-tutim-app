@@ -8,32 +8,6 @@ import events from './events'
 import recipes from "../../state/recipes";
 
 
-//
-// class PlanerTable extends React.Component{
-//   render() {
-//     return (
-//       <div>
-//         <h3 className="callout">
-//           Click an event to see more info, or
-//           drag the mouse over the calendar to select a date/time range.
-//         </h3>
-//         <BigCalendar
-//           selectable
-//           events={events}
-//           defaultView='week'
-//           scrollToTime={new Date(1970, 1, 1, 6)}
-//           defaultDate={new Date(2015, 3, 12)}
-//           onSelectEvent={event => alert(event.title)}
-//           // onSelectSlot={(slotInfo) => alert(
-//           //   `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
-//           //   `\nend: ${slotInfo.end.toLocaleString()}`
-//           // )}
-//         />
-//       </div>
-//     )
-//   }
-//
-// }
 
 
 class PlanerTable extends React.Component {
@@ -42,15 +16,11 @@ class PlanerTable extends React.Component {
 
     const getPlanForMealAndDay = (meal, day) => this.props.planerData.filter((recipe) => recipe.meal === meal && recipe.day === day)
 
-      if((meal, day) => this.props.planerData.filter((recipe) => recipe.meal === meal && recipe.day === day) === null) {
-        return [];
-      }
-
     const renderRecipes = (arrayOfRecipes) => arrayOfRecipes.map(
       (recipe) => {
         const recipeData = getRecipeData(recipe.uid)
         return recipeData ?
-          <div>{recipeData.name} | {recipeData.kcal} //button uid</div>
+          <div>{recipeData.name} | kcal: {recipeData.kcal}  </div>
           :
           null
       }

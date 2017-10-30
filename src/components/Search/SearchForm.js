@@ -6,6 +6,7 @@ import {
   Button
 } from 'react-bootstrap'
 
+
 class SearchForm extends React.Component {
   render() {
     return (
@@ -17,11 +18,13 @@ class SearchForm extends React.Component {
             type="text"
           />
           <InputGroup.Button>
-            <Button
+            <Button className="searchBttn"
             style={{
-              background: "#933EC4",
-                color: "#FFFFFF",
-                textShadow: "none"
+                background: 'rgb(148, 0, 233)',
+                color: 'white',
+                border: 'none',
+                fontFamily: 'Montserrat Alternates',
+
             }}>
               <Glyphicon glyph="search"/> Szukaj
             </Button>

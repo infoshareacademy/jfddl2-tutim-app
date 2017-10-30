@@ -153,16 +153,34 @@ class SearchTable extends React.Component {
   }
 
   render() {
+
+      const modalStyles = {
+          content: {
+              borderColor: 'rgb(208, 255, 0)',
+              borderStyle: 'solid',
+              backgroundColor: 'black',
+          }
+      }
+
+
     const customStyles = {
       content: {
+        width: '38%',
+          height: '50%',
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
+        transform: 'translate(-50%, -50%)',
+
+
       }
+
+
     };
+
+
     const {searches} = this.props
 
 
@@ -178,12 +196,15 @@ class SearchTable extends React.Component {
           contentLabel="Example Modal"
         >
 
-          <h2 ref={subtitle => this.subtitle = subtitle}>Dodaj</h2>
+          <h2 className="addHeader" ref={subtitle => this.subtitle = subtitle}>Dodaj</h2>
           <form>
 
-            <FormGroup controlId="formControlsSelect">
+            <FormGroup controlId="formControlsSelect" >
               <ControlLabel>Dzień tygodnia</ControlLabel>
-              <FormControl onChange={this.handleDayChange} componentClass="select" placeholder="select">
+              <FormControl className="formInput"
+                           onChange={this.handleDayChange} componentClass="select" placeholder="select"
+
+              >
                 <option value="0">Poniedziałek</option>
                 <option value="1">Wtorek</option>
                 <option value="2">Środa</option>
@@ -204,7 +225,7 @@ class SearchTable extends React.Component {
             </FormGroup>
           </form>
 
-          <button onClick={this.addMealHandler}>Zatwierdź</button>
+          <button className="acceptButton" onClick={this.addMealHandler} >Zatwierdź</button>
 
         </Modal>
 
@@ -230,7 +251,7 @@ class SearchTable extends React.Component {
                       {
                         search.map(
                           ({label, name}) => (
-                            <Button
+                            <Button className ="breakfastBttn"
                               key={name}
                               data-filter-name={name}
                               onClick={this.handleToggleFilterClick}
@@ -253,7 +274,7 @@ class SearchTable extends React.Component {
               }
 
               <ButtonGroup>
-                <Button
+                <Button className="breakfastBttn"
                   onClick={this.handleResetClick}
                   style={{
                     background: "#933EC4",
@@ -322,8 +343,8 @@ class SearchTable extends React.Component {
                   </td>
                   <td>
 
-                    <Button onClick={() => this.openModal(parseInt(uid))}>
-                      Open Modal
+                    <Button className="addingToPlanBttn" onClick={() => this.openModal(parseInt(uid))}>
+                      Dodaj do Planera
                     </Button>
                   </td>
 
