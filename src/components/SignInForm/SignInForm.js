@@ -49,7 +49,9 @@ class SignInForm extends React.Component {
 
         </FormGroup>
         <FormGroup>
-        <Button bsStyle="primary">Sign in</Button>
+        <Button bsStyle="primary"
+        type="submit"
+        >Sign in</Button>
         <span>   </span>
         <Button bsStyle="danger" onClick={this.handleLoginByGoogle}>Sign in by Google</Button>
         </FormGroup>

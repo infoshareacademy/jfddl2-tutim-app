@@ -36,7 +36,7 @@ class SignUpForm extends React.Component {
           </FormGroup>
           <FormGroup>
             <FormControl
-              placeholder="adres email"
+              placeholder="hasło"
               type="password"
               name="password"
               onChange={this.handleChange}
@@ -44,7 +44,9 @@ class SignUpForm extends React.Component {
             />
           </FormGroup>
           <FormGroup>
-            <Button bsStyle="warning">Sign up</Button>
+            <Button bsStyle="warning"
+            type="submit"
+            >Sign up</Button>
           </FormGroup>
         </form>
       </Grid>
